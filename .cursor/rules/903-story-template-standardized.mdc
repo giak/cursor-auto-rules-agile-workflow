@@ -87,11 +87,23 @@ Liste hiérarchique avec suivi de progression:
    ...
 ```
 
-### 8️⃣ Notes de Développement
-Informations techniques pertinentes
+### 8️⃣ Principes de Développement
+Cette section rappelle les principes à suivre lors de l'implémentation du code:
 
-### 9️⃣ Journal de Communication
-Historique des discussions importantes
+```
+#### Principes à Suivre
+- **Simplicité**: Solution minimale répondant aux critères d'acceptation (focus sur un plateau fonctionnel sans fonctionnalités avancées)
+- **Périmètre**: Se limiter strictement aux exigences documentées (ne pas implémenter les règles de jeu complètes)
+- **Cohérence**: Respecter l'architecture React du projet et les patterns existants
+
+#### À Éviter
+- Génération de code pour des fonctionnalités avancées (comme l'IA des échecs)
+- Création de fichiers supplémentaires pour des variantes du jeu
+- Implémentation du déplacement des pièces non couvert par les critères d'acceptation
+```
+
+### 9️⃣ Risques et Hypothèses
+Format obligatoire (tableau):
 
 ## 💡 Exemples
 
@@ -143,6 +155,18 @@ Story Points: 2
    1. - [ ] Ajouter les gestionnaires de clics
    2. - [ ] Mettre en surbrillance la case sélectionnée
    3. - [ ] Écrire les tests d'interaction
+
+## Principes de Développement
+
+#### Principes à Suivre
+- **Simplicité**: Solution minimale répondant aux critères d'acceptation (focus sur un plateau fonctionnel sans fonctionnalités avancées)
+- **Périmètre**: Se limiter strictement aux exigences documentées (ne pas implémenter les règles de jeu complètes)
+- **Cohérence**: Respecter l'architecture React du projet et les patterns existants
+
+#### À Éviter
+- Génération de code pour des fonctionnalités avancées (comme l'IA des échecs)
+- Création de fichiers supplémentaires pour des variantes du jeu
+- Implémentation du déplacement des pièces non couvert par les critères d'acceptation
 
 ## Notes de Développement
 

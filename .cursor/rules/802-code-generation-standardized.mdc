@@ -1,0 +1,81 @@
+---
+description: "ALWAYS APPLY when GENERATING or MODIFYING code to ENSURE efficiency, maintainability and adherence to project standards"
+globs: "**/*.{js,ts,jsx,tsx,java,py,html,css,scss}"
+alwaysApply: false
+---
+
+# 🧩 Standard de Génération de Code
+
+## 📋 Vue d'Ensemble
+Cette règle définit les bonnes pratiques à suivre lors de la génération ou modification de code. Elle vise à garantir que le code produit soit simple, efficace, maintenable et strictement aligné avec les exigences documentées dans les stories et les documents d'architecture.
+
+> ⚠️ **Attention**: Cette règle est fondamentale pour maintenir la qualité du code et éviter la dette technique. Elle doit être appliquée lors de chaque tâche de développement.
+
+## 🎯 Objectifs
+- Assurer que le code généré est minimal et focalisé sur les exigences actuelles
+- Prévenir la sur-ingénierie et les complexités inutiles
+- Garantir l'alignement avec l'architecture et les stories définies
+- Éviter les hallucinations et les suppositions non-documentées
+- Maintenir la cohérence avec les conventions du projet
+
+## 📏 Principes Fondamentaux
+
+### Simplicité et Efficacité
+- **KISS (Keep It Simple, Stupid)**: Préférez toujours la solution la plus simple qui résout le problème.
+- **YAGNI (You Aren't Gonna Need It)**: N'ajoutez pas de fonctionnalités "au cas où" - implémentez uniquement ce qui est demandé maintenant.
+- **DRY (Don't Repeat Yourself)**: Évitez la duplication de code, mais ne créez pas d'abstractions prématurées.
+
+### Minimalisme Ciblé
+- Générez uniquement le code nécessaire à l'implémentation de la story/task actuelle
+- Limitez la création de nouveaux fichiers au strict nécessaire
+- Évitez d'anticiper des besoins futurs non spécifiés dans les documents du projet
+
+### Cohérence Contextuelle
+- Consultez systématiquement les documents de référence avant toute génération
+- Respectez l'architecture existante et les patterns établis
+- Référez-vous toujours aux critères d'acceptation de la story en cours
+
+## ✅ Pratiques Recommandées
+
+### Avant de Générer du Code
+1. **Analysez la story/task** pour comprendre précisément son périmètre
+2. **Consultez le document d'architecture** pour identifier les patterns à suivre
+3. **Examinez le code existant** pour maintenir la cohérence stylistique
+
+### Pendant la Génération
+1. **Privilégiez la lisibilité** sur l'optimisation prématurée
+2. **Commentez les décisions complexes** pour faciliter la maintenance
+3. **Testez au fur et à mesure** pour valider que le code répond aux exigences
+
+### Après la Génération
+1. **Révisez le code** pour éliminer tout élément non nécessaire
+2. **Vérifiez l'alignement** avec les critères d'acceptation
+3. **Documentez les choix d'implémentation** importants
+
+## ❌ Anti-Patterns à Éviter
+
+### Génération Excessive
+- Création de fichiers "qui pourraient être utiles plus tard"
+- Implémentation de fonctionnalités non spécifiées dans la story
+- Ajout de code "au cas où" ou pour des scénarios hypothétiques
+
+### Sur-Ingénierie
+- Abstractions complexes pour des cas simples
+- Optimisations prématurées sans données de performance
+- Frameworks ou librairies supplémentaires non justifiés
+
+### Hallucinations
+- Suppositions sur des exigences non documentées
+- Invention de fonctionnalités non demandées
+- Ignorance des contraintes spécifiées dans les documents du projet
+
+## 🔄 Intégration avec le Workflow
+Cette règle doit être appliquée à chaque étape du cycle de développement défini dans la règle `801-workflow-agile-standardized`. Elle est particulièrement importante lors de:
+1. L'implémentation des stories
+2. La résolution des bugs
+3. Les revues de code
+4. Les refactorisations
+
+---
+
+*Version: 1.0.0* 

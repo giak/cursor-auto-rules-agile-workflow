@@ -60,6 +60,33 @@ Le PRD doit inclure:
 3. Une fois la story terminée, générer le brouillon de la story suivante
 4. Attendre l'approbation avant de continuer sur la prochaine story
 
+## 🔄 Cycle de Développement
+1. **Création de Branches**: Créez une branche dédiée pour chaque story
+2. **Développement Test-Driven**: Commencez par écrire des tests pour les critères d'acceptation
+3. **Implémentation Itérative**: Implémentez le code en petites incrémentations, en faisant passer les tests
+4. **Revue de Code**: Soumettez votre code à une revue par les pairs
+5. **Intégration Continue**: Fusionnez régulièrement la branche principale dans votre branche
+6. **Mise à Jour de l'État**: Mettez à jour l'état de la story dans `.ai/stories/`.
+
+## 🧩 Directives de Génération de Code
+1. **Simplicité avant tout**: Respectez les principes KISS (Keep It Simple, Stupid), YAGNI (You Aren't Gonna Need It) et DRY (Don't Repeat Yourself)
+2. **Minimalisme ciblé**: Générez uniquement le code nécessaire à l'implémentation de la tâche actuelle, sans anticiper des besoins futurs non spécifiés
+3. **Cohérence contextuelle**: Référez-vous systématiquement aux règles du projet, documents d'architecture et spécifications des stories/tasks actuelles
+
+### ✅ Pratiques à Suivre
+- Concevez la solution la plus simple répondant aux critères d'acceptation
+- Limitez strictement l'implémentation au périmètre défini dans la story/task
+- Consultez les documents de référence (PRD, Architecture) avant toute génération
+- Privilégiez les approches modulaires et la réutilisation du code existant
+- Documentez clairement les décisions d'implémentation
+
+### ❌ Pratiques à Éviter
+- Générer du code "au cas où" ou pour des fonctionnalités futures
+- Créer de nouveaux fichiers/composants sans justification claire
+- Introduire des abstractions prématurées ou des sur-optimisations
+- S'écarter des patterns et conventions établis dans le projet
+- Assumer des exigences non-documentées dans les spécifications
+
 ## 🔄 Activités Durant le Développement
 
 - Mettre à jour les fichiers de story à la complétion de chaque sous-tâche
