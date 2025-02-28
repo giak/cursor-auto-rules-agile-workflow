@@ -1,0 +1,174 @@
+---
+title: "Architecture Documentation Standards"
+version: "2.0.0"
+description: "ALWAYS use when CREATING or UPDATING an Architecture document to ENSURE consistent documentation of architectural decisions"
+globs: "**/arch*.md"
+lastUpdated: "2024-02-28"
+tags: ["architecture", "design", "technical", "documentation"]
+---
+
+# 📐 Règles de Documentation d'Architecture
+
+## 📋 Vue d'Ensemble
+Cette règle définit les standards pour la création et la mise à jour des documents d'architecture. Elle assure que toutes les décisions d'architecture sont documentées de manière claire, complète et cohérente, facilitant la compréhension du système et sa maintenance à long terme.
+
+> ⚠️ **Attention**: Le document d'architecture est crucial pour la compréhension technique du projet et doit être approuvé avant le début de l'implémentation.
+
+## 🎯 Objectifs
+- Assurer une documentation claire et cohérente des décisions d'architecture
+- Garantir que toutes les sections techniques essentielles sont incluses
+- Faciliter la compréhension du système pour tous les membres de l'équipe
+- Fournir une référence pour les futures décisions techniques
+- Maintenir une trace des changements architecturaux au fil du temps
+
+## ✅ Requirements
+
+- Documenter clairement les décisions d'architecture
+- Suivre la structure standardisée pour les documents d'architecture
+- Inclure toutes les sections requises détaillées ci-dessous
+- Utiliser des diagrammes Mermaid pour visualiser l'architecture
+- Maintenir un historique des changements (Changelog)
+- Justifier les choix technologiques et architecturaux
+- Documenter les alternatives considérées et les raisons de leur non-sélection
+- Utiliser une terminologie cohérente dans tout le document
+
+## 📝 Structure du Document d'Architecture
+
+### 1️⃣ Méta-informations
+- Titre: "Architecture pour {projet}"
+- Statut: Draft / Approved
+- Version: X.Y.Z
+- Date de mise à jour
+- Auteur(s)
+- Approbateurs
+
+### 2️⃣ Résumé Technique
+Un résumé concis de l'approche architecturale, incluant:
+- Vision technique générale
+- Principes directeurs
+- Contraintes principales
+
+### 3️⃣ Stack Technologique
+Une table détaillée listant les technologies choisies avec justifications:
+- Backend
+- Frontend
+- Base de données
+- Infrastructure
+- CI/CD
+- Monitoring
+
+### 4️⃣ Architecture Globale
+Présentation de l'architecture globale avec:
+- Diagramme Mermaid illustrant la structure
+- Explication des interactions entre composants
+- Description des flux de données principaux
+- Patterns architecturaux adoptés
+
+### 5️⃣ Composants Principaux
+Pour chaque composant majeur:
+- Nom et objectif
+- Responsabilités
+- Interfaces
+- Dépendances
+- Considérations spéciales
+
+### 6️⃣ Intégrations Externes
+Pour chaque système externe:
+- Nom du système
+- Type d'intégration
+- Protocole de communication
+- Flux de données
+- Considérations spécifiques
+
+### 7️⃣ Considérations Techniques
+Sections détaillées sur:
+- Sécurité
+- Performance
+- Scalabilité
+- Résilience
+- Monitoring
+
+### 8️⃣ Annexes
+- Décisions d'Architecture (ADRs)
+- Diagrammes supplémentaires
+- Références techniques
+- Glossaire
+
+## 💡 Exemples
+
+<example>
+**Bon exemple de section d'Architecture Globale**:
+
+```markdown
+## 4. Architecture Globale
+
+Notre système adopte une architecture microservices avec des préoccupations séparées par domaine métier. Chaque service est déployé indépendamment et communique via des API REST bien définies.
+
+```mermaid
+graph TD
+    A[Client Web/Mobile] --> B[API Gateway]
+    B --> C[Service d'Authentification]
+    B --> D[Service de Gestion Utilisateurs]
+    B --> E[Service de Traitement de Commandes]
+    B --> F[Service de Paiement]
+    C -.-> G[(Base de données Auth)]
+    D -.-> H[(Base de données Utilisateurs)]
+    E -.-> I[(Base de données Commandes)]
+    F -.-> J[Passerelle de Paiement Externe]
+    E --> K[File d'attente Notifications]
+    K --> L[Service de Notifications]
+    L --> M[Système d'Emails]
+    L --> N[Service Push]
+```
+
+### Flux de données principaux
+1. Les clients interagissent avec l'application via l'API Gateway
+2. Toutes les requêtes sont d'abord authentifiées par le Service d'Authentification
+3. Les commandes créées sont stockées puis ajoutées à une file d'attente pour traitement asynchrone
+4. Les notifications sont envoyées aux utilisateurs à chaque étape importante
+
+### Pattern architecturaux
+- **API Gateway**: Point d'entrée unique qui route les requêtes et gère les préoccupations transversales
+- **Microservices**: Services indépendants avec responsabilités clairement définies
+- **Event-Driven**: Communication asynchrone via files d'attente pour les opérations non-critiques
+- **CQRS**: Séparation des opérations de lecture et d'écriture pour les services à forte charge
+
+Cette architecture assure scalabilité, résilience et permet des déploiements indépendants de chaque composant.
+```
+
+Ce document présente clairement l'architecture avec un diagramme Mermaid bien structuré, explique les flux de données et détaille les patterns utilisés avec leurs avantages.
+</example>
+
+<example type="invalid">
+**Exemple à éviter**:
+
+```markdown
+## Architecture
+
+Le système utilisera une architecture de type microservices. Il y aura plusieurs services comme l'authentification, les utilisateurs et les commandes. Ils communiqueront entre eux par des APIs.
+
+[Insérer diagramme]
+
+Nous utiliserons des bases de données séparées pour chaque service.
+```
+
+Cette section est trop vague, ne contient pas de diagramme réel, n'explique pas les flux de données ou les patterns architecturaux, et ne justifie pas les choix effectués.
+</example>
+
+## ✅ Bonnes Pratiques
+
+- **Clarté**: Utilisez un langage précis et évitez le jargon inutile
+- **Diagrammes**: Utilisez des diagrammes Mermaid pour visualiser l'architecture
+- **Justifications**: Expliquez toujours le "pourquoi" derrière chaque décision
+- **Niveau de détail**: Trouvez l'équilibre entre trop et trop peu de détails
+- **Consistance**: Utilisez une terminologie cohérente dans tout le document
+- **Évolution**: Traitez le document comme vivant, à mettre à jour au fil du projet
+- **Structure**: Suivez la structure hiérarchique recommandée
+- **Validation**: Faites valider par des pairs avant l'approbation finale
+
+## 🔗 Références
+- [Template d'Architecture](mdc:xnotes/template-arch-standardized.md)
+- [C4 Model pour la visualisation d'architecture](https://c4model.com/)
+- [Architectural Decision Records (ADR)](https://adr.github.io/)
+
+<version>2.0.0</version> 

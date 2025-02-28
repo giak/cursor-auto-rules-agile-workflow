@@ -1,0 +1,204 @@
+---
+description: "ALWAYS use when CREATING or UPDATING story files to ENSURE proper tracking and implementation. This rule enforces consistent story structure with tasks, context, and progress tracking."
+globs: "**/*.story.md"
+alwaysApply: false
+---
+
+# 📝 Règles des User Stories
+
+## 📋 Vue d'Ensemble
+Cette règle définit les standards pour la création et la mise à jour des user stories. Elle assure que toutes les stories suivent une structure cohérente, facilitant leur compréhension, leur implémentation et leur suivi tout au long du cycle de développement agile.
+
+> ⚠️ **Attention**: Les user stories sont des artefacts essentiels du processus agile et doivent être maintenues à jour tout au long du développement.
+
+## 🎯 Objectifs
+- Assurer une documentation cohérente des besoins utilisateurs
+- Garantir que toutes les sections essentielles sont incluses
+- Faciliter la planification et le suivi des tâches
+- Maintenir une trace historique des décisions et communications
+- Permettre une estimation précise des efforts requis
+
+## ✅ Requirements
+
+- Suivre la structure standardisée des stories
+- Inclure toutes les sections requises détaillées ci-dessous
+- Organiser les stories dans les répertoires d'Epics appropriés
+- Suivre l'avancement des tâches avec précision
+- Maintenir l'historique d'implémentation
+- Formuler les critères d'acceptation dans le format "Étant donné/Quand/Alors"
+
+## 📁 Structure de Fichiers
+
+Les stories doivent être placées dans le répertoire de leur Epic:
+`.ai/epic-{n}/story-{m}.story.md`
+
+## 📝 Structure des Stories
+
+### 1️⃣ Méta-information
+Format obligatoire:
+```
+Epic-{N}: {Titre de l'Epic}
+Story-{M}: {Titre de la Story}
+```
+
+### 2️⃣ Description de la Story
+Format obligatoire:
+```
+**En tant que** {rôle}
+**Je veux** {action}
+**afin de** {bénéfice}
+```
+
+### 3️⃣ Statut
+L'un des statuts suivants:
+- Draft
+- In Progress
+- Complete
+- Cancelled
+
+### 4️⃣ Contexte
+Description détaillée incluant:
+- Relation avec l'epic parent
+- Dépendances avec d'autres stories
+- Contraintes spécifiques
+- Hypothèses
+
+### 5️⃣ Estimation
+Format obligatoire:
+```
+Story Points: {nombre}
+```
+
+### 6️⃣ Critères d'Acceptation
+Liste numérotée utilisant le format:
+```
+1. Étant donné {contexte}, quand {action}, alors {résultat attendu}
+2. Étant donné {contexte}, quand {action}, alors {résultat attendu}
+...
+```
+
+### 7️⃣ Tâches
+Liste hiérarchique avec suivi de progression:
+```
+1. - [ ] {Tâche principale 1}
+   1. - [ ] {Sous-tâche 1.1}
+   2. - [ ] {Sous-tâche 1.2}
+2. - [ ] {Tâche principale 2}
+   ...
+```
+
+### 8️⃣ Notes de Développement
+Informations techniques pertinentes
+
+### 9️⃣ Journal de Communication
+Historique des discussions importantes
+
+## 💡 Exemples
+
+<example>
+**Exemple de bonne Story**:
+
+```markdown
+# Story: Interface Utilisateur du Plateau d'Échecs
+
+Epic-2: Jeu d'Échecs en Ligne
+Story-3: Interface du Plateau d'Échecs
+
+## Description de la Story
+
+**En tant que** joueur d'échecs
+**Je veux** visualiser clairement le plateau d'échecs avec les pièces
+**afin de** pouvoir planifier et exécuter mes mouvements efficacement
+
+## Statut
+
+In Progress
+
+## Contexte
+
+Cette story fait partie de l'Epic-2 qui implémente le jeu d'échecs complet. Elle se concentre sur les aspects visuels et interactifs du plateau d'échecs. La mise en place du projet (Story-1) est terminée, fournissant la base pour l'implémentation de l'interface utilisateur.
+
+## Estimation
+
+Story Points: 2
+
+## Critères d'Acceptation
+
+1. Étant donné que l'application est chargée, quand un utilisateur ouvre la page principale, alors un plateau d'échecs 8x8 est affiché avec l'alternance correcte de cases blanches et noires
+2. Étant donné un plateau d'échecs, quand l'application démarre, alors toutes les pièces sont placées dans leurs positions initiales correctes
+3. Étant donné un plateau avec des pièces, quand un utilisateur clique sur une pièce, alors la case est mise en surbrillance pour indiquer la sélection
+4. Étant donné une pièce sélectionnée, quand un utilisateur clique sur une case valide, alors la pièce se déplace vers cette case
+
+## Tâches
+
+1. - [x] Créer la Grille du Plateau
+   1. - [x] Implémenter la disposition 8x8
+   2. - [x] Ajouter la coloration des cases
+   3. - [x] Écrire les tests de la grille
+2. - [ ] Ajouter les Pièces d'Échecs
+   1. - [ ] Créer les composants de pièces
+   2. - [ ] Ajouter les images des pièces
+   3. - [ ] Écrire les tests des pièces
+3. - [ ] Implémenter l'Interaction de Base
+   1. - [ ] Ajouter les gestionnaires de clics
+   2. - [ ] Mettre en surbrillance la case sélectionnée
+   3. - [ ] Écrire les tests d'interaction
+
+## Notes de Développement
+
+- Utilisation de React pour les composants UI
+- SVGs des pièces d'échecs provenant d'une bibliothèque open-source
+- Implémentation d'un design responsive pour différentes tailles d'écran
+
+## Journal de Communication
+
+- BMad: Implémentons l'interface du plateau d'échecs
+- AiAgent: Je vérifie les exigences de design. Devrions-nous utiliser SVG ou PNG pour les pièces?
+  - BMad: Utilisons SVG pour une meilleure mise à l'échelle
+- AiAgent: Implémentation de la grille terminée, je procède au placement des pièces
+```
+
+Cette story suit parfaitement la structure requise, avec une description claire, des critères d'acceptation bien formatés, et un suivi précis des tâches.
+</example>
+
+<example type="invalid">
+**Exemple à éviter**:
+
+```markdown
+Story Plateau d'Échecs
+
+À faire:
+
+- créer plateau
+- ajouter pièces
+- le faire fonctionner
+```
+
+Cette "story" manque de presque tous les éléments requis:
+- Pas de méta-information (Epic/Story)
+- Pas de format "En tant que/Je veux/afin de"
+- Pas de statut
+- Pas de contexte
+- Pas d'estimation
+- Pas de critères d'acceptation
+- Tâches trop vagues sans hiérarchie ni suivi
+- Pas de notes de développement ni de journal de communication
+</example>
+
+## ✅ Bonnes Pratiques
+
+- **Clarté**: Utilisez un langage précis dans la description de la story
+- **Atomicité**: Chaque story doit être suffisamment petite pour être complétée dans un sprint
+- **Indépendance**: Minimisez les dépendances entre stories
+- **Estimations**: Basez les points de story sur la complexité, pas sur le temps
+- **Tâches**: Décomposez en tâches techniques concrètes et vérifiables
+- **Progression**: Mettez à jour régulièrement l'état des tâches
+- **Communication**: Documentez les décisions importantes dans le journal
+- **Critères d'Acceptation**: Formulez-les dans un format "étant donné/quand/alors"
+
+## 🔗 Références
+- [Template de Story](mdc:xnotes/template-story-standardized.md)
+- [Guide de l'Estimation Agile](mdc:https:/www.mountaingoatsoftware.com/blog/what-are-story-points)
+- [Technique INVEST pour les User Stories](mdc:https:/www.agilealliance.org/glossary/invest)
+
+<version>2.0.0</version> 

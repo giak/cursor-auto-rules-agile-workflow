@@ -1,0 +1,142 @@
+---
+description: "ALWAYS use when CREATING or UPDATING a PRD to ENSURE consistent structure and completeness"
+globs: "**/prd.md"
+alwaysApply: false
+---
+
+# 📄 Règles du Document d'Exigences Produit (PRD)
+
+## 📋 Vue d'Ensemble
+Cette règle définit le standard pour la création et la mise à jour des Documents d'Exigences Produit (PRD). Elle assure une structure cohérente et complète, garantissant que toutes les informations essentielles sont documentées.
+
+> ⚠️ **Attention**: Le PRD est un document fondamental qui guide tout le cycle de développement. Tout PRD doit être approuvé avant le démarrage de l'implémentation.
+
+## 🎯 Objectifs
+- Assurer une structure cohérente pour tous les PRDs
+- Garantir l'inclusion de toutes les sections requises
+- Maintenir une hiérarchie documentaire appropriée
+- Faciliter la compréhension des exigences produit
+
+## ✅ Requirements
+
+- Suivre strictement la structure PRD standardisée
+- Inclure toutes les sections requises
+- Maintenir une hiérarchie documentaire appropriée
+- Utiliser un formatage cohérent
+- Inclure des objectifs mesurables
+- Définir clairement la structure des Epics
+- Documenter les aspects techniques essentiels
+
+## 📝 Structure du PRD
+
+### 1️⃣ En-tête
+- Titre: "Product Requirements Document (PRD) pour {projet}"
+- Status: Draft / Approved
+- Version: X.Y.Z
+- Date de mise à jour: YYYY-MM-DD
+- Auteur(s): Liste des responsables
+
+### 2️⃣ Introduction
+- Description claire du projet
+- Contexte business et motivations
+- Public cible et parties prenantes
+- Problématique adressée par le produit
+
+### 3️⃣ Objectifs
+- Objectifs principaux (mesurables)
+- Critères de succès
+- Indicateurs de performance (KPIs)
+
+### 4️⃣ Exigences et Fonctionnalités
+- Exigences fonctionnelles
+- Exigences non-fonctionnelles
+- Exigences UX/UI
+- Exigences d'intégration
+- Exigences de conformité
+
+### 5️⃣ Structure des Epics
+- Format: Epic-{N}: {Titre} ({Status})
+- Au moins un Epic doit être défini
+- Chaque Epic doit avoir une description et des stories principales
+
+### 6️⃣ Aspects Techniques
+- Stack technologique
+- Contraintes techniques
+- Considérations d'architecture
+- Intégrations externes
+
+### 7️⃣ Plan et Timeline
+- Phases de développement
+- Priorités d'implémentation
+- Jalons clés
+- Dépendances
+
+### 8️⃣ Annexes et Références
+- Documents liés
+- Ressources complémentaires
+- Glossaire
+
+## 💡 Exemples
+
+<example>
+**Bon exemple de PRD - Section Objectifs**:
+
+```markdown
+## Objectifs
+
+### Objectifs principaux
+- Réduire le temps de traitement des demandes client de 40% par rapport au système actuel
+- Augmenter le taux de conversion des essais gratuits de 5% à 12%
+- Permettre aux utilisateurs de compléter leur profil en moins de 3 minutes
+
+### Critères de succès
+- 90% des utilisateurs peuvent effectuer une demande sans assistance
+- Réduction des tickets de support de 25% dans les 3 mois suivant le lancement
+- Score NPS supérieur à 45 après 6 mois d'utilisation
+
+### Indicateurs de performance (KPIs)
+- Temps moyen pour compléter une demande < 2 minutes
+- Taux d'abandon du formulaire < 15%
+- Taux de réussite de la première utilisation > 85%
+```
+
+Ce PRD inclut des objectifs clairs, mesurables et spécifiques, avec des critères de succès et des KPIs bien définis.
+</example>
+
+<example type="invalid">
+**Exemple de PRD à éviter**:
+
+```markdown
+# Nouveau système CRM
+
+Ce document décrit le nouveau système CRM.
+
+## Fonctionnalités
+- Tableau de bord
+- Gestion des contacts
+- Suivi des ventes
+- Rapports
+
+## Planning
+À déterminer.
+```
+
+Ce PRD est incomplet, manque de structure, n'a pas d'objectifs mesurables, pas de structure d'Epics, et pas d'informations techniques. Il ne fournit pas suffisamment de détails pour guider le développement.
+</example>
+
+## ✅ Bonnes Pratiques
+
+- **Précision**: Utilisez un langage spécifique et évitez les généralités
+- **Mesurabilité**: Tous les objectifs doivent être mesurables
+- **Complétude**: Assurez-vous que toutes les sections sont remplies
+- **Validation**: Faites approuver le PRD par toutes les parties prenantes
+- **Évolution**: Mettez à jour le PRD au fur et à mesure de l'évolution du projet
+- **Visualisation**: Utilisez des diagrammes pour clarifier les concepts complexes
+- **Traçabilité**: Assurez-vous que chaque exigence est liée à un objectif business
+
+## 🔗 Références
+- [Template PRD Détaillé](mdc:xnotes/template-prd-standardized.md)
+- [Règles d'Architecture](mdc:xnotes/902-arch-template.mdc)
+- [Règles des Stories](mdc:xnotes/903-story-template.mdc)
+
+<version>2.0.0</version> 

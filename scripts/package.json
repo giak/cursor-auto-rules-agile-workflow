@@ -1,0 +1,35 @@
+{
+  "name": "agile-docs-validator",
+  "version": "1.0.0",
+  "description": "Automated validation tools for agile documentation",
+  "main": "validate-docs.js",
+  "type": "commonjs",
+  "scripts": {
+    "validate": "node validate-docs.js",
+    "validate:verbose": "node validate-docs.js --verbose",
+    "validate:fix": "node validate-docs.js --fix",
+    "validate:report": "node validate-docs.js --report",
+    "validate:ci": "node validate-docs.js --ci",
+    "install:tools": "pnpm add -g markdownlint-cli @mermaid-js/mermaid-cli",
+    "init:markdownlint": "node create-markdownlint-config.js"
+  },
+  "keywords": [
+    "agile",
+    "documentation",
+    "validation",
+    "markdown",
+    "mermaid",
+    "quality"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "glob": "^8.1.0"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "packageManager": "pnpm@10.x"
+} 

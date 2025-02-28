@@ -1,0 +1,192 @@
+---
+description: "ALWAYS use as a starting point when CREATING a new Cursor rule to ENSURE proper rule formatting and detection"
+globs: ".cursor/rules/*.mdc"
+alwaysApply: false
+---
+
+# 📄 Template de Règle Cursor
+
+## 📋 Vue d'Ensemble
+Ce template définit la structure standard pour toutes les règles Cursor (.mdc) du projet. Il assure une détection optimale par l'IA et une application cohérente des règles.
+
+> ⚠️ **Attention**: Les règles Cursor doivent suivre strictement ce format pour être correctement détectées et appliquées par l'IA.
+
+## 🎯 Objectifs
+- Standardiser le format des règles Cursor
+- Optimiser la détection automatique par l'IA
+- Assurer une application cohérente des règles
+- Faciliter la maintenance et les mises à jour
+
+## 🔄 Structure d'une Règle Cursor
+
+```mermaid
+graph TD
+    A[Frontmatter] --> B[Titre Principal]
+    B --> C[Vue d'Ensemble]
+    C --> D[Requirements]
+    D --> E[Sections Spécifiques]
+    E --> F[Exemples]
+    F --> G[Version]
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#dfd,stroke:#333,stroke-width:2px
+    style F fill:#ffd,stroke:#333,stroke-width:2px
+```
+
+## 📝 Sections Standards
+
+### 📌 Frontmatter
+Le frontmatter d'une règle Cursor doit contenir:
+```yaml
+---
+description: "ACTION when TRIGGER to OUTCOME"
+globs: "pattern/matching/*.ext"
+---
+```
+
+> 💡 **Note**: La description doit suivre strictement le format "ACTION when TRIGGER to OUTCOME" pour une détection optimale par l'IA.
+
+### 🏷️ Titre Principal
+Titre clair et descriptif:
+```markdown
+# Nom de la Règle
+```
+
+### 📋 Contexte (optionnel)
+Brève explication du contexte d'application de la règle.
+
+### ✅ Requirements
+Liste des exigences spécifiques que la règle impose:
+```markdown
+## Requirements
+
+- Exigence 1
+- Exigence 2
+- Exigence 3
+```
+
+### 📝 Sections Spécifiques
+Contenu détaillé de la règle, organisé logiquement.
+
+### 💡 Exemples
+Exemples concrets d'application de la règle:
+
+```markdown
+<example>
+Bon exemple:
+```
+[Code ou contenu conforme]
+```
+[Explication]
+</example>
+
+<example type="invalid">
+Exemple à éviter:
+```
+[Code ou contenu non conforme]
+```
+[Explication]
+</example>
+```
+
+### 📊 Version
+La version doit être indiquée à la fin du document:
+```markdown
+<version>X.Y.Z</version>
+```
+
+## 📊 Conventions Spécifiques aux Règles
+
+### Format de Nommage des Fichiers
+- **Format**: `PREFIX-name.mdc`
+- **Préfixes standards**:
+  - `0XX`: Core standards
+  - `1XX`: Tool configs
+  - `3XX`: Testing standards
+  - `1XXX`: Language rules
+  - `2XXX`: Framework rules
+  - `8XX`: Workflows
+  - `9XX`: Templates
+  - `_name`: Private rules (gitignored)
+
+### Tags XML Autorisés
+- `<example>` et `<example type="invalid">`: Pour les exemples
+- `<version>`: Pour la version de la règle
+- `<critical>`: Pour les exigences critiques
+- `<danger>`: Pour les avertissements importants
+- `<required>`: Pour les éléments obligatoires
+- `<rules>` et `<rule>`: Pour les ensembles de règles
+
+## 💡 Exemples
+
+<example>
+**Bon exemple de règle Cursor**:
+
+```md
+---
+description: "ALWAYS use when WRITING TypeScript files to ENSURE consistent code formatting"
+globs: "**/*.ts"
+---
+# TypeScript Code Standards
+
+## Requirements
+
+- Follow consistent indentation (2 spaces)
+- Use camelCase for variables and functions
+- Use PascalCase for classes and interfaces
+- Add type annotations for all parameters and return types
+
+## Examples
+
+<example>
+// Good TypeScript code
+function calculateTotal(prices: number[]): number {
+  return prices.reduce((sum, price) => sum + price, 0);
+}
+</example>
+
+<example type="invalid">
+// Bad TypeScript code
+function calc_total(p) {
+  return p.reduce((s, p) => s + p, 0);
+}
+</example>
+
+<version>1.0.0</version>
+```
+
+Cette règle suit correctement le format: description au format ACTION-TRIGGER-OUTCOME, globs précis, requirements clairs, exemples de code bon et mauvais, et version indiquée.
+</example>
+
+<example type="invalid">
+**Exemple de règle Cursor à éviter**:
+
+```md
+# TypeScript Coding Rules
+
+These are the rules for TypeScript code.
+
+- Use consistent indentation
+- Use proper naming conventions
+- Add types
+
+Examples:
+Good: function doSomething() { }
+Bad: function do_something() { }
+```
+
+Cette règle manque de frontmatter, ne suit pas la structure standard, n'utilise pas les balises XML pour les exemples, et ne spécifie pas de version.
+</example>
+
+## ✅ Bonnes Pratiques
+- Gardez les descriptions de règles concises et précises
+- Assurez-vous que le pattern glob cible correctement les fichiers concernés
+- Incluez toujours des exemples positifs et négatifs
+- Utilisez des formulations claires et directes
+- Mettez à jour la version à chaque modification
+
+## 🔗 Références
+- [Règles Cursor Principales](mdc:.cursor/rules/000-cursor-rules.mdc)
+- [Documentation Markdown](mdc:.cursor/rules/400-md-docs.mdc)
+
+<version>1.0.0</version> 

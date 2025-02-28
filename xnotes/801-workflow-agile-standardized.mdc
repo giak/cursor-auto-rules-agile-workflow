@@ -1,0 +1,136 @@
+---
+description: "ALWAYS FOLLOW this workflow for ALL projects to ENSURE consistent agile delivery and documentation"
+globs: "**/*.{md,js,ts,jsx,tsx}"
+alwaysApply: false
+---
+
+# 🔄 Workflow Agile Standard
+
+## 📋 Vue d'Ensemble
+Cette règle définit le workflow agile à suivre pour tous les projets. Elle garantit une approche structurée et cohérente pour la planification, le développement et le suivi des projets, avec une attention particulière à la documentation et à la qualité.
+
+> ⚠️ **Attention**: Ce workflow est fondamental pour les systèmes de mémoire du projet. Toutes les informations de planification, de complétion et de modifications doivent être enregistrées dans le dossier `.ai`.
+
+## 🎯 Objectifs
+- Assurer une approche cohérente pour tous les projets
+- Garantir une documentation complète et à jour
+- Faciliter le développement itératif et incrémental
+- Maintenir une haute qualité grâce au TDD
+- Conserver une trace historique claire des décisions et du progrès
+
+## ✅ Requirements
+
+- Vérifier et créer un fichier PRD avant toute autre activité
+- Raffiner le PRD jusqu'à approbation avant de passer à l'architecture
+- Générer et faire approuver le document d'architecture avant de créer les stories
+- Utiliser le template de story standardisé pour toutes les stories
+- Implémenter le TDD avec une couverture de tests d'au moins 80%
+- Mettre à jour les fichiers de story au fur et à mesure de l'avancement
+- Conserver toute la documentation dans le dossier `.ai`
+- Ne jamais commencer le travail sur une story sans approbation préalable
+
+## 📝 Processus Étape par Étape
+
+### 1️⃣ Initialisation du Projet
+1. À l'initialisation, vérifier si un fichier `.ai/prd.md` existe
+2. Si le PRD n'existe pas, travailler avec l'utilisateur pour créer un document complet
+
+### 2️⃣ Amélioration du PRD
+Le PRD doit inclure:
+- Objectif détaillé et problèmes résolus
+- Séquence de tâches détaillée
+- Modèles d'architecture et décisions techniques clés
+- Diagrammes Mermaid pour visualiser l'architecture
+- Technologies, configuration et contraintes
+- Inconnues, hypothèses et risques
+
+### 3️⃣ Documentation d'Architecture
+1. Une fois le PRD approuvé, générer le document `.ai/arch.md` (brouillon)
+2. Attendre l'approbation du document d'architecture avant de continuer
+
+### 4️⃣ Création et Gestion des Stories
+1. Après l'approbation de l'architecture, créer le brouillon de la première story
+2. Utiliser le template standardisé pour toutes les stories
+3. Nommer les stories selon la convention: `.ai/story-{N}.story.md` ou `.ai/task-{N}.story.md`
+4. Attendre l'approbation de la story avant de commencer le travail
+
+### 5️⃣ Développement Itératif
+1. Implémenter le TDD pour chaque sous-tâche avec 80% de couverture minimale
+2. Mettre à jour le fichier de story à la complétion de chaque sous-tâche
+3. Une fois la story terminée, générer le brouillon de la story suivante
+4. Attendre l'approbation avant de continuer sur la prochaine story
+
+## 🔄 Activités Durant le Développement
+
+- Mettre à jour les fichiers de story à la complétion de chaque sous-tâche
+- En cas de doute, consulter le PRD, l'architecture, et les stories
+- À la commande "update story", mettre à jour l'état actuel et les prochaines étapes
+- Vérifier continuellement que la story est correcte et que les prochaines étapes sont claires
+
+## 🚀 Actions Automatisées Permises
+
+Les actions suivantes peuvent être réalisées sans demande explicite:
+
+1. Créer le fichier de story suivant si aucun n'existe
+2. Exécuter les tests unitaires jusqu'à réussite
+3. Mettre à jour les critères d'acceptation et les tâches complétées
+4. Maintenir le journal de communication dans le fichier de story
+
+## 💡 Exemples
+
+<example>
+**Bon exemple de workflow agile**:
+
+1. Vérification initiale: Aucun fichier `.ai/prd.md` n'existe
+2. Action: "Je vois que nous n'avons pas encore de document PRD. Travaillons ensemble pour définir les exigences du projet. Quel est l'objectif principal de cette application?"
+3. Après discussion: "Voici le brouillon du PRD basé sur notre discussion. Il inclut l'objectif, les fonctionnalités principales, l'architecture proposée, et les technologies recommandées."
+4. Après approbation du PRD: "Maintenant que le PRD est approuvé, je vais créer le document d'architecture avec les diagrammes des composants principaux."
+5. Après approbation de l'architecture: "Voici le brouillon de la première story pour implémenter l'authentification des utilisateurs. Elle inclut les critères d'acceptation et les tâches détaillées."
+6. Pendant le développement: "J'ai terminé les tests pour la validation des entrées. Tous les tests passent avec une couverture de 92%. Je vais maintenant travailler sur l'intégration avec la base de données."
+7. À la fin de la story: "La story d'authentification est maintenant terminée avec tous les tests passant. Voici le brouillon de la prochaine story pour la gestion des profils utilisateurs."
+
+Ce workflow maintient une documentation claire, suit une approche TDD rigoureuse, et progresse de manière itérative avec approbation à chaque étape clé.
+</example>
+
+<example type="invalid">
+**Exemple de workflow problématique**:
+
+1. Action immédiate: "Commençons à coder l'application. Je vais créer la structure de fichiers et commencer par la page d'accueil."
+2. Sans documentation: "J'ai implémenté quelques fonctionnalités. Que voulez-vous que je fasse ensuite?"
+3. Sans tests: "La fonctionnalité est terminée, passons à la prochaine."
+4. Sans suivi: "Je ne me souviens pas exactement où nous en étions, mais continuons avec la nouvelle fonctionnalité que vous avez mentionnée."
+
+Ce workflow est problématique car il:
+1. Ne commence pas par un PRD et une architecture clairement définis
+2. Ne documente pas les exigences et les décisions
+3. N'utilise pas d'approche TDD
+4. Ne maintient pas de trace du progrès
+5. Ne suit pas un processus structuré d'approbation
+</example>
+
+## ⚠️ Points Critiques
+
+<critical>
+- NE JAMAIS commencer le développement sans un PRD approuvé
+- TOUJOURS conserver les informations du projet dans le dossier `.ai`
+- MAINTENIR une documentation de haute qualité et à jour
+- En cas de DOUTE, consulter la documentation existante plutôt que de deviner
+- DEMANDER de l'aide à l'utilisateur si les informations disponibles sont insuffisantes
+</critical>
+
+## ✅ Bonnes Pratiques
+
+- **Documentation d'abord**: Commencer par définir et documenter avant de coder
+- **Approche itérative**: Progresser par petits incréments bien définis
+- **TDD**: Écrire les tests avant l'implémentation
+- **Communication claire**: Documenter les décisions et tenir à jour les stories
+- **Approbation formelle**: Obtenir l'approbation avant de passer aux étapes suivantes
+- **Traçabilité**: Maintenir des liens clairs entre les stories, le PRD et l'architecture
+
+## 🔗 Références
+- [Template de Workflow Agile](mdc:xnotes/workflow-agile-standardized.md)
+- [Template de PRD](mdc:xnotes/template-prd-standardized.md)
+- [Template d'Architecture](mdc:xnotes/template-arch-standardized.md)
+- [Template de Story](mdc:xnotes/template-story-standardized.md)
+
+<version>2.0.0</version> 

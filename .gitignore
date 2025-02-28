@@ -1,2 +1,3 @@
 # Private individual user cursor rules
 .cursor/rules/_*.mdc
+.specstory/

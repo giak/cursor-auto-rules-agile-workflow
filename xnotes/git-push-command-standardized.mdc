@@ -1,0 +1,160 @@
+---
+description: "ALWAYS use when MAKING commits or MANAGING git workflow to ENSURE consistent version control practices"
+globs: "**/.git/*"
+alwaysApply: false
+---
+
+# 📊 Standards de Commit et Push Git
+
+## 📋 Vue d'Ensemble
+Cette règle définit les standards pour effectuer des commits et des pushs dans Git. Elle garantit des messages de commit cohérents, des procédures de staging appropriées et une traçabilité claire des modifications dans le référentiel de code.
+
+> ⚠️ **Attention**: La qualité des messages de commit est essentielle pour la maintenance et la compréhension de l'historique du projet à long terme.
+
+## 🎯 Objectifs
+- Assurer la cohérence des messages de commit
+- Faciliter la compréhension des changements
+- Maintenir un historique de projet clair et détaillé
+- Garantir que tous les changements intentionnels sont inclus
+- Fournir une documentation intégrée des modifications
+
+## ✅ Requirements
+
+- Exécuter la commande `git add .` depuis la racine de l'espace de travail
+- Vérifier toutes les modifications ajoutées qui seront incluses dans le commit
+- Créer un message de commit sans caractères de nouvelle ligne
+- Utiliser le format: `type(scope): brief description`
+- Garder les titres brefs et descriptifs (max 72 caractères)
+- Ajouter deux nouvelles lignes après le titre du commit sans caractères de nouvelle ligne
+- Inclure un résumé des différences de toutes les modifications
+- Ajouter des explications détaillées dans le corps du commit
+- Terminer avec la signature "-bmadAi"
+- Pousser tout vers le dépôt distant de la branche actuelle
+
+## 📝 Procédure de Commit et Push
+
+### 1️⃣ Préparation des Changements
+```bash
+git add .
+```
+
+### 2️⃣ Vérification des Changements Ajoutés
+```bash
+git status
+```
+
+### 3️⃣ Création du Message de Commit
+Format du message:
+```
+type(scope): brief description
+
+Changes made in this commit:
+- Modified files: [liste des fichiers modifiés]
+- Added files: [liste des fichiers ajoutés]
+- Deleted files: [liste des fichiers supprimés]
+- Key changes:
+  - [changement spécifique 1]
+  - [changement spécifique 2]
+  ...
+
+Explication détaillée des changements et raisonnement...
+
+-bmadAi
+```
+
+### 4️⃣ Commit des Changements
+```bash
+git commit -m "message formaté comme ci-dessus"
+```
+
+### 5️⃣ Push vers le Dépôt Distant
+```bash
+git push origin [branche actuelle]
+```
+
+## 📋 Types de Commit
+
+| Type     | Description                                           |
+|:---------|:------------------------------------------------------|
+| feat     | Nouvelle fonctionnalité                               |
+| fix      | Correction de bug                                     |
+| docs     | Modification de la documentation                      |
+| style    | Formatage, points-virgules manquants, etc.            |
+| refactor | Refactorisation du code                               |
+| test     | Ajout ou modification de tests                        |
+| chore    | Changements de configuration, outils de build, etc.   |
+| perf     | Amélioration des performances                         |
+
+## 💡 Exemples
+
+<example>
+**Bon message de commit**:
+
+```
+feat(auth): implement JWT-based authentication
+
+Changes made in this commit:
+- Modified files: src/auth/auth.service.ts, src/auth/auth.controller.ts
+- Added files: src/auth/jwt.strategy.ts, src/auth/jwt.guard.ts
+- Deleted files: src/auth/basic-auth.strategy.ts
+- Key changes:
+  - Added JWT token generation in auth service
+  - Implemented token validation middleware
+  - Created protected route decorators
+  - Updated authentication tests
+
+This commit replaces the basic authentication with a more secure JWT-based approach. The new implementation uses asymmetric key signing for enhanced security and supports token refresh. The authentication flow has been updated in all relevant controllers and services.
+
+-bmadAi
+```
+
+Ce message de commit est bien formaté car il:
+1. Utilise le format type(scope): description
+2. Fournit un résumé clair des fichiers modifiés, ajoutés et supprimés
+3. Détaille les changements spécifiques
+4. Explique le raisonnement derrière les modifications
+5. Inclut la signature correcte
+</example>
+
+<example type="invalid">
+**Message de commit problématique**:
+
+```
+fixed stuff
+```
+
+Ce message de commit est problématique car il:
+1. Ne suit pas le format type(scope): description
+2. Est trop vague et ne décrit pas les changements réels
+3. Ne fournit pas de liste des fichiers modifiés
+4. N'explique pas le raisonnement derrière les modifications
+5. Ne contient pas les détails des changements spécifiques
+6. N'inclut pas la signature requise
+</example>
+
+## ⚠️ Points Critiques
+
+<critical>
+- NE JAMAIS utiliser de messages de commit vagues ou trop génériques
+- TOUJOURS vérifier les changements inclus avant de les committer
+- MAINTENIR la structure du message de commit comme définie
+- INCLURE la liste des fichiers modifiés, ajoutés et supprimés
+- TERMINER chaque commit avec la signature "-bmadAi"
+</critical>
+
+## ✅ Bonnes Pratiques
+
+- **Atomicité**: Chaque commit doit représenter un changement logique unique
+- **Clarté**: Les messages doivent clairement indiquer ce qui a changé et pourquoi
+- **Vérification**: Toujours vérifier les changements avant de committer
+- **Régularité**: Committer régulièrement pour éviter les commits trop volumineux
+- **Historique**: Préserver l'historique en évitant de réécrire les commits publiés
+- **Branche**: Travailler sur des branches dédiées pour les nouvelles fonctionnalités
+- **Descriptif**: Le message de commit doit répondre à "quoi" et "pourquoi", pas "comment"
+
+## 🔗 Références
+- [Conventional Commits](mdc:https:/www.conventionalcommits.org)
+- [Git Best Practices](mdc:https:/git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project)
+- [Workflow Agile](mdc:xnotes/workflow-agile-standardized.md)
+
+<version>2.0.0</version> 

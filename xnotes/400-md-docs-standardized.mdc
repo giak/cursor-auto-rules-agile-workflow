@@ -1,0 +1,244 @@
+---
+description: "ALWAYS use when WRITING or UPDATING Markdown files to ENSURE consistent formatting and readability"
+globs: "**/*.{md,mdx,markdown}"
+alwaysApply: false
+---
+
+# 📝 Standards de Documentation Markdown
+
+## 📋 Vue d'Ensemble
+Cette règle définit les standards pour la création et la mise à jour de fichiers Markdown dans tout le projet. Elle assure que tous les documents suivent un formatage cohérent, ce qui améliore la lisibilité, la maintenabilité et l'intégration avec les outils de documentation.
+
+> ⚠️ **Attention**: La qualité de la documentation est directement liée à sa lisibilité et sa structure. Tous les documents Markdown doivent respecter ces standards.
+
+## 🎯 Objectifs
+- Assurer un formatage cohérent dans tous les documents Markdown
+- Améliorer la lisibilité et la navigabilité des documents
+- Faciliter la maintenance à long terme de la documentation
+- Optimiser les documents pour une présentation correcte sur différentes plateformes
+- Standardiser l'utilisation des éléments visuels comme les diagrammes et les tableaux
+
+## ✅ Requirements
+
+- Suivre la [Syntaxe Markdown officielle](mdc:https:/www.markdownguide.org) pour tous les éléments de base et étendus
+- Maintenir une structure de document claire et une hiérarchie logique des titres
+- Inclure les métadonnées appropriées quand requis (front matter YAML)
+- Utiliser des diagrammes Mermaid pour la documentation visuelle quand approprié
+- Appliquer des conventions de formatage cohérentes dans tous les documents
+- Utiliser les callouts standardisés pour les avertissements, notes et astuces
+- Structurer les tableaux de manière lisible et consistante
+
+## 📝 Règles de Formatage
+
+### 1️⃣ Titres
+- Utiliser les titres de style ATX (avec dièse) avec un espace après le dièse: `# Titre`
+- Maintenir une hiérarchie appropriée des titres (ne pas sauter de niveaux)
+- Profondeur maximale des titres: 4 niveaux
+- Ajouter une ligne vide avant et après les titres
+- Première lettre en majuscule, reste en minuscules (sauf noms propres)
+
+### 2️⃣ Structure du Texte
+- Utiliser des listes à puces pour les éléments sans ordre précis
+- Utiliser des listes numérotées pour les séquences ou instructions
+- Indenter le contenu dans les balises XML de 2 espaces
+- Fermer les balises XML sur leur propre ligne au niveau d'indentation parent
+- Limiter la longueur des lignes à 120 caractères maximum
+- Ajouter une ligne vide entre les paragraphes
+
+### 3️⃣ Éléments Spéciaux
+
+#### Callouts
+Utiliser des blockquotes avec emoji pour différents types d'alertes:
+
+```markdown
+> 🚨 **Attention:** Information critique.
+
+> 💡 **Astuce:** Suggestion utile.
+
+> ℹ️ **Note:** Contexte additionnel.
+```
+
+#### Blocs de Code
+- Utiliser des triple backticks avec spécification du langage
+- Indenter correctement les blocs de code
+- Ajouter une ligne vide avant et après
+- Utiliser du code inline pour les références courtes
+
+```markdown
+```javascript
+function exemple() {
+  console.log('Bonjour, monde!');
+}
+```
+
+Référencer la fonction `exemple()` en ligne.
+```
+
+#### Tableaux
+- Utiliser des indicateurs d'alignement
+- Inclure une ligne séparatrice d'en-tête
+- Garder les tableaux simples et lisibles
+- Ajouter des lignes vides avant et après
+
+```markdown
+| Nom     | Type   | Description      |
+|:--------|:------:|----------------:|
+| id      | nombre | Clé primaire    |
+| nom     | texte  | Nom utilisateur |
+```
+
+## 📊 Diagrammes Mermaid
+
+### Quand Utiliser Mermaid
+- Flux de travail simples et complexes nécessitant une visualisation
+- Architecture système à expliquer
+- Flux de processus avec branches multiples
+- Transitions d'état à clarifier
+- Arbres de décision IA à cartographier
+
+### Bonnes Pratiques pour les Diagrammes
+1. Inclure des titres clairs en utilisant la syntaxe `---`
+2. Utiliser des étiquettes de nœuds descriptives
+3. Ajouter des commentaires pour les flux complexes
+4. Regrouper les composants liés en utilisant des sous-graphes
+5. Utiliser une direction cohérente (TD/LR/TB)
+6. Garder les diagrammes concentrés et spécifiques
+
+```markdown
+```mermaid
+---
+title: Exemple de Flux de Travail
+---
+graph TD
+    A[Début] --> B{Décision}
+    B -->|Oui| C[Processus 1]
+    B -->|Non| D[Processus 2]
+    C --> E[Fin]
+    D --> E
+```
+```
+
+## 💡 Exemples
+
+<example>
+**Bon Document Markdown**:
+
+```markdown
+# Guide de l'API
+
+## Introduction
+
+Ce document décrit l'API RESTful pour notre service de gestion d'utilisateurs.
+
+## Endpoints
+
+### Utilisateurs
+
+#### Obtenir tous les utilisateurs
+
+> ℹ️ **Note:** Cette requête supporte la pagination.
+
+```http
+GET /api/users
+```
+
+| Paramètre | Type   | Description                  |
+|:----------|:-------|:-----------------------------|
+| page      | nombre | Page à récupérer (défaut: 1) |
+| limit     | nombre | Nombre par page (max: 100)   |
+
+##### Exemple de Réponse
+
+```json
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Jean Dupont",
+      "email": "jean@exemple.fr"
+    }
+  ],
+  "total": 50,
+  "page": 1
+}
+```
+
+## Flux d'Authentification
+
+```mermaid
+---
+title: Processus d'Authentification
+---
+sequenceDiagram
+    Client->>API: 1. Demande de connexion
+    API->>Auth Service: 2. Vérification des identifiants
+    Auth Service->>Database: 3. Validation utilisateur
+    Database-->>Auth Service: 4. Données utilisateur
+    Auth Service-->>API: 5. Génération de token
+    API-->>Client: 6. Retourne le token JWT
+```
+```
+
+Ce document:
+1. Utilise une hiérarchie de titres appropriée
+2. Inclut des exemples de code avec spécification de langage
+3. Contient un tableau bien formaté
+4. Utilise des blockquotes pour les notes importantes
+5. Intègre un diagramme Mermaid clairement titré
+6. Maintient une structure cohérente et lisible
+</example>
+
+<example type="invalid">
+**Document Markdown Problématique**:
+
+```markdown
+#API Guide
+This is our API
+
+##endpoints
+get users: /api/users
+parameters:
+page: page number
+limit: number of users
+
+example:
+{
+users: [{id:1,name:"John"}],
+total:50
+}
+
+diagram:
+```mermaid
+graph
+A-->B
+B-->C
+```
+```
+
+Ce document est problématique car il:
+1. N'a pas d'espace après les dièses des titres
+2. Ne suit pas une hiérarchie de titres cohérente
+3. Ne formate pas correctement le code JSON
+4. N'utilise pas de tableaux pour les paramètres
+5. Présente un diagramme sans titre ni étiquettes descriptives
+6. Manque de structure et de formatage cohérent
+</example>
+
+## ✅ Bonnes Pratiques
+
+- **Cohérence**: Maintenir le même style de formatage dans tout le document
+- **Clarté**: Utiliser une structure qui guide naturellement le lecteur
+- **Hiérarchie**: Suivre une progression logique des titres et sous-titres
+- **Visuel**: Utiliser des tableaux et diagrammes pour simplifier les concepts complexes
+- **Espacement**: Utiliser des lignes vides pour améliorer la lisibilité
+- **Callouts**: Mettre en évidence les informations importantes avec des blockquotes
+- **Exemples**: Fournir des exemples concrets pour les concepts abstraits
+- **Code**: Toujours spécifier le langage dans les blocs de code
+
+## 🔗 Références
+- [Guide de Syntaxe Markdown de Base](mdc:https:/www.markdownguide.org/basic-syntax)
+- [Guide de Syntaxe Markdown Étendue](mdc:https:/www.markdownguide.org/extended-syntax)
+- [Documentation Mermaid](mdc:https:/mermaid.js.org/intro)
+- [Template de Documentation](mdc:xnotes/000-base-template.md)
+
+<version>2.0.0</version> 

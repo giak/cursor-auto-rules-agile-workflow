@@ -1,0 +1,134 @@
+{
+  "timestamp": "2025-02-28T07:48:49.661Z",
+  "summary": {
+    "total": 5,
+    "passed": 0,
+    "failed": 5,
+    "duration": 3025,
+    "errorCategories": {
+      "markdownLint": 5,
+      "mermaidDiagrams": 3,
+      "acceptanceCriteria": 0,
+      "risksAndAssumptions": 1
+    },
+    "totalErrors": 8
+  },
+  "results": {
+    "templates/project-idea-prompt-standardized.md": {
+      "markdownLint": {
+        "success": false,
+        "messages": []
+      },
+      "mermaidDiagrams": {
+        "success": true,
+        "messages": [
+          "No Mermaid diagrams found"
+        ]
+      },
+      "acceptanceCriteria": {
+        "success": false,
+        "messages": []
+      },
+      "risksAndAssumptions": {
+        "success": true,
+        "messages": [
+          "No risks or assumptions sections found"
+        ]
+      }
+    },
+    "templates/template-arch-standardized.md": {
+      "markdownLint": {
+        "success": false,
+        "messages": []
+      },
+      "mermaidDiagrams": {
+        "success": false,
+        "messages": [
+          "Diagram #1 has syntax errors: Command failed: mmdc -i \"templates/._temp_diagram_1.mmd\" -o /dev/null",
+          "Diagram #2 has syntax errors: Command failed: mmdc -i \"templates/._temp_diagram_2.mmd\" -o /dev/null",
+          "Diagram #3 has syntax errors: Command failed: mmdc -i \"templates/._temp_diagram_3.mmd\" -o /dev/null"
+        ]
+      },
+      "acceptanceCriteria": {
+        "success": false,
+        "messages": []
+      },
+      "risksAndAssumptions": {
+        "success": true,
+        "messages": [
+          "No risks or assumptions sections found"
+        ]
+      }
+    },
+    "templates/template-prd-standardized.md": {
+      "markdownLint": {
+        "success": false,
+        "messages": []
+      },
+      "mermaidDiagrams": {
+        "success": false,
+        "messages": [
+          "Diagram #1 has syntax errors: Command failed: mmdc -i \"templates/._temp_diagram_1.mmd\" -o /dev/null"
+        ]
+      },
+      "acceptanceCriteria": {
+        "success": false,
+        "messages": []
+      },
+      "risksAndAssumptions": {
+        "success": true,
+        "messages": [
+          "No risks or assumptions sections found"
+        ]
+      }
+    },
+    "templates/template-story-standardized.md": {
+      "markdownLint": {
+        "success": false,
+        "messages": []
+      },
+      "mermaidDiagrams": {
+        "success": true,
+        "messages": [
+          "No Mermaid diagrams found"
+        ]
+      },
+      "acceptanceCriteria": {
+        "success": true,
+        "messages": [
+          "4 acceptance criteria validated successfully"
+        ]
+      },
+      "risksAndAssumptions": {
+        "success": false,
+        "messages": [
+          "Risks table is missing required columns (Risque, Impact, Probabilité, Stratégie d'atténuation)"
+        ]
+      }
+    },
+    "templates/workflow-agile-standardized.md": {
+      "markdownLint": {
+        "success": false,
+        "messages": []
+      },
+      "mermaidDiagrams": {
+        "success": false,
+        "messages": [
+          "Diagram #1 has syntax errors: Command failed: mmdc -i \"templates/._temp_diagram_1.mmd\" -o /dev/null",
+          "Diagram #2 has syntax errors: Command failed: mmdc -i \"templates/._temp_diagram_2.mmd\" -o /dev/null",
+          "Diagram #3 has syntax errors: Command failed: mmdc -i \"templates/._temp_diagram_3.mmd\" -o /dev/null"
+        ]
+      },
+      "acceptanceCriteria": {
+        "success": false,
+        "messages": []
+      },
+      "risksAndAssumptions": {
+        "success": true,
+        "messages": [
+          "No risks or assumptions sections found"
+        ]
+      }
+    }
+  }
+}
