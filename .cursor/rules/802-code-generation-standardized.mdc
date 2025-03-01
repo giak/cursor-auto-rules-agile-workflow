@@ -3,13 +3,21 @@ description: "ALWAYS APPLY when GENERATING or MODIFYING code to ENSURE efficienc
 globs: "**/*.{js,ts,jsx,tsx,java,py,html,css,scss}"
 alwaysApply: false
 ---
+---
+title: "Standard de Génération de Code Excellence"
+version: "2.0.0"
+description: "ALWAYS APPLY when GENERATING or MODIFYING code to ENSURE efficiency, maintainability and adherence to project standards"
+globs: "**/*.{js,ts,jsx,tsx,java,py,html,css,scss}"
+lastUpdated: "2025-03-01"
+tags: ["code-generation", "clean-code", "solid", "ddd", "clean-architecture"]
+---
 
-# 🧩 Standard de Génération de Code
+# 🧩 Standard de Génération de Code Excellence
 
 ## 📋 Vue d'Ensemble
-Cette règle définit les bonnes pratiques à suivre lors de la génération ou modification de code. Elle vise à garantir que le code produit soit simple, efficace, maintenable et strictement aligné avec les exigences documentées dans les stories et les documents d'architecture.
+Cette règle définit les bonnes pratiques à suivre lors de la génération ou modification de code dans un contexte de base de code vaste. Elle vise à garantir que le code produit soit simple, efficace, maintenable et strictement aligné avec les exigences documentées dans les stories et les documents d'architecture, tout en suivant les principes SOLID, DDD et Clean Architecture.
 
-> ⚠️ **Attention**: Cette règle est fondamentale pour maintenir la qualité du code et éviter la dette technique. Elle doit être appliquée lors de chaque tâche de développement.
+> ⚠️ **Attention**: Cette règle est fondamentale pour maintenir la qualité du code et éviter la dette technique. Toute déviation doit être justifiée par un argumentaire technique robuste.
 
 ## 🎯 Objectifs
 - Assurer que le code généré est minimal et focalisé sur les exigences actuelles
@@ -17,6 +25,7 @@ Cette règle définit les bonnes pratiques à suivre lors de la génération ou 
 - Garantir l'alignement avec l'architecture et les stories définies
 - Éviter les hallucinations et les suppositions non-documentées
 - Maintenir la cohérence avec les conventions du projet
+- Respecter les principes SOLID, DDD et Clean Architecture
 
 ## 📏 Principes Fondamentaux
 
@@ -24,6 +33,20 @@ Cette règle définit les bonnes pratiques à suivre lors de la génération ou 
 - **KISS (Keep It Simple, Stupid)**: Préférez toujours la solution la plus simple qui résout le problème.
 - **YAGNI (You Aren't Gonna Need It)**: N'ajoutez pas de fonctionnalités "au cas où" - implémentez uniquement ce qui est demandé maintenant.
 - **DRY (Don't Repeat Yourself)**: Évitez la duplication de code, mais ne créez pas d'abstractions prématurées.
+
+### Principes SOLID
+- **Single Responsibility Principle**: Chaque classe/module ne doit avoir qu'une seule raison de changer.
+- **Open/Closed Principle**: Les entités doivent être ouvertes à l'extension mais fermées à la modification.
+- **Liskov Substitution Principle**: Les objets d'une classe dérivée doivent pouvoir remplacer les objets de la classe de base sans altérer la correction du programme.
+- **Interface Segregation Principle**: Préférez plusieurs interfaces spécifiques plutôt qu'une interface générale.
+- **Dependency Inversion Principle**: Dépendez des abstractions, pas des implémentations concrètes.
+
+### Clean Architecture & DDD
+- Séparez clairement les couches d'infrastructure, d'application, de domaine et de présentation
+- Concentrez la logique métier dans la couche domaine, indépendante des frameworks et outils
+- Utilisez des modèles ubiquitaires (Ubiquitous Language) reflétant le vocabulaire du domaine métier
+- Implémentez des entités riches encapsulant la logique métier plutôt que des structures de données anémiques
+- Définissez des agrégats et leurs limites (Bounded Contexts) pour maintenir la cohérence des données
 
 ### Minimalisme Ciblé
 - Générez uniquement le code nécessaire à l'implémentation de la story/task actuelle
@@ -41,16 +64,20 @@ Cette règle définit les bonnes pratiques à suivre lors de la génération ou 
 1. **Analysez la story/task** pour comprendre précisément son périmètre
 2. **Consultez le document d'architecture** pour identifier les patterns à suivre
 3. **Examinez le code existant** pour maintenir la cohérence stylistique
+4. **Identifiez les bounded contexts** concernés par votre implémentation
 
 ### Pendant la Génération
 1. **Privilégiez la lisibilité** sur l'optimisation prématurée
 2. **Commentez les décisions complexes** pour faciliter la maintenance
 3. **Testez au fur et à mesure** pour valider que le code répond aux exigences
+4. **Respectez la séparation des préoccupations** en suivant Clean Architecture
+5. **Appliquez les principes SOLID** dans la conception des classes et interfaces
 
 ### Après la Génération
 1. **Révisez le code** pour éliminer tout élément non nécessaire
 2. **Vérifiez l'alignement** avec les critères d'acceptation
 3. **Documentez les choix d'implémentation** importants
+4. **Validez le respect** des principes architecturaux (SOLID, DDD, Clean Architecture)
 
 ## ❌ Anti-Patterns à Éviter
 
@@ -69,6 +96,12 @@ Cette règle définit les bonnes pratiques à suivre lors de la génération ou 
 - Invention de fonctionnalités non demandées
 - Ignorance des contraintes spécifiées dans les documents du projet
 
+### Violations des Principes Architecturaux
+- Mélange des responsabilités entre couches architecturales
+- Dépendances directes vers les détails d'implémentation
+- Modèles de domaine anémiques sans comportement
+- Classes monolithiques avec trop de responsabilités
+
 ## 🔄 Intégration avec le Workflow
 Cette règle doit être appliquée à chaque étape du cycle de développement défini dans la règle `801-workflow-agile-standardized`. Elle est particulièrement importante lors de:
 1. L'implémentation des stories
@@ -76,6 +109,90 @@ Cette règle doit être appliquée à chaque étape du cycle de développement d
 3. Les revues de code
 4. Les refactorisations
 
----
+## Exemples
 
-*Version: 1.0.0* 
+<example>
+// Bon exemple - Application des principes SOLID
+// Single Responsibility Principle
+class UserRepository {
+  constructor(private dataSource: DataSource) {}
+  
+  async findById(id: string): Promise<User> {
+    return this.dataSource.findUser(id);
+  }
+  
+  async save(user: User): Promise<void> {
+    return this.dataSource.saveUser(user);
+  }
+}
+
+// Open/Closed & Dependency Inversion Principles
+interface EmailService {
+  sendEmail(to: string, subject: string, body: string): Promise<void>;
+}
+
+class UserRegistrationService {
+  constructor(
+    private userRepository: UserRepository,
+    private emailService: EmailService
+  ) {}
+
+  async registerUser(userData: UserRegistrationData): Promise<User> {
+    // Validation
+    if (!userData.email || !userData.password) {
+      throw new ValidationError('Email and password are required');
+    }
+    
+    // Domain logic
+    const user = new User(userData);
+    await this.userRepository.save(user);
+    
+    // Notification
+    await this.emailService.sendEmail(
+      user.email,
+      'Welcome to our platform',
+      `Hello ${user.name}, thank you for registering!`
+    );
+    
+    return user;
+  }
+}
+</example>
+
+<example type="invalid">
+// Mauvais exemple - Violation des principes
+class UserService {
+  // Trop de responsabilités (violation du SRP)
+  // Dépendances directes (violation du DIP)
+  constructor() {
+    this.db = new MySQLConnection();
+    this.emailSender = new SMTPEmailSender();
+    this.logger = new FileLogger();
+  }
+  
+  async registerUser(data) {
+    // Validation, logique métier, persistance et notification
+    // tout mélangé dans une seule méthode
+    this.logger.log('Registering user', data);
+    
+    // Validation insuffisante
+    if (!data.email) return false;
+    
+    // Accès direct à la base de données
+    await this.db.query(`INSERT INTO users VALUES (${data.id}, ${data.name}, ${data.email})`);
+    
+    // Envoi d'email hardcodé
+    await this.emailSender.send(data.email, 'Welcome', 'Thanks for registering!');
+    
+    return true;
+  }
+  
+  // Autres méthodes non liées dans la même classe
+  async updateUserProfile() { /* ... */ }
+  async resetPassword() { /* ... */ }
+  async sendNewsletters() { /* ... */ }
+  async generateReports() { /* ... */ }
+}
+</example>
+
+<version>2.0.0</version> 

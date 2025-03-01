@@ -10,12 +10,14 @@ Ce guide vous accompagne dans la configuration initiale d'un nouveau projet util
 flowchart TD
     A[Démarrer Nouveau Projet] --> B[Créer Structure de Répertoires]
     B --> C[Configurer Règles Cursor]
-    C --> D[Créer PRD]
+    C --> CP[Documenter Fondation Technique]
+    CP --> D[Créer PRD]
     D --> E[Créer Architecture]
     E --> F[Créer Stories]
     F --> G[Implémenter & Tester]
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
+    style CP fill:#bbf,stroke:#333,stroke-width:2px
     style D fill:#bbf,stroke:#333,stroke-width:2px
     style E fill:#bbf,stroke:#333,stroke-width:2px
     style F fill:#bbf,stroke:#333,stroke-width:2px
@@ -50,17 +52,101 @@ Vous devriez voir les fichiers suivants:
 
 - `000-cursor-rules-standardized.mdc` - Règles fondamentales
 - `400-md-docs-standardized.mdc` - Standards de documentation
+- `800-project-foundation-template-standardized.mdc` - Template de fondation de projet
 - `801-workflow-agile-standardized.mdc` - Workflow agile
 - `901-prd-template-standardized.mdc` - Template PRD
 - `902-arch-template-standardized.mdc` - Template architecture
 - `903-story-template-standardized.mdc` - Template story
 - `git-push-command-standardized.mdc` - Standards Git
 
-## 2. Création du PRD (Product Requirements Document)
+## 2. Documentation des Fondations Techniques du Projet
+
+Avant de créer le PRD, établissez les fondations techniques de votre projet pour formaliser vos choix d'architecture et de technologies.
 
 ```mermaid
 flowchart LR
-    A[Début] --> B[Créer prd.md vide]
+    A[Début] --> B[Créer document de fondation vide]
+    B --> C[Demander à Cursor d'appliquer le template]
+    C --> D[Documenter informations générales]
+    D --> E[Définir stack technologique]
+    E --> F[Établir architecture fondamentale]
+    F --> G[Planifier implémentation]
+
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style F fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+### Étapes détaillées
+
+1. **Créez un document de fondation de projet**:
+
+   Plus de détails dans le scénario [2: Fondation de Projet](scenario-2-fondation-projet.md)
+
+   ```bash
+   touch docs/project-foundation.md
+   ```
+
+2. **Ouvrez ce fichier** dans votre éditeur et demandez à Cursor d'initialiser le template:
+
+   ```
+   Je souhaite documenter les fondations techniques de mon projet [nom de votre projet].
+   Peux-tu initialiser le document en utilisant le template standardisé de fondation de projet?
+   ```
+
+3. **Cursor va détecter** que vous travaillez sur un document de fondation et appliquera le template `800-project-foundation-template-standardized`.
+
+4. **Complétez les sections clés** du template:
+
+   - Informations Générales du Projet
+   - Vision Technique & Objectifs
+   - Stack Technologique (avec versions et justifications)
+   - Architecture Fondamentale
+   - Principes de Développement
+   - Plan d'Implémentation
+   - Risques et Mitigations
+
+5. **Demandez à Cursor de réviser votre document**:
+   ```
+   Peux-tu réviser mon document de fondation technique pour vérifier qu'il est complet,
+   cohérent, et qu'il couvre tous les aspects techniques importants? Y a-t-il des améliorations
+   à apporter avant de l'utiliser comme base pour le PRD et l'architecture?
+   ```
+
+### Exemple de documentation de la stack technologique
+
+```markdown
+### Stack Technologique
+
+#### Frontend
+
+- **Framework**: React 18.2.0
+- **Langage**: TypeScript 5.0.4
+- **Bibliothèques Principales**:
+  - Redux Toolkit (2.0.1) pour la gestion d'état
+  - React Query (5.0.0) pour la gestion des requêtes API
+  - Styled Components (6.0.7) pour le styling
+  - Jest et React Testing Library pour les tests
+- **Outils de Build**:
+  - Vite 5.0.0 comme bundler
+  - ESLint avec config Airbnb pour le linting
+  - Prettier pour le formatage de code
+
+**Justification**:
+
+- React a été choisi pour sa flexibilité, son écosystème riche et la facilité de recrutement
+- TypeScript assure la qualité du code et réduit les erreurs à l'exécution
+- Redux Toolkit simplifie la gestion d'état complexe nécessaire pour notre application
+- Vite offre des performances de développement supérieures par rapport à CRA
+```
+
+## 3. Création du PRD (Product Requirements Document)
+
+Une fois les fondations techniques définies, créez le PRD en vous assurant qu'il s'aligne avec les choix techniques documentés.
+
+```mermaid
+flowchart LR
+    A[Fondation Technique Validée] --> B[Créer prd.md vide]
     B --> C[Demander à Cursor de créer un PRD]
     C --> D[Cursor applique le template]
     D --> E[Remplir les détails spécifiques]
@@ -82,8 +168,9 @@ flowchart LR
 2. **Ouvrez ce fichier** dans votre éditeur et demandez à Cursor de générer un PRD:
 
    ```
-   Je souhaite créer un PRD pour mon nouveau projet [description de votre projet].
-   Peux-tu m'aider à créer un PRD complet en suivant le template standardisé?
+   Sur la base du document de fondation technique, je souhaite créer un PRD pour mon projet [description].
+   Peux-tu m'aider à créer un PRD complet en suivant le template standardisé et en assurant
+   la cohérence avec les choix techniques déjà documentés?
    ```
 
 3. **Cursor va détecter** que vous travaillez sur un PRD et appliquera le template `901-prd-template-standardized`.
@@ -149,7 +236,7 @@ Le Système de Gestion de Projet (SGP) vise à fournir une plateforme centralis�
 ...
 ```
 
-## 3. Création du Document d'Architecture
+## 4. Création du Document d'Architecture
 
 ```mermaid
 flowchart LR
@@ -174,9 +261,10 @@ flowchart LR
 2. **Demandez à Cursor de générer l'architecture**:
 
    ```
-   J'ai maintenant besoin de créer un document d'architecture pour mon projet
-   basé sur le PRD. Peux-tu m'aider à générer un document d'architecture
-   complet en suivant le template standardisé?
+   Sur la base du document de fondation technique et du PRD, j'ai maintenant besoin de créer
+   un document d'architecture détaillé pour mon projet. Peux-tu m'aider à générer un document
+   d'architecture complet en suivant le template standardisé et en élaborant sur les principes
+   architecturaux déjà définis?
    ```
 
 3. **Cursor va détecter** que vous travaillez sur un document d'architecture et appliquera le template `902-arch-template-standardized`.
@@ -186,7 +274,7 @@ flowchart LR
    - Diagrammes de déploiement
    - Diagrammes de séquence pour les flux importants
 
-## 4. Création des Stories
+## 5. Création des Stories
 
 ```mermaid
 flowchart LR
@@ -256,7 +344,7 @@ flowchart LR
    | Problèmes de validation côté client    | Moyen  | Faible      | Tests exhaustifs de l'interface utilisateur |
    ```
 
-## 5. Implémentation et Tests
+## 6. Implémentation et Tests
 
 Maintenant que votre documentation est prête, vous pouvez commencer l'implémentation en suivant les stories créées.
 
@@ -265,7 +353,8 @@ Maintenant que votre documentation est prête, vous pouvez commencer l'implémen
 Ce processus garantit que votre projet démarre avec:
 
 - Une structure claire et standardisée
-- Une documentation complète (PRD, Architecture, Stories)
+- Des fondations techniques solides et documentées
+- Une documentation complète (Fondation, PRD, Architecture, Stories)
 - Un workflow agile bien défini
 - Des exigences claires et traçables
 

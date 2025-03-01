@@ -1,0 +1,172 @@
+---
+description: "ALWAYS USE when DEFINING new project architecture and tech stack to ENSURE consistent and complete technical foundation"3
+globs: "docs/project-*.md"
+alwaysApply: false
+---
+---
+title: "Template de Fondation de Projet"
+version: "1.0.0"
+description: "ALWAYS USE when DEFINING new project architecture and tech stack to ENSURE consistent and complete technical foundation"
+globs: "docs/project-*.md"
+lastUpdated: "2025-03-01"
+tags: ["project-setup", "architecture", "technical-stack", "foundation"]
+---
+
+# 🏗️ Template de Fondation de Projet
+
+## 📋 Vue d'Ensemble
+Cette règle fournit un template standardisé pour définir les fondations techniques d'un nouveau projet ou pour documenter un projet existant. Elle assure que tous les aspects essentiels de l'architecture, de la stack technique et des principes de développement sont documentés de manière cohérente et complète. Cette documentation servira de base pour générer le PRD et les documents d'architecture détaillés.
+
+> ⚠️ **Attention**: Ce document doit être complété avant le démarrage de tout développement significatif. Il constitue la base technique sur laquelle s'appuieront toutes les décisions architecturales futures.
+
+## 🎯 Objectifs
+- Définir clairement la vision technique et les objectifs du projet
+- Documenter la stack technologique avec justifications
+- Établir les principes d'architecture et de développement
+- Fournir une base solide pour la génération des documents PRD et architecture
+- Assurer l'alignement entre les besoins métier et les choix techniques
+- Faciliter l'intégration des nouveaux membres dans l'équipe
+
+## ✅ Structure du Document
+
+### 1️⃣ Informations Générales du Projet
+- **Nom du Projet**: [Nom complet]
+- **Description Technique**: [Description concise de l'application d'un point de vue technique]
+- **Catégorie**: [Web/Mobile/Desktop/Hybride/Autre]
+- **Échelle Prévue**: [Taille de l'application, utilisateurs attendus, volumétrie]
+- **Contraintes Principales**: [Contraintes techniques, de performance, réglementaires, etc.]
+
+### 2️⃣ Vision Technique & Objectifs
+- **Vision Technique**: [Description de la vision technique à long terme]
+- **Objectifs Techniques**: [Liste des objectifs techniques mesurables]
+- **Principes Directeurs**: [Principes fondamentaux guidant les décisions techniques]
+
+### 3️⃣ Stack Technologique
+- **Frontend**:
+  - Framework: [Nom + Version]
+  - Langage: [Nom + Version]
+  - Bibliothèques Principales: [Liste des bibliothèques essentielles]
+  - Outils de Build: [Liste des outils]
+
+- **Backend**:
+  - Framework: [Nom + Version]
+  - Langage: [Nom + Version]
+  - API Style: [REST/GraphQL/gRPC/Autre]
+  - Bibliothèques Principales: [Liste des bibliothèques essentielles]
+
+- **Données**:
+  - Base(s) de Données: [Type et version]
+  - ORM/DAL: [Outils d'accès aux données]
+  - Stratégie de Migration: [Approche pour les migrations]
+  - Stratégie de Caching: [Approche pour le caching]
+
+- **Infrastructure**:
+  - Environnement d'Hébergement: [Cloud/On-premise/Hybride]
+  - Services Cloud: [Liste des services principaux]
+  - Conteneurisation: [Docker/Kubernetes/Autre]
+  - CI/CD: [Outils et pipelines]
+
+- **Monitoring & Observabilité**:
+  - Logging: [Solution de logging]
+  - Monitoring: [Outils de monitoring]
+  - Analytics: [Solutions d'analytics]
+
+### 4️⃣ Architecture Fondamentale
+- **Pattern Architectural**: [Monolithique/MonoRepo/Microservices/Serverless/etc.]
+- **Découpage Fonctionnel**: [Grands modules fonctionnels]
+- **Flux de Données Principaux**: [Description des flux de données essentiels]
+- **Points d'Intégration Externes**: [Systèmes externes avec lesquels l'application interagit]
+
+### 5️⃣ Principes de Développement
+- **Standards de Code**: [Principes de clean code, conventions de nommage]
+- **Stratégie de Test**: [Approche des tests, couverture attendue]
+- **Modèle de Collaboration**: [Workflow Git, revue de code, etc.]
+- **Documentation**: [Exigences de documentation]
+
+### 6️⃣ Plan d'Implémentation
+- **Phases Techniques**: [Grandes phases d'implémentation]
+- **Priorités Techniques**: [Éléments à prioriser]
+- **Proof of Concepts**: [POCs nécessaires avant démarrage]
+
+### 7️⃣ Risques et Mitigations
+- **Risques Techniques**: [Identification des risques]
+- **Stratégies de Mitigation**: [Approches pour réduire les risques]
+- **Alternatives Envisagées**: [Solutions alternatives considérées]
+
+## 💡 Exemples
+
+<example>
+**Bon exemple de Stack Technologique - Section Frontend**:
+
+```markdown
+## Stack Technologique
+
+### Frontend
+- **Framework**: React 18.2.0
+- **Langage**: TypeScript 5.0.4
+- **Bibliothèques Principales**:
+  - Redux Toolkit (2.0.1) pour la gestion d'état
+  - React Query (5.0.0) pour la gestion des requêtes API
+  - Styled Components (6.0.7) pour le styling
+  - Jest et React Testing Library pour les tests
+- **Outils de Build**:
+  - Vite 5.0.0 comme bundler
+  - ESLint avec config Airbnb pour le linting
+  - Prettier pour le formatage de code
+
+**Justification**:
+- React a été choisi pour sa flexibilité, son écosystème riche et la facilité de recrutement
+- TypeScript assure la qualité du code et réduit les erreurs à l'exécution
+- Redux Toolkit simplifie la gestion d'état complexe nécessaire pour notre application
+- Vite offre des performances de développement supérieures par rapport à CRA
+```
+
+Ce fragment est bien structuré, spécifie les versions, inclut des justifications et couvre tous les aspects essentiels de la stack frontend.
+</example>
+
+<example type="invalid">
+**Mauvais exemple de Architecture Fondamentale**:
+
+```markdown
+## Architecture
+
+Nous utiliserons une architecture de microservices car c'est moderne et scalable. Il y aura plusieurs services comme l'authentification, les utilisateurs et les commandes.
+```
+
+Ce fragment est problématique car:
+1. Il manque de détails spécifiques sur les services et leurs responsabilités
+2. Il ne justifie pas le choix des microservices par rapport aux besoins du projet
+3. Il n'explique pas les patterns de communication entre services
+4. Il ne mentionne pas les flux de données
+5. Il utilise des justifications génériques ("moderne et scalable") sans lien avec les besoins spécifiques du projet
+</example>
+
+## ⚙️ Intégration avec les Documents Associés
+
+Une fois ce template complété:
+
+1. **Génération du PRD**:
+   - Utilisez les informations techniques pour compléter le template PRD (`@901-prd-template-standardized.mdc`)
+   - Assurez l'alignement entre les objectifs techniques et métier
+   - Référencez ce document dans la section technique du PRD
+
+2. **Génération du Document d'Architecture**:
+   - Développez l'architecture détaillée basée sur ce document (`@902-arch-template-standardized.mdc`)
+   - Approfondissez chaque aspect technique en diagrammes et détails d'implémentation
+   - Maintenez la cohérence entre ce document fondamental et l'architecture détaillée
+
+## ✅ Bonnes Pratiques
+
+- **Complétude**: Remplissez toutes les sections du template
+- **Spécificité**: Évitez les généralités, soyez précis dans vos choix et leurs justifications
+- **Versions**: Spécifiez les versions pour tous les composants technologiques majeurs
+- **Justifications**: Expliquez le "pourquoi" derrière chaque choix technique important
+- **Cohérence**: Assurez-vous que tous les choix techniques forment un ensemble cohérent
+- **Évolution**: Revisitez régulièrement ce document pour le maintenir à jour
+
+## 🔗 Références
+- [Template PRD](mdc:xnotes/901-prd-template-standardized.mdc)
+- [Template Architecture](mdc:xnotes/902-arch-template-standardized.mdc)
+- [Workflow Agile](mdc:xnotes/801-workflow-agile-standardized.mdc)
+
+<version>1.0.0</version> 

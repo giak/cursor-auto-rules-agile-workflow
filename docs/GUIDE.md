@@ -6,10 +6,12 @@
 graph TB
     A[Règles Cursor] --> B[Templates]
     A --> C[Workflow Agile]
+    B --> BP[Fondation de Projet]
     B --> D[PRD]
     B --> E[Architecture]
     B --> F[Stories]
     C --> G[Cycle de Développement]
+    BP --> D
 
     subgraph "Règles Fondamentales"
         A1[000-cursor-rules] --> A2[400-md-docs]
@@ -17,13 +19,15 @@ graph TB
     end
 
     subgraph "Templates Standards"
+        BP --> BP1[800-project-foundation]
         D --> D1[901-prd-template]
         E --> E1[902-arch-template]
         F --> F1[903-story-template]
     end
 
     subgraph "Workflow"
-        G --> G1[PRD]
+        G --> G0[Fondation Technique]
+        G0 --> G1[PRD]
         G1 --> G2[Architecture]
         G2 --> G3[Stories]
         G3 --> G4[Implémentation]
@@ -69,7 +73,11 @@ classDiagram
 
 ```mermaid
 stateDiagram-v2
-    [*] --> PRD_Draft
+    [*] --> Project_Foundation
+    Project_Foundation --> Project_Foundation_Review: Création
+    Project_Foundation_Review --> Project_Foundation_Approved: Validation
+    Project_Foundation_Approved --> PRD_Draft: Début PRD
+
     PRD_Draft --> PRD_Review: Création
     PRD_Review --> PRD_Approved: Validation
     PRD_Approved --> Arch_Draft: Début Architecture
@@ -98,12 +106,15 @@ graph LR
     A --> E[src]
 
     B --> B1[000-cursor-rules.mdc]
+    B --> B1_5[800-project-foundation.mdc]
     B --> B2[901-prd-template.mdc]
     B --> B3[...]
 
     C --> C1[prd.md]
     C --> C2[arch.md]
     C --> C3[stories/*.md]
+
+    D --> D1[project-foundation.md]
 ```
 
 ### 2. Création d'un Nouveau Projet
@@ -115,6 +126,7 @@ graph LR
    - Initialiser le dossier `.ai/`
 
 2. **Workflow Documentation**
+   - Créer la fondation de projet (`docs/project-foundation.md`)
    - Créer le PRD (`.ai/prd.md`)
    - Créer l'Architecture (`.ai/arch.md`)
    - Créer les Stories (`.ai/stories/*.md`)

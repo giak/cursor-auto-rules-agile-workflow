@@ -7,7 +7,8 @@ Ce guide complet vous accompagne dans l'utilisation efficace des règles Cursor 
 ```mermaid
 flowchart TD
     A[Début] --> B[Configuration Initiale]
-    B --> C[Documentation Projet]
+    B --> BP[Fondation Technique]
+    BP --> C[Documentation Projet]
     C --> D[Création Stories]
     D --> E[Implémentation]
     E --> F[Validation & Qualité]
@@ -15,6 +16,7 @@ flowchart TD
     G --> H[Amélioration Continue]
 
     style B fill:#bbf,stroke:#333,stroke-width:2px
+    style BP fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#bbf,stroke:#333,stroke-width:2px
     style D fill:#bbf,stroke:#333,stroke-width:2px
     style F fill:#bbf,stroke:#333,stroke-width:2px
@@ -28,26 +30,29 @@ flowchart TD
 1. [**Première Utilisation des Règles Cursor**](scenario-1-premiere-utilisation.md)  
    _Guide de démarrage pour configurer et utiliser les règles Cursor dans un nouveau projet, de la création de la structure initiale jusqu'à l'implémentation des premières stories._
 
+2. [**Documentation des Fondations Techniques du Projet**](scenario-2-fondation-projet.md)  
+   _Comment définir et documenter les fondements techniques d'un nouveau projet ou structurer la documentation d'un projet existant avec le template de fondation de projet._
+
 ### Utilisation Quotidienne
 
-2. [**Mise à Jour d'une Story Existante**](scenario-2-mise-a-jour-story.md)  
+3. [**Mise à Jour d'une Story Existante**](scenario-2-mise-a-jour-story.md)  
    _Comment réviser et mettre à jour une story existante en réponse à de nouvelles exigences ou à des modifications techniques._
 
-3. [**Création et Intégration de Diagrammes Mermaid**](scenario-3-diagrammes-mermaid.md)  
+4. [**Création et Intégration de Diagrammes Mermaid**](scenario-3-diagrammes-mermaid.md)  
    _Techniques pour créer et intégrer des diagrammes Mermaid dans votre documentation de projet pour une meilleure visualisation._
 
-4. [**Validation Automatisée de la Documentation**](scenario-4-validation-documentation.md)  
+5. [**Validation Automatisée de la Documentation**](scenario-4-validation-documentation.md)  
    _Utilisation du système de validation automatisée pour vérifier et améliorer la qualité de la documentation._
 
 ### Personnalisation et Extensions
 
-5. [**Adaptation des Templates Standardisés**](scenario-5-adaptation-templates.md)  
+6. [**Adaptation des Templates Standardisés**](scenario-5-adaptation-templates.md)  
    _Comment personnaliser les templates standardisés pour répondre aux besoins spécifiques de votre équipe ou projet._
 
-6. [**Intégration dans un Pipeline CI/CD**](scenario-6-integration-cicd.md)  
+7. [**Intégration dans un Pipeline CI/CD**](scenario-6-integration-cicd.md)  
    _Intégration des processus de documentation agile et de validation dans votre pipeline d'intégration continue._
 
-7. [**Création d'une Nouvelle Règle Cursor**](scenario-7-creation-regle-cursor.md)  
+8. [**Création d'une Nouvelle Règle Cursor**](scenario-7-creation-regle-cursor.md)  
    _Guide pour créer une nouvelle règle Cursor personnalisée répondant à des besoins spécifiques._
 
 ## Comment Utiliser ce Guide
