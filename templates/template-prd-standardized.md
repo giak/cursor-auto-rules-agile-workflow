@@ -2,7 +2,7 @@
 title: "Product Requirements Document Template"
 version: "2.0.0"
 description: "ALWAYS use when CREATING a PRD to ENSURE comprehensive and well-structured product documentation"
-lastUpdated: "2024-02-28"
+lastUpdated: "2025-03-10"
 tags: ["prd", "documentation", "requirements", "agile"]
 ---
 

@@ -1,12 +1,29 @@
 # Story Template
 
-<version>2.1.0</version>
+<version>3.0.0</version>
 
 > Ce template définit la structure standardisée pour les user stories dans le contexte d'un projet agile. Chaque story doit inclure tous les éléments requis pour assurer une compréhension claire des besoins, du contexte et des tâches d'implémentation.
 
 ## 🎯 Vue d'Ensemble
 
 Les user stories sont au cœur de la méthodologie agile, capturant les besoins utilisateurs sous forme d'histoires concises qui décrivent qui, quoi et pourquoi. Ce template assure que chaque story contient les informations nécessaires pour son implémentation et son suivi.
+
+## 📁 Structure de Fichiers
+
+Les stories doivent être placées dans le répertoire de leur Epic:
+`.ai/epic-{n}/{m}-{code}.story.md`
+
+Où:
+
+- `{n}` est le numéro de l'Epic
+- `{m}` est le numéro de la Story
+- `{code}` est un ou plusieurs mots en minuscules séparés par des tirets résumant le titre de la Story
+
+Exemples:
+
+- `.ai/epic-1/1-authentification-utilisateur.story.md`
+- `.ai/epic-2/3-interface-plateau-echecs.story.md`
+- `.ai/epic-3/7-gestion-erreurs-api.story.md`
 
 ## 📝 Structure Requise
 
@@ -184,6 +201,8 @@ Story Points: 2
 - AiAgent: Implémentation de la grille terminée, je procède au placement des pièces
 ```
 
+Ce fichier devrait être nommé `.ai/epic-2/3-interface-plateau-echecs.story.md` suivant la nouvelle convention.
+
 ## ⚠️ Exemple à Éviter
 
 ```markdown
@@ -210,4 +229,4 @@ Story Plateau d'Échecs
 - **Hypothèses**: Explicitez les hypothèses et définissez comment les valider
 - **Revues régulières**: Réévaluez périodiquement les risques et hypothèses pendant le développement
 
-<version>2.1.0</version>
+<version>3.0.0</version>

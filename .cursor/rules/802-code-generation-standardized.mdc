@@ -10,7 +10,7 @@ globs: "**/*.{md,js,ts,jsx,tsx}"
 alwaysApply: true
 priority: 90
 compatibility: ">=0.45"
-lastUpdated: "2024-03-15"
+lastUpdated: "2025-03-10"
 tags: ["workflow", "agile", "planning", "documentation"]
 ---
 

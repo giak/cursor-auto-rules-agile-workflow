@@ -2,7 +2,7 @@
 title: "Base Template"
 version: "1.0.0"
 description: "ALWAYS use as a starting point when CREATING a new template to ENSURE consistency across all documentation"
-lastUpdated: "2024-02-28"
+lastUpdated: "2025-03-10"
 tags: ["template", "documentation", "base"]
 ---
 

@@ -10,7 +10,7 @@ globs: "docs/project-*.md"
 alwaysApply: false
 priority: 80
 compatibility: ">=0.45"
-lastUpdated: "2025-03-01"
+lastUpdated: "2025-03-10"
 tags: ["project-setup", "architecture", "technical-stack", "foundation"]
 ---
 

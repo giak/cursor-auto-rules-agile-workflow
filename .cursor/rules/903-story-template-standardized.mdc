@@ -4,13 +4,13 @@ globs: "**/*.story.md"
 ---
 ---
 title: "Template de User Stories"
-version: "2.0.0"
+version: "3.0.0"
 description: "ALWAYS use when CREATING or UPDATING story files to ENSURE proper tracking and implementation. This rule enforces consistent story structure with tasks, context, and progress tracking."
 globs: "**/*.story.md"
 alwaysApply: false
 priority: 80
 compatibility: ">=0.45"
-lastUpdated: "2024-03-15"
+lastUpdated: "2025-03-10"
 tags: ["agile", "user-story", "tracking", "implementation"]
 ---
 
@@ -40,7 +40,17 @@ Cette règle définit les standards pour la création et la mise à jour des use
 ## 📁 Structure de Fichiers
 
 Les stories doivent être placées dans le répertoire de leur Epic:
-`.ai/epic-{n}/story-{m}.story.md`
+`.ai/epic-{n}/{m}-{code}.story.md`
+
+Où:
+- `{n}` est le numéro de l'Epic
+- `{m}` est le numéro de la Story
+- `{code}` est un ou plusieurs mots en minuscules séparés par des tirets résumant le titre de la Story
+
+Exemples:
+- `.ai/epic-1/1-authentification-utilisateur.story.md`
+- `.ai/epic-2/3-interface-plateau-echecs.story.md`
+- `.ai/epic-3/7-gestion-erreurs-api.story.md`
 
 ## 📝 Structure des Stories
 
@@ -192,7 +202,7 @@ Story Points: 2
 - AiAgent: Implémentation de la grille terminée, je procède au placement des pièces
 ```
 
-Cette story suit parfaitement la structure requise, avec une description claire, des critères d'acceptation bien formatés, et un suivi précis des tâches.
+Cette story suit parfaitement la structure requise, avec une description claire, des critères d'acceptation bien formatés, et un suivi précis des tâches. Le fichier devrait être nommé `.ai/epic-2/3-interface-plateau-echecs.story.md` suivant la nouvelle convention.
 </example>
 
 <example type="invalid">
@@ -235,4 +245,4 @@ Cette "story" manque de presque tous les éléments requis:
 - [Guide de l'Estimation Agile](mdc:https:/www.mountaingoatsoftware.com/blog/what-are-story-points)
 - [Technique INVEST pour les User Stories](mdc:https:/www.agilealliance.org/glossary/invest)
 
-<version>2.0.0</version> 
+<version>3.0.0</version> 

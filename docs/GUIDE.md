@@ -112,7 +112,14 @@ graph LR
 
     C --> C1[prd.md]
     C --> C2[arch.md]
-    C --> C3[stories/*.md]
+    C --> C3[epic-1]
+    C --> C4[epic-2]
+
+    C3 --> C3_1[1-auth-login.story.md]
+    C3 --> C3_2[2-user-profile.story.md]
+
+    C4 --> C4_1[1-dashboard-ui.story.md]
+    C4 --> C4_2[2-data-visualization.story.md]
 
     D --> D1[project-foundation.md]
 ```
@@ -129,9 +136,30 @@ graph LR
    - Créer la fondation de projet (`docs/project-foundation.md`)
    - Créer le PRD (`.ai/prd.md`)
    - Créer l'Architecture (`.ai/arch.md`)
-   - Créer les Stories (`.ai/stories/*.md`)
+   - Créer les dossiers d'Epics (`.ai/epic-{n}/`)
+   - Créer les Stories (`.ai/epic-{n}/{m}-{code}.story.md`)
 
-### 3. Application des Règles
+### 3. Convention de Nommage des Stories
+
+La nouvelle convention de nommage des stories suit ce format:
+
+```
+.ai/epic-{n}/{m}-{code}.story.md
+```
+
+Où:
+
+- `{n}` est le numéro de l'Epic (ex: 1, 2, 3)
+- `{m}` est le numéro de la Story dans l'Epic (ex: 1, 2, 3)
+- `{code}` est un résumé du titre de la story en minuscules séparés par des tirets
+
+Exemples:
+
+- `.ai/epic-1/1-authentification-utilisateur.story.md`
+- `.ai/epic-2/3-interface-plateau-echecs.story.md`
+- `.ai/epic-3/7-gestion-erreurs-api.story.md`
+
+### 4. Application des Règles
 
 Les règles sont automatiquement appliquées en fonction des patterns glob :
 
@@ -156,6 +184,9 @@ Les règles sont automatiquement appliquées en fonction des patterns glob :
 4. **Q: Comment mettre à jour les règles ?**
    R: Modifier les fichiers dans `.cursor/rules/` en incrémentant leur version.
 
+5. **Q: Pourquoi cette nouvelle convention pour les stories ?**
+   R: La convention `.ai/epic-{n}/{m}-{code}.story.md` améliore l'organisation et la lisibilité en groupant les stories par epic et en incluant un résumé descriptif dans le nom de fichier.
+
 ### Bonnes Pratiques
 
 ```mermaid
@@ -177,6 +208,10 @@ mindmap
             Mettre à jour régulièrement
             Vérifier la cohérence
             Archiver les anciennes versions
+        Stories
+            Respecter la convention de nommage
+            Organiser par epic
+            Inclure un code descriptif
 ```
 
 ## Références

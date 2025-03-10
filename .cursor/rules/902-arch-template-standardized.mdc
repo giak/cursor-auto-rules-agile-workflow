@@ -10,7 +10,7 @@ globs: "**/arch*.md"
 alwaysApply: false
 priority: 85
 compatibility: ">=0.45"
-lastUpdated: "2024-02-28"
+lastUpdated: "2025-23-10"
 tags: ["architecture", "design", "technical", "documentation"]
 ---
 

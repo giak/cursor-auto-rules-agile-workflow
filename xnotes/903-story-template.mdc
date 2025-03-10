@@ -4,7 +4,7 @@ globs: **/*.story.md
 ---
 # Story Template Standards
 
-<version>1.0.0</version>
+<version>3.0.0</version>
 
 ## Requirements
 
@@ -17,7 +17,17 @@ globs: **/*.story.md
 ## File Structure
 
 Stories must be placed in their Epic's directory:
-`.ai/epic-{n}/story-{m}.story.md`
+`.ai/epic-{n}/{m}-{code}.story.md`
+
+Où:
+- `{n}` est le numéro de l'Epic
+- `{m}` est le numéro de la Story
+- `{code}` est un ou plusieurs mots en minuscules séparés par des tirets résumant le titre de la Story
+
+Exemples:
+- `.ai/epic-1/1-authentification-utilisateur.story.md`
+- `.ai/epic-2/3-interface-plateau-echecs.story.md`
+- `.ai/epic-3/7-gestion-erreurs-api.story.md`
 
 ## Story Structure
 
@@ -145,6 +155,8 @@ Story Points: 2
   - BMad: Let's use SVG for better scaling
 - AiAgent: Grid implementation complete, proceeding with piece placement
 </example>
+
+Note: This file should be named `.ai/epic-1/2-implement-chessboard-ui.story.md` following the new naming convention.
 
 <example type="invalid">
 Chess UI Story

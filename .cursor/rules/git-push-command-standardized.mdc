@@ -10,7 +10,7 @@ globs: "**/.git/*"
 alwaysApply: false
 priority: 70
 compatibility: ">=0.45"
-lastUpdated: "2024-03-15"
+lastUpdated: "2025-03-10"
 tags: ["git", "version-control", "commit", "workflow"]
 ---
 

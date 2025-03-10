@@ -10,7 +10,7 @@ globs: "**/*.{js,ts,jsx,tsx,java,py,c,cpp,cs,go,rb,php,swift}"
 alwaysApply: true
 priority: 75
 compatibility: ">=0.45"
-lastUpdated: "2025-03-03"
+lastUpdated: "2025-03-10"
 tags: ["clean-code", "simplicity", "maintainability", "best-practices", "overengineering"]
 ---
 

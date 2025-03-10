@@ -23,6 +23,10 @@ flowchart TD
     style G fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
+## Mise à Jour Importante - Mars 2025
+
+> 🔄 **Nouvelle Convention de Nommage des Stories**: La convention de nommage des stories a été mise à jour vers le format `.ai/epic-{n}/{m}-{code}.story.md` où `{n}` est le numéro de l'Epic, `{m}` est le numéro de la Story, et `{code}` est un résumé descriptif du titre de la story. Cette mise à jour améliore l'organisation et la lisibilité des fichiers de stories dans le projet.
+
 ## Scénarios d'Utilisation
 
 ### Première Utilisation
@@ -81,4 +85,4 @@ Ce guide est destiné à évoluer avec vos besoins et l'évolution des outils. N
 
 ---
 
-_Dernière mise à jour: Octobre 2023_
+_Dernière mise à jour: Mai 2024_

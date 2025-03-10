@@ -4,13 +4,13 @@ globs: "**/*.{md,js,ts,jsx,tsx}"
 ---
 ---
 title: "Workflow Agile Standard"
-version: "2.0.0"
+version: "3.0.0"
 description: "ALWAYS FOLLOW this workflow for ALL projects to ENSURE consistent agile delivery and documentation"
 globs: "**/*.{md,js,ts,jsx,tsx}"
 alwaysApply: false
 priority: 90
 compatibility: ">=0.45"
-lastUpdated: "2024-03-15"
+lastUpdated: "2025-05-10"
 tags: ["workflow", "agile", "planning", "documentation"]
 ---
 
@@ -61,7 +61,10 @@ Le PRD doit inclure:
 ### 4️⃣ Création et Gestion des Stories
 1. Après l'approbation de l'architecture, créer le brouillon de la première story
 2. Utiliser le template standardisé pour toutes les stories
-3. Nommer les stories selon la convention: `.ai/story-{N}.story.md` ou `.ai/task-{N}.story.md`
+3. Nommer les stories selon la convention: `.ai/epic-{n}/{m}-{code}.story.md` où:
+   - `{n}` est le numéro de l'Epic
+   - `{m}` est le numéro de la Story
+   - `{code}` est un résumé en minuscules avec des tirets du titre de la Story
 4. Attendre l'approbation de la story avant de commencer le travail
 
 ### 5️⃣ Développement Itératif
@@ -76,7 +79,7 @@ Le PRD doit inclure:
 3. **Implémentation Itérative**: Implémentez le code en petites incrémentations, en faisant passer les tests
 4. **Revue de Code**: Soumettez votre code à une revue par les pairs
 5. **Intégration Continue**: Fusionnez régulièrement la branche principale dans votre branche
-6. **Mise à Jour de l'État**: Mettez à jour l'état de la story dans `.ai/stories/`.
+6. **Mise à Jour de l'État**: Mettez à jour l'état de la story dans `.ai/epic-{n}/`.
 
 ## 🧩 Directives de Génération de Code
 1. **Simplicité avant tout**: Respectez les principes KISS (Keep It Simple, Stupid), YAGNI (You Aren't Gonna Need It) et DRY (Don't Repeat Yourself)
@@ -170,4 +173,4 @@ Ce workflow est problématique car il:
 - [Template d'Architecture](mdc:xnotes/template-arch-standardized.md)
 - [Template de Story](mdc:xnotes/template-story-standardized.md)
 
-<version>2.0.0</version> 
+<version>3.0.0</version> 

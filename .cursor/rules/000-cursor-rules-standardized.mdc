@@ -10,7 +10,7 @@ globs: ".cursor/rules/*.mdc"
 alwaysApply: true
 priority: 100
 compatibility: ">=0.45"
-lastUpdated: "2024-03-15"
+lastUpdated: "2025-03-10"
 tags: ["meta", "standard", "règles"]
 ---
 

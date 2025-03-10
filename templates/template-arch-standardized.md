@@ -2,7 +2,7 @@
 title: "Architecture Document Template"
 version: "2.0.0"
 description: "ALWAYS use when DESIGNING system architecture to ENSURE clear technical decisions and structure"
-lastUpdated: "2024-02-28"
+lastUpdated: "2025-03-10"
 tags: ["architecture", "design", "technical", "documentation"]
 ---
 

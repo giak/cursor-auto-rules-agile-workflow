@@ -186,4 +186,4 @@ Pour toute question ou suggestion, n'hésitez pas à ouvrir une issue ou à cont
 
 ---
 
-_Projet maintenu par Giak - 2025_
+_Projet maintenu par Giak - Mars 2025_

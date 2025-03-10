@@ -1,6 +1,6 @@
 # Agile Workflow Template
 
-<version>2.1.0</version>
+<version>3.0.0</version>
 
 > Ce template définit le flux de travail agile à suivre pour tous les projets. Il garantit une approche structurée et cohérente pour la planification, le développement et le suivi des projets avec une attention particulière à la qualité, la documentation et la gestion proactive des risques.
 
@@ -44,7 +44,10 @@ Le workflow agile est notre méthodologie standard pour livrer des solutions log
 
 - **Première Story**: Créer le brouillon de la première story dans le dossier `.ai`
 - **Format**: Utiliser le template de story standardisé
-- **Convention de Nommage**: `.ai/story-{N}.story.md` ou `.ai/task-{N}.story.md`
+- **Convention de Nommage**: `.ai/epic-{n}/{m}-{code}.story.md` où:
+  - `{n}` est le numéro de l'Epic
+  - `{m}` est le numéro de la Story
+  - `{code}` est un résumé en minuscules avec des tirets du titre de la Story
 - **Risques et Hypothèses**: S'assurer que chaque story contient une section dédiée aux risques et hypothèses
 - **Approbation**: Attendre l'approbation de la story avant de commencer le travail
 - **TDD**: Chaque sous-tâche inclut des tests unitaires avec au moins 80% de couverture
@@ -106,4 +109,4 @@ Les actions suivantes peuvent être effectuées sans demande explicite de l'util
 - **Efficacité des mesures d'atténuation**: Évaluer régulièrement l'efficacité des stratégies de gestion des risques
 - **Rétrospective améliorée**: Intégrer l'analyse des risques et hypothèses dans les rétrospectives régulières
 
-<version>2.1.0</version>
+<version>3.0.0</version>

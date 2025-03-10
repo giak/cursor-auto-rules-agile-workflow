@@ -10,7 +10,7 @@ globs: "**/prd.md"
 alwaysApply: false
 priority: 80
 compatibility: ">=0.45"
-lastUpdated: "2024-03-15"
+lastUpdated: "2025-03-10"
 tags: ["product", "documentation", "requirements", "planning"]
 ---
 
