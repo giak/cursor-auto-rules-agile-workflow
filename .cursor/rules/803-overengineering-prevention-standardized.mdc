@@ -1,0 +1,276 @@
+---
+description: "ALWAYS VERIFY when WRITING or MODIFYING code to PREVENT overengineering and unnecessary complexity"
+globs: "**/*.{js,ts,jsx,tsx,java,py,c,cpp,cs,go,rb,php,swift}"
+---
+---
+title: "Prévention de l'Overengineering"
+version: "1.0.0"
+description: "ALWAYS VERIFY when WRITING or MODIFYING code to PREVENT overengineering and unnecessary complexity"
+globs: "**/*.{js,ts,jsx,tsx,java,py,c,cpp,cs,go,rb,php,swift}"
+alwaysApply: true
+priority: 75
+compatibility: ">=0.45"
+lastUpdated: "2025-03-03"
+tags: ["clean-code", "simplicity", "maintainability", "best-practices", "overengineering"]
+---
+
+# 🛡️ Prévention de l'Overengineering
+
+## 📋 Vue d'Ensemble
+Cette règle définit les principes et pratiques visant à prévenir l'overengineering et la complexité inutile dans le code. Elle guide les développeurs pour garder le code simple, efficace et maintenable, en favorisant les solutions minimales qui répondent aux exigences actuelles sans anticiper des besoins hypothétiques futurs.
+
+> ⚠️ **Attention**: L'overengineering est l'une des principales sources de dette technique et de bugs. Toute déviation de ces principes doit être justifiée par des exigences documentées spécifiques.
+
+## 🎯 Objectifs
+- Maintenir la simplicité et la lisibilité du code
+- Réduire la complexité inutile et la dette technique
+- Faciliter la maintenance et l'évolution du code
+- Optimiser l'efficacité du développement
+- Éviter les abstractions prématurées et les optimisations inutiles
+
+## 🔍 Principes Fondamentaux
+
+### 1. KISS (Keep It Simple, Stupid)
+- Privilégiez la solution la plus simple qui résout le problème actuel
+- Visez la clarté du code plutôt que la sophistication
+- Mesurez la complexité cyclomatique (objectif < 5 par fonction)
+- Préférez les approches standard aux solutions exotiques
+
+### 2. YAGNI (You Aren't Gonna Need It)
+- N'implémentez que les fonctionnalités explicitement requises
+- Évitez d'anticiper des besoins hypothétiques futurs
+- Reportez les décisions jusqu'au moment où elles sont nécessaires
+- Ne créez pas d'infrastructure pour des cas d'usage non confirmés
+
+### 3. DRY (Don't Repeat Yourself) - Avec Modération
+- Évitez la duplication de code lorsqu'elle devient problématique
+- N'introduisez une abstraction que lorsque la duplication est avérée
+- Préférez parfois la duplication à une mauvaise abstraction
+- Appliquez ce principe avec discernement, pas dogmatiquement
+
+### 4. Clarté Cognitive
+- Le code doit être immédiatement compréhensible 
+- Minimisez le temps nécessaire pour comprendre le code (< 30 secondes)
+- Utilisez des conventions de nommage explicites
+- Éliminez le "facteur surprise" dans le comportement du code
+
+### 5. Discipline d'Optimisation
+- Reportez l'optimisation jusqu'à ce qu'elle soit prouvée nécessaire
+- "L'optimisation prématurée est la racine de tous les maux" (Donald Knuth)
+- Profilez avant d'optimiser pour identifier les vrais goulots d'étranglement
+- Concentrez-vous sur les 3% critiques du code qui affectent réellement les performances
+
+## ⚠️ Anti-Patterns à Éviter
+
+### Abstractions Prématurées
+- Création de hiérarchies d'interfaces complexes dès le début
+- Mise en place de patterns de conception sans nécessité avérée
+- Architectures modulaires excessives pour de petites applications
+- Surparamétrage rendant le code difficile à comprendre
+
+### Généralisation Excessive
+- Conception pour des cas d'usage hypothétiques
+- Implémentation de "hooks" et points d'extension non requis
+- Création de configurations et options rarement utilisées
+- Systèmes de plugins pour des applications qui n'en ont pas besoin
+
+### Optimisation Prématurée
+- Micro-optimisations sans données de performance
+- Compromis de lisibilité pour des gains de performance négligeables
+- Structures de données complexes sans justification
+- Parallélisation inutile augmentant la complexité
+
+### Sur-Modularisation
+- Fragmentation excessive en micro-composants
+- Dépendances circulaires dues à une séparation artificielle
+- Surcharge de communication entre composants
+- Abstractions qui fuient leurs détails d'implémentation
+
+### Frameworks Maison Non Justifiés
+- Réinvention de bibliothèques existantes et éprouvées
+- Création d'outils génériques pour des problèmes spécifiques
+- Couches d'abstraction supplémentaires autour de frameworks établis
+- Systèmes de configuration complexes en interne
+
+## ✅ Pratiques Recommandées
+
+### Lors de la Conception
+1. **Commencez petit**: Implémentez la solution minimale viable
+2. **Questionnez les abstractions**: Demandez-vous "Est-ce vraiment nécessaire maintenant?"
+3. **Identifiez les besoins réels**: Basez-vous sur des exigences documentées, pas des suppositions
+4. **Privilégiez l'itératif**: Construisez et faites évoluer en fonction du feedback
+
+### Lors de l'Implémentation
+1. **Favorisez la simplicité**: Préférez le code explicite aux solutions élégantes mais obscures
+2. **Limitez l'API publique**: Exposez le minimum nécessaire
+3. **Documentez les décisions**: Expliquez pourquoi plutôt que comment
+4. **Résistez aux frameworks**: N'ajoutez des dépendances que lorsqu'elles apportent une valeur claire
+
+### Lors de la Révision
+1. **Questionnez l'utilité**: Demandez "Avons-nous besoin de cette complexité?"
+2. **Évaluez l'effort de maintenance**: Considérez le coût à long terme
+3. **Recherchez la simplicité**: Identifiez les opportunités de simplification
+4. **Appliquez le principe du Boy Scout**: Laissez le code plus propre que vous ne l'avez trouvé
+
+## 💡 Exemples
+
+<example>
+// Bon exemple - Simple et direct
+// Une fonction qui fait une chose clairement
+function getUserFullName(user) {
+  if (!user) return '';
+  
+  return `${user.firstName || ''} ${user.lastName || ''}`.trim();
+}
+
+// Une classe avec une responsabilité unique
+class UserRepository {
+  constructor(database) {
+    this.database = database;
+  }
+
+  async findById(id) {
+    return this.database.query('SELECT * FROM users WHERE id = ?', [id]);
+  }
+  
+  async save(user) {
+    if (user.id) {
+      return this.update(user);
+    }
+    return this.create(user);
+  }
+  
+  async update(user) {
+    // Simple implémentation de mise à jour
+  }
+  
+  async create(user) {
+    // Simple implémentation de création
+  }
+}
+</example>
+
+<example type="invalid">
+// Mauvais exemple - Overengineering évident
+
+// Une classe avec paramétrage excessif
+class DataProcessor<T, R, K extends keyof T, V extends Record<string, unknown>> {
+  private strategies: Map<string, (item: T) => R> = new Map();
+  private interceptors: Array<(item: T) => T> = [];
+  private postProcessors: Array<(result: R) => R> = [];
+  
+  // Configuration excessive
+  constructor(
+    private options: {
+      enableCache?: boolean;
+      cacheKeyGenerator?: (item: T) => string;
+      defaultStrategy?: string;
+      timeout?: number;
+      retryCount?: number;
+      errorHandlingMode?: 'throw' | 'ignore' | 'substitute';
+      substitutionFactory?: () => R;
+      // ... beaucoup d'autres options...
+    } = {}
+  ) {
+    // Initialisation complexe
+  }
+  
+  // Système de plugins inutilement compliqué pour des besoins simples
+  registerStrategy(name: string, strategy: (item: T) => R): void {
+    this.strategies.set(name, strategy);
+  }
+  
+  addInterceptor(interceptor: (item: T) => T): void {
+    this.interceptors.push(interceptor);
+  }
+  
+  addPostProcessor(postProcessor: (result: R) => R): void {
+    this.postProcessors.push(postProcessor);
+  }
+  
+  // Logique complexe cachant ce que fait réellement la fonction
+  async process(item: T, strategyName?: string): Promise<R> {
+    // Beaucoup de logique non nécessaire...
+    let processedItem = { ...item };
+    
+    for (const interceptor of this.interceptors) {
+      processedItem = interceptor(processedItem);
+    }
+    
+    const strategy = strategyName 
+      ? this.strategies.get(strategyName) 
+      : this.strategies.get(this.options.defaultStrategy || '');
+      
+    if (!strategy) {
+      if (this.options.errorHandlingMode === 'throw') {
+        throw new Error(`Strategy not found: ${strategyName}`);
+      } else if (this.options.errorHandlingMode === 'substitute') {
+        return this.options.substitutionFactory ? this.options.substitutionFactory() : null as unknown as R;
+      }
+      return null as unknown as R;
+    }
+    
+    let result = strategy(processedItem);
+    
+    for (const postProcessor of this.postProcessors) {
+      result = postProcessor(result);
+    }
+    
+    return result;
+  }
+  
+  // ... beaucoup d'autres méthodes complexes...
+}
+
+// Utilisation simple qui aurait pu être implémentée avec quelques lignes
+// de code direct est maintenant compliquée:
+
+const processor = new DataProcessor<User, UserDTO, 'id', { role: string }>({
+  enableCache: true,
+  defaultStrategy: 'default',
+  errorHandlingMode: 'substitute',
+  substitutionFactory: () => ({ id: 0, name: 'Unknown' } as UserDTO)
+});
+
+processor.registerStrategy('default', (user) => ({ 
+  id: user.id, 
+  name: `${user.firstName} ${user.lastName}` 
+}));
+
+processor.addInterceptor((user) => {
+  return { ...user, lastAccess: new Date() };
+});
+
+const result = await processor.process(user);
+</example>
+
+## 🔧 Métriques et Indicateurs d'Overengineering
+
+### Indicateurs Objectifs
+- **Complexité cyclomatique** > 5 pour une fonction individuelle
+- **Nombre de paramètres** > 3 dans une fonction
+- **Profondeur d'héritage** > 2
+- **Nombre de niveaux d'abstraction** > 3 pour une fonctionnalité
+- **Ratio de code/fonctionnalité** significativement plus élevé que la moyenne du projet
+
+### Indicateurs Subjectifs
+- Le code est difficile à expliquer en une phrase
+- L'implémentation requiert des connaissances spécialisées inutiles
+- La conception résiste à des changements simples
+- Les développeurs évitent de toucher certaines parties du code
+
+## 🔄 Application dans le Workflow
+Cette règle devrait être appliquée à chaque étape du développement, en particulier:
+- Lors de la conception et de la planification
+- Pendant les sessions de programmation
+- Durant les revues de code
+- Au cours des refactorisations
+
+## 🔗 Références
+- [KISS Principle](mdc:https:/en.wikipedia.org/wiki/KISS_principle)
+- [YAGNI Principle](mdc:https:/en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
+- [The Wrong Abstraction](mdc:https:/sandimetz.com/blog/2016/1/20/the-wrong-abstraction)
+- [Clean Code](mdc:https:/www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882)
+- [The Art of Readable Code](mdc:https:/www.amazon.com/Art-Readable-Code-Practical-Techniques/dp/0596802293)
+
+<version>1.0.0</version> 

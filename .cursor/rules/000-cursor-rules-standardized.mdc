@@ -1,7 +1,17 @@
 ---
-description: "ALWAYS use when CREATING or UPDATING a RULE or when taught a lesson that should be RETAINED as a new rule for Cursor"
-globs: "**/*.mdc"
-alwaysApply: false
+description: "TOUJOURS utiliser lors de la CRÉATION ou MODIFICATION d'une RÈGLE pour GARANTIR cohérence et efficacité"
+globs: ".cursor/rules/*.mdc"
+---
+---
+title: "Format Standard des Règles Cursor"
+version: "3.0.0"
+description: "TOUJOURS utiliser lors de la CRÉATION ou MODIFICATION d'une RÈGLE pour GARANTIR cohérence et efficacité"
+globs: ".cursor/rules/*.mdc"
+alwaysApply: true
+priority: 100
+compatibility: ">=0.45"
+lastUpdated: "2024-03-15"
+tags: ["meta", "standard", "règles"]
 ---
 
 # 📏 Format Standard des Règles Cursor
@@ -27,6 +37,9 @@ title: "Titre Descriptif de la Règle"
 version: "X.Y.Z"
 description: "ACTION quand DÉCLENCHEUR pour RÉSULTAT"
 globs: "motif/glob/*.ext"
+alwaysApply: false
+priority: 50
+compatibility: ">=0.45"
 lastUpdated: "YYYY-MM-DD"
 tags: ["tag1", "tag2", "tag3"]
 ---
@@ -76,18 +89,52 @@ Exemple invalide concis avec explication
 ## 🔍 Champs Obligatoires
 
 ### 📋 Frontmatter
-- `title`: Titre descriptif de la règle (nouveau, recommandé)
-- `description`: Format ACTION DÉCLENCHEUR RÉSULTAT
+- `title`: Titre descriptif de la règle
+- `version`: Numéro de version X.Y.Z (format SemVer)
+- `description`: Format ACTION quand DÉCLENCHEUR pour RÉSULTAT
 - `globs`: Motif glob pour les fichiers et dossiers
-- `version`: Numéro de version X.Y.Z (maintenant dans le frontmatter)
-- `lastUpdated`: Date de dernière mise à jour (nouveau, recommandé)
-- `tags`: Liste de tags pour la catégorisation (nouveau, recommandé)
+- `alwaysApply`: Booléen pour l'injection inconditionnelle (false par défaut)
+- `priority`: Valeur numérique (1-100) définissant l'importance relative
+- `compatibility`: Version minimale de Cursor compatible (ex: ">=0.45")
+- `lastUpdated`: Date de dernière mise à jour (YYYY-MM-DD)
+- `tags`: Liste de tags pour la catégorisation
 
 ### 📝 Corps
 - Contexte: Conditions d'usage
 - Requirements: Éléments d'action
 - Exemples: Valides et invalides
 - `<version>X.Y.Z</version>`: À la fin du document
+
+## 🎯 Activation Conditionnelle
+
+### 📋 Structure de la Description
+Pour maximiser l'efficacité de l'activation conditionnelle:
+
+1. Format obligatoire: "ACTION quand DÉCLENCHEUR pour RÉSULTAT"
+   - ACTION: Verbe impératif (TOUJOURS, VÉRIFIER, APPLIQUER...)
+   - DÉCLENCHEUR: Contexte précis d'activation (CRÉATION, ÉCRITURE...)
+   - RÉSULTAT: Bénéfice attendu (GARANTIR, ASSURER, MAINTENIR...)
+
+2. Exemples de descriptions efficaces:
+   - "TOUJOURS utiliser lors de la CRÉATION de fichiers JavaScript pour GARANTIR cohérence"
+   - "VÉRIFIER avant COMMIT pour PRÉVENIR les problèmes de qualité"
+   - "APPLIQUER lors de la REFACTORISATION pour MAINTENIR lisibilité"
+
+### 🔄 Mécanisme d'Activation
+1. Injection via `alwaysApply: true` ou correspondance de `globs`
+2. Évaluation contextuelle par l'IA basée sur la `description`
+3. Activation si l'IA juge la règle pertinente pour la requête actuelle
+
+## 🔄 Interopérabilité des Règles
+
+### 🏗️ Dépendances
+- Format: `<requires>nom-de-regle</requires>`
+- Exemple: `<requires>801-workflow-agile-standardized</requires>`
+
+### 🥇 Priorités et Résolution de Conflits
+- Utiliser le champ `priority` (1-100) pour définir l'importance relative
+- Règles de priorité supérieure prévalent en cas de conflit
+- Règles spécifiques (globs précis) prévalent sur règles générales
 
 ## 📊 Motifs Glob Courants
 
@@ -115,6 +162,7 @@ Exemple invalide concis avec explication
   - `<rule>`
   - `<critical>`
   - `<version>`
+  - `<requires>`
 - Indenter le contenu dans les balises XML de 2 espaces
 - Garder les règles aussi courtes que possible
 - Utiliser la syntaxe Mermaid si elle sera plus claire qu'une description textuelle
@@ -129,6 +177,7 @@ Exemple invalide concis avec explication
 3. Optimisation pour l'efficacité de la fenêtre de contexte de l'IA
 4. Suppression des informations non essentielles ou redondantes
 5. Utilisation de motifs glob standards sans guillemets (ex: `*.js`, `src/**/*.ts`)
+6. Utilisation de marqueurs sémantiques pour les parties critiques
 
 ### 🚀 Efficacité du Contexte
 1. Maintenir la description du frontmatter sous 120 caractères
@@ -137,6 +186,7 @@ Exemple invalide concis avec explication
 4. Supprimer les informations redondantes entre les sections
 5. Maintenir une densité d'information élevée avec un minimum de tokens
 6. Se concentrer sur les instructions exploitables par la machine
+7. Pour les règles complexes, prioriser les sections critiques en début de document
 
 ## 💡 Exemples
 
@@ -147,8 +197,11 @@ Exemple invalide concis avec explication
 ---
 title: "JavaScript Error Handling"
 version: "1.0.0"
-description: "ALWAYS use when WRITING error handling code to ENSURE robust error management"
+description: "TOUJOURS utiliser lors de l'ÉCRITURE de code de gestion d'erreurs pour GARANTIR robustesse"
 globs: "src/**/*.{js,ts}"
+alwaysApply: false
+priority: 70
+compatibility: ">=0.45"
 lastUpdated: "2024-02-15"
 tags: ["javascript", "error-handling", "robustness"]
 ---
@@ -197,11 +250,12 @@ try {
 
 Cette règle est optimisée car elle:
 1. Utilise un format ACTION DÉCLENCHEUR RÉSULTAT clair
-2. Fournit des exigences spécifiques et testables
-3. Inclut des exemples concrets positifs et négatifs
-4. Utilise une structure hiérarchique claire
-5. Ne contient pas d'informations redondantes
-6. Est orientée vers des instructions actionnables
+2. Inclut tous les champs frontmatter recommandés
+3. Fournit des exigences spécifiques et testables
+4. Inclut des exemples concrets positifs et négatifs
+5. Utilise une structure hiérarchique claire
+6. Ne contient pas d'informations redondantes
+7. Est orientée vers des instructions actionnables
 </example>
 
 <example type="invalid">
@@ -237,11 +291,12 @@ Also, remember that async functions can throw errors too, so you should handle t
 Cette règle est problématique car elle:
 1. Utilise une description vague sans format ACTION DÉCLENCHEUR RÉSULTAT
 2. Contient des champs non standard dans le frontmatter
-3. Est verbeuse avec beaucoup d'explications non nécessaires
-4. Manque d'exemples clairement délimités
-5. Ne structure pas les exigences de manière concise et testable
-6. Ne suit pas la structure hiérarchique standard
-7. N'inclut pas de numéro de version
+3. Manque de champs obligatoires (version, title, etc.)
+4. Est verbeuse avec beaucoup d'explications non nécessaires
+5. Manque d'exemples clairement délimités
+6. Ne structure pas les exigences de manière concise et testable
+7. Ne suit pas la structure hiérarchique standard
+8. N'inclut pas de numéro de version
 </example>
 
 ## ⚠️ Points Critiques
@@ -249,7 +304,9 @@ Cette règle est problématique car elle:
 <critical>
 - NE JAMAIS inclure d'explications verbeuses ou de contexte redondant qui augmente l'overhead de tokens de l'IA
 - Garder le fichier aussi court et direct que possible MAIS JAMAIS aux dépens de l'impact et de l'utilité de la règle pour l'agent IA
-- Le frontmatter peut UNIQUEMENT avoir les champs description, globs, title, version, lastUpdated et tags
+- Le frontmatter DOIT contenir au minimum les champs `description`, `globs`, `title` et `version`
+- Les autres champs (`alwaysApply`, `priority`, `compatibility`, `lastUpdated`, `tags`) sont fortement recommandés
+- Toujours suivre le format strict "ACTION quand DÉCLENCHEUR pour RÉSULTAT" dans la description
 </critical>
 
 ## ✅ Bonnes Pratiques
@@ -261,10 +318,13 @@ Cette règle est problématique car elle:
 - **Structure**: Suivre la hiérarchie recommandée
 - **Optimisation**: Concevoir pour une efficacité maximale du contexte de l'IA
 - **Maintenance**: Mettre à jour la version lors des modifications substantielles
+- **Activation**: S'assurer que la description est optimisée pour l'activation conditionnelle
+- **Interopérabilité**: Définir clairement les relations avec d'autres règles
 
 ## 🔗 Références
 - [Template de Base](mdc:xnotes/000-base-template.md)
 - [Template de Règle Cursor](mdc:xnotes/000-base-rule-template.mdc)
 - [Standards de Documentation Markdown](mdc:xnotes/400-md-docs-standardized.mdc)
+- [Mécanismes d'Activation des Règles Cursor](mdc:https:/forum.cursor.com/t/a-deep-dive-into-cursor-rules-0-45/60721)
 
-<version>2.0.0</version> 
+<version>3.0.0</version> 

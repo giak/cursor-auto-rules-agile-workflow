@@ -1,7 +1,17 @@
 ---
 description: "ALWAYS use when WRITING or UPDATING Markdown files to ENSURE consistent formatting and readability"
 globs: "**/*.{md,mdx,markdown}"
+---
+---
+title: "Template de Fondation de Projet"
+version: "1.0.0"
+description: "ALWAYS USE when DEFINING new project architecture and tech stack to ENSURE consistent and complete technical foundation"
+globs: "docs/project-*.md"
 alwaysApply: false
+priority: 80
+compatibility: ">=0.45"
+lastUpdated: "2025-03-01"
+tags: ["project-setup", "architecture", "technical-stack", "foundation"]
 ---
 
 # 📝 Standards de Documentation Markdown
@@ -20,7 +30,7 @@ Cette règle définit les standards pour la création et la mise à jour de fich
 
 ## ✅ Requirements
 
-- Suivre la [Syntaxe Markdown officielle](mdc:https:/www.markdownguide.org) pour tous les éléments de base et étendus
+- Suivre la @Syntaxe Markdown officielle pour tous les éléments de base et étendus
 - Maintenir une structure de document claire et une hiérarchie logique des titres
 - Inclure les métadonnées appropriées quand requis (front matter YAML)
 - Utiliser des diagrammes Mermaid pour la documentation visuelle quand approprié
@@ -177,7 +187,7 @@ sequenceDiagram
     Auth Service-->>API: 5. Génération de token
     API-->>Client: 6. Retourne le token JWT
 ```
-```
+
 
 Ce document:
 1. Utilise une hiérarchie de titres appropriée
@@ -213,7 +223,7 @@ graph
 A-->B
 B-->C
 ```
-```
+
 
 Ce document est problématique car il:
 1. N'a pas d'espace après les dièses des titres
@@ -236,9 +246,9 @@ Ce document est problématique car il:
 - **Code**: Toujours spécifier le langage dans les blocs de code
 
 ## 🔗 Références
-- [Guide de Syntaxe Markdown de Base](mdc:https:/www.markdownguide.org/basic-syntax)
-- [Guide de Syntaxe Markdown Étendue](mdc:https:/www.markdownguide.org/extended-syntax)
-- [Documentation Mermaid](mdc:https:/mermaid.js.org/intro)
-- [Template de Documentation](mdc:xnotes/000-base-template.md)
+- @Guide de Syntaxe Markdown de Base
+- @Guide de Syntaxe Markdown Étendue
+- @Documentation Mermaid
+- @Template de Documentation
 
 <version>2.0.0</version> 

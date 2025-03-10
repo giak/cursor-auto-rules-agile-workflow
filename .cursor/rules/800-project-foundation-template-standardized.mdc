@@ -1,13 +1,15 @@
 ---
 description: "ALWAYS USE when DEFINING new project architecture and tech stack to ENSURE consistent and complete technical foundation"3
 globs: "docs/project-*.md"
-alwaysApply: false
 ---
 ---
 title: "Template de Fondation de Projet"
 version: "1.0.0"
 description: "ALWAYS USE when DEFINING new project architecture and tech stack to ENSURE consistent and complete technical foundation"
 globs: "docs/project-*.md"
+alwaysApply: false
+priority: 80
+compatibility: ">=0.45"
 lastUpdated: "2025-03-01"
 tags: ["project-setup", "architecture", "technical-stack", "foundation"]
 ---

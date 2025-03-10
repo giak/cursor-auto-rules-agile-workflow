@@ -1,7 +1,17 @@
 ---
 description: "ALWAYS use when MAKING commits or MANAGING git workflow to ENSURE consistent version control practices"
 globs: "**/.git/*"
+---
+---
+title: "Standards de Commit et Push Git"
+version: "2.0.0"
+description: "ALWAYS use when MAKING commits or MANAGING git workflow to ENSURE consistent version control practices"
+globs: "**/.git/*"
 alwaysApply: false
+priority: 70
+compatibility: ">=0.45"
+lastUpdated: "2024-03-15"
+tags: ["git", "version-control", "commit", "workflow"]
 ---
 
 # 📊 Standards de Commit et Push Git

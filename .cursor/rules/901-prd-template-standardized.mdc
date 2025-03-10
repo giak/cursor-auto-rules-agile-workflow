@@ -1,7 +1,17 @@
 ---
 description: "ALWAYS use when CREATING or UPDATING a PRD to ENSURE consistent structure and completeness"
 globs: "**/prd.md"
+---
+---
+title: "Document d'Exigences Produit (PRD) Template"
+version: "2.0.0"
+description: "ALWAYS use when CREATING or UPDATING a PRD to ENSURE consistent structure and completeness"
+globs: "**/prd.md"
 alwaysApply: false
+priority: 80
+compatibility: ">=0.45"
+lastUpdated: "2024-03-15"
+tags: ["product", "documentation", "requirements", "planning"]
 ---
 
 # 📄 Règles du Document d'Exigences Produit (PRD)

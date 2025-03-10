@@ -1,15 +1,17 @@
 ---
 description: "ALWAYS APPLY when GENERATING or MODIFYING code to ENSURE efficiency, maintainability and adherence to project standards"
 globs: "**/*.{js,ts,jsx,tsx,java,py,html,css,scss}"
-alwaysApply: false
 ---
 ---
-title: "Standard de Génération de Code Excellence"
+title: "Workflow Agile Standard"
 version: "2.0.0"
-description: "ALWAYS APPLY when GENERATING or MODIFYING code to ENSURE efficiency, maintainability and adherence to project standards"
-globs: "**/*.{js,ts,jsx,tsx,java,py,html,css,scss}"
-lastUpdated: "2025-03-01"
-tags: ["code-generation", "clean-code", "solid", "ddd", "clean-architecture"]
+description: "ALWAYS FOLLOW this workflow for ALL projects to ENSURE consistent agile delivery and documentation"
+globs: "**/*.{md,js,ts,jsx,tsx}"
+alwaysApply: true
+priority: 90
+compatibility: ">=0.45"
+lastUpdated: "2024-03-15"
+tags: ["workflow", "agile", "planning", "documentation"]
 ---
 
 # 🧩 Standard de Génération de Code Excellence
@@ -195,4 +197,4 @@ class UserService {
 }
 </example>
 
-<version>2.0.0</version> 
+<version>2.0.0</version>

@@ -1,7 +1,17 @@
 ---
 description: "ALWAYS use when CREATING or UPDATING story files to ENSURE proper tracking and implementation. This rule enforces consistent story structure with tasks, context, and progress tracking."
 globs: "**/*.story.md"
+---
+---
+title: "Template de User Stories"
+version: "2.0.0"
+description: "ALWAYS use when CREATING or UPDATING story files to ENSURE proper tracking and implementation. This rule enforces consistent story structure with tasks, context, and progress tracking."
+globs: "**/*.story.md"
 alwaysApply: false
+priority: 80
+compatibility: ">=0.45"
+lastUpdated: "2024-03-15"
+tags: ["agile", "user-story", "tracking", "implementation"]
 ---
 
 # 📝 Règles des User Stories
