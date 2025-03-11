@@ -1,0 +1,391 @@
+---
+description: "TOUJOURS appliquer lors de l'INITIALISATION d'un projet Git pour GARANTIR configurations optimales"
+globs: ".git/config"
+alwaysApply: false
+---
+---
+title: "Git Configuration Best Practices"
+version: "1.1.0"
+description: "TOUJOURS appliquer lors de l'INITIALISATION d'un projet Git pour GARANTIR configurations optimales"
+globs: ".git/config"
+alwaysApply: false
+priority: 75
+compatibility: ">=0.45"
+lastUpdated: "2024-05-30"
+tags: ["git", "configuration", "best-practices", "workflow"]
+---
+
+# 🛠️ Configuration Git Optimale
+
+## 📋 Vue d'Ensemble
+Cette règle définit les configurations Git optimales recommandées par les développeurs core de Git. Elle garantit que les projets bénéficient des meilleures configurations Git en termes d'UX, de performance et de workflow.
+
+> ⚠️ **Attention**: Ces configurations modifient certains comportements par défaut de Git pour les améliorer selon les recommandations des développeurs Git.
+
+## 🎯 Objectifs
+- Optimiser l'expérience utilisateur Git par défaut
+- Standardiser les configurations Git à travers les projets
+- Réduire les frictions dans les workflows quotidiens
+- Intégrer les meilleures pratiques des développeurs core de Git
+- Améliorer la lisibilité et la pertinence des opérations Git
+
+## 📁 Niveaux de Configuration Git
+
+Git utilise trois niveaux de configuration, stockés dans différents fichiers:
+
+1. **Niveau système** (`/etc/gitconfig`)
+   - Affecte tous les utilisateurs du système
+   - Modifié avec `git config --system`
+   - Requiert des privilèges administrateur
+
+2. **Niveau utilisateur** (`~/.gitconfig` ou `~/.config/git/config`)
+   - Spécifique à l'utilisateur courant
+   - Modifié avec `git config --global`
+   - ✅ **Recommandé** pour les configurations standardisées
+
+3. **Niveau projet** (`.git/config` dans le dépôt)
+   - Spécifique au dépôt courant uniquement
+   - Modifié avec `git config --local` (défaut sans option)
+   - Prioritaire sur les autres niveaux
+
+> 💡 **Note**: Les commandes de cette règle utilisent `--global` pour modifier le fichier `~/.gitconfig`, ce qui applique les configurations à tous les projets de l'utilisateur.
+
+## ✅ Configurations Essentielles
+
+### 1️⃣ Améliorations Évidentes
+```bash
+# Affichage et tri
+git config --global column.ui auto
+git config --global branch.sort -committerdate
+git config --global tag.sort version:refname
+
+# Branch par défaut
+git config --global init.defaultBranch main
+
+# Améliorations de diff
+git config --global diff.algorithm histogram
+git config --global diff.colorMoved plain
+git config --global diff.mnemonicPrefix true
+git config --global diff.renames true
+
+# Push et fetch intelligents
+git config --global push.default simple
+git config --global push.autoSetupRemote true
+git config --global push.followTags true
+git config --global fetch.prune true
+git config --global fetch.pruneTags true
+```
+
+### 2️⃣ Fonctionnalités Utiles
+```bash
+# Correction automatique
+git config --global help.autocorrect prompt
+
+# Commit verbeux
+git config --global commit.verbose true
+
+# Réutilisation des résolutions de conflits
+git config --global rerere.enabled true
+git config --global rerere.autoupdate true
+
+# Ignorer global
+git config --global core.excludesfile ~/.gitignore
+
+# Rebase amélioré
+git config --global rebase.autoSquash true
+git config --global rebase.autoStash true
+git config --global rebase.updateRefs true
+```
+
+### 3️⃣ Options Optionnelles (selon préférence)
+```bash
+# Moniteur de système de fichiers (pour grands repos)
+# git config --global core.fsmonitor true
+# git config --global core.untrackedCache true
+
+# Style de conflit amélioré
+# git config --global merge.conflictstyle zdiff3
+
+# Pull avec rebase par défaut
+# git config --global pull.rebase true
+```
+
+## 📄 Implémentation du fichier ~/.gitconfig
+
+La méthode recommandée pour appliquer ces configurations est de modifier le fichier `~/.gitconfig`. Voici comment procéder:
+
+### 1️⃣ Sauvegarde du fichier existant
+
+Avant toute modification, sauvegardez votre configuration actuelle:
+
+```bash
+cp ~/.gitconfig ~/.gitconfig.backup-$(date +%Y%m%d)
+```
+
+### 2️⃣ Mise en place du fichier
+
+Vous pouvez créer ou modifier ce fichier de deux façons:
+
+#### Option 1: Utiliser les commandes git config
+
+Exécutez toutes les commandes `git config --global` listées dans les sections précédentes. Ces commandes modifient automatiquement le fichier `~/.gitconfig`.
+
+#### Option 2: Édition directe du fichier
+
+Créez ou modifiez directement le fichier `~/.gitconfig` avec ce contenu:
+
+```ini
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[init]
+    defaultBranch = main
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+[fetch]
+    prune = true
+    pruneTags = true
+[help]
+    autocorrect = prompt
+[commit]
+    verbose = true
+[rerere]
+    enabled = true
+    autoupdate = true
+[core]
+    excludesfile = ~/.gitignore
+    editor = vim
+    # Pour Windows:
+    # autocrlf = true
+    # Pour MacOS/Linux:
+    # autocrlf = input
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+```
+
+### 3️⃣ Vérification de la configuration
+
+Pour vérifier que les configurations ont été correctement appliquées:
+
+```bash
+git config --list --show-origin | grep -v credential
+```
+
+## 🔧 Application du Script
+
+Pour appliquer toutes les configurations essentielles, exécutez le script suivant :
+
+```bash
+#!/bin/bash
+
+# Sauvegarde de la configuration existante
+if [ -f ~/.gitconfig ]; then
+    cp ~/.gitconfig ~/.gitconfig.backup-$(date +%Y%m%d)
+    echo "✅ Configuration existante sauvegardée dans ~/.gitconfig.backup-$(date +%Y%m%d)"
+fi
+
+# Améliorations Évidentes
+git config --global column.ui auto
+git config --global branch.sort -committerdate
+git config --global tag.sort version:refname
+git config --global init.defaultBranch main
+git config --global diff.algorithm histogram
+git config --global diff.colorMoved plain
+git config --global diff.mnemonicPrefix true
+git config --global diff.renames true
+git config --global push.default simple
+git config --global push.autoSetupRemote true
+git config --global push.followTags true
+git config --global fetch.prune true
+git config --global fetch.pruneTags true
+
+# Fonctionnalités Utiles
+git config --global help.autocorrect prompt
+git config --global commit.verbose true
+git config --global rerere.enabled true
+git config --global rerere.autoupdate true
+git config --global core.excludesfile ~/.gitignore
+git config --global rebase.autoSquash true
+git config --global rebase.autoStash true
+git config --global rebase.updateRefs true
+
+echo "✅ Configurations Git optimales appliquées avec succès"
+echo "📄 Les configurations ont été enregistrées dans ~/.gitconfig"
+```
+
+## 💡 Exemples et Explications
+
+### Tri des branches par date récente
+<example>
+# Avant: branches affichées par ordre alphabétique
+$ git branch
+  feature-a
+  feature-b
+  master
+
+# Après: branches triées par date de commit la plus récente
+$ git branch
+  feature-b     # Dernier commit il y a 1 heure
+  feature-a     # Dernier commit il y a 2 jours
+  master        # Dernier commit il y a 1 semaine
+</example>
+
+### Tri des tags par version sémantique
+<example>
+# Avant: tri alphabétique problématique
+$ git tag
+nightly/0.5.1
+nightly/0.5.10
+nightly/0.5.2
+
+# Après: tri sémantique correct
+$ git tag
+nightly/0.5.1
+nightly/0.5.2
+nightly/0.5.10
+</example>
+
+### Algorithme de diff amélioré
+<example>
+# L'algorithme histogram offre une détection plus intelligente des changements
+# et des déplacements de blocs de code, améliorant la lisibilité des diffs
+# lors des revues de code et des merge conflicts.
+
+# Exemple de différence entre myers (défaut) et histogram:
+# Myers peut montrer un code déplacé comme supprimé puis ajouté ailleurs
+# Histogram peut reconnaître que le bloc a été déplacé intact
+</example>
+
+### Push automatique avec remote setup
+<example>
+# Avant: erreur lors du premier push d'une nouvelle branche
+$ git push
+fatal: The current branch feature-x has no upstream branch.
+
+# Après: configuration automatique du remote lors du premier push
+$ git push
+Branch 'feature-x' set up to track remote branch 'feature-x' from 'origin'.
+</example>
+
+### Rebase avec auto-stash et auto-squash
+<example>
+# Utilisation de commit --fixup
+$ git commit --fixup HEAD~2
+$ git rebase -i HEAD~3
+
+# Avec rebase.autoSquash=true, les commits fixup seront automatiquement 
+# positionnés correctement lors du rebase interactif sans édition manuelle
+
+# Avec rebase.autoStash=true, les modifications non commitées seront 
+# automatiquement stashées avant le rebase puis réappliquées après
+</example>
+
+### Exemple de fichier ~/.gitconfig complet
+<example>
+# ~/.gitconfig
+[user]
+    name = John Doe
+    email = john.doe@example.com
+[column]
+    ui = auto
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[init]
+    defaultBranch = main
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+[fetch]
+    prune = true
+    pruneTags = true
+[help]
+    autocorrect = prompt
+[commit]
+    verbose = true
+[rerere]
+    enabled = true
+    autoupdate = true
+[core]
+    excludesfile = ~/.gitignore
+    editor = vim
+    # Pour Windows:
+    # autocrlf = true
+    # Pour MacOS/Linux:
+    # autocrlf = input
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+</example>
+
+<example type="invalid">
+# Configuration obsolète ou non-optimale:
+
+# Ne pas utiliser le mode standard (non-simple) pour push
+git config --global push.default matching
+
+# Ne pas désactiver le nettoyage des références lors du fetch
+git config --global fetch.prune false
+
+# Ne pas utiliser l'ancien algorithme diff par défaut
+# (myers est plus rapide mais moins précis)
+git config --global diff.algorithm myers
+
+# Ne pas garder les branches supprimées sur le remote
+# (accumulation de références mortes)
+git config --global fetch.prune false
+
+# Ne pas éditer directement .git/config pour des configurations globales
+# car elles ne s'appliqueront qu'au projet courant
+vim .git/config
+</example>
+
+## ⚠️ Points Critiques
+
+<critical>
+- TOUJOURS utiliser la configuration `diff.algorithm histogram` pour des diffs plus intelligents, elle est plus précise avec un impact minimal sur les performances
+- ÉVITER de configurer `pull.rebase true` si l'équipe n'est pas familière avec le rebase (peut causer de la confusion)
+- PRÉFÉRER activer `fetch.prune` et `fetch.pruneTags` pour éviter l'accumulation de références obsolètes
+- TOUJOURS configurer `init.defaultBranch` pour standardiser les noms de branches par défaut
+- ACTIVER `push.autoSetupRemote` pour éliminer les erreurs de premier push sans upstream
+- UTILISER `~/.gitconfig` (niveau global) pour les configurations d'équipe standardisées plutôt que `.git/config` (niveau local)
+- SAUVEGARDER le fichier `~/.gitconfig` existant avant de le modifier massivement
+</critical>
+
+## ✅ Bonnes Pratiques
+
+- **Standardisation**: Appliquer ces configurations globalement pour tous les développeurs
+- **Documentation**: Inclure ces configurations dans la documentation d'onboarding
+- **Adaptation**: Ajuster les configurations optionnelles selon les besoins spécifiques de l'équipe
+- **Évolution**: Mettre à jour ces configurations au fur et à mesure que Git évolue
+- **Formation**: Former l'équipe aux fonctionnalités avancées comme rerere ou autosquash
+- **Partage**: Fournir un script d'installation ou un fichier `.gitconfig` modèle pour l'équipe
+- **Configuration par couche**: Utiliser le niveau système pour les standards d'entreprise, le niveau utilisateur pour les préférences d'équipe, et le niveau local pour les exceptions spécifiques au projet
+
+## 🔗 Références
+- [How Core Git Developers Configure Git](mdc:https:/blog.gitbutler.com/how-git-core-devs-configure-git)
+- [Pro Git Book - Git Configuration](mdc:https:/git-scm.com/book/en/v2/Customizing-Git-Git-Configuration)
+- [Git Documentation - git-config](mdc:https:/git-scm.com/docs/git-config)
+- [Atlassian Git Config Tutorial](mdc:https:/www.atlassian.com/git/tutorials/setting-up-a-repository/git-config)
+
+<version>1.1.0</version> 

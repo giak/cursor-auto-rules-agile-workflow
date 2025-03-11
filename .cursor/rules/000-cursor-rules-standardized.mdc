@@ -1,6 +1,7 @@
 ---
 description: "TOUJOURS utiliser lors de la CRÉATION ou MODIFICATION d'une RÈGLE pour GARANTIR cohérence et efficacité"
 globs: ".cursor/rules/*.mdc"
+alwaysApply: false
 ---
 ---
 title: "Format Standard des Règles Cursor"

@@ -1,0 +1,308 @@
+---
+description: "APPLIQUER lors du REFACTORING après implémentation partielle d'un pattern pour GARANTIR cohérence architecturale"
+globs: "src/**/*.{js,ts,jsx,tsx,vue}"
+alwaysApply: false
+---
+---
+title: "Pattern Propagation Post-Story"
+version: "1.0.0"
+description: "APPLIQUER lors du REFACTORING après implémentation partielle d'un pattern pour GARANTIR cohérence architecturale"
+globs: "src/**/*.{js,ts,jsx,tsx,vue}"
+alwaysApply: false
+priority: 45
+compatibility: ">=0.45"
+lastUpdated: "2025-03-10"
+tags: ["refactoring", "pattern", "architecture", "technical-debt", "clean-architecture"]
+---
+
+# ♻️ Propagation Systématique de Pattern Post-Story
+
+## 📋 Vue d'Ensemble
+Cette règle définit le processus systématique pour propager un pattern nouvellement implémenté dans une story (comme un pattern Result/Option) à travers l'ensemble de l'application, garantissant ainsi la cohérence architecturale et évitant la coexistence de plusieurs approches concurrentes.
+
+> ⚠️ **Attention**: Cette règle s'applique après qu'une story a implémenté avec succès un pattern architectural, mais n'a couvert qu'une partie des cas d'utilisation visés. Elle évite l'accumulation de dette technique liée à des implémentations partielles.
+
+## 🎯 Objectifs
+- Garantir une architecture cohérente à travers l'application
+- Réduire la dette technique liée aux implémentations partielles
+- Faciliter la maintenance à long terme du codebase
+- Éviter la confusion causée par la coexistence de plusieurs approches
+- Capitaliser sur l'investissement initial dans le pattern
+
+## ✅ Requirements
+
+- Identifier les zones d'application restantes en consultant:
+  - L'historique de discussion du chat
+  - Les commits récents (git diff)
+  - La documentation d'architecture
+  - Les tests existants
+- Créer une branche dédiée au refactoring
+- Implémenter le pattern de façon cohérente avec les exemples déjà réalisés
+- Assurer la couverture de test pour chaque composant refactorisé
+- Documenter l'avancement du refactoring
+- Éviter les abstractions inutiles (pas de barrel exports, pas d'adaptateurs superflus)
+- Maintenir la compatibilité avec le code existant pendant la transition
+
+## 📝 Processus de Refactoring
+
+### 1️⃣ Préparation
+1. **Identifier le pattern à propager**:
+   - Étudier les implémentations existantes (réalisées dans la story)
+   - Comprendre les principes architecturaux appliqués
+   - Noter les particularités de l'implémentation actuelle
+
+2. **Cataloguer les cibles de refactoring**:
+   - Lister les components/modules similaires qui devraient appliquer ce pattern
+   - Identifier les dépendances qui pourraient être affectées
+   - Prioriser selon l'impact et la fréquence d'utilisation
+
+3. **Créer un plan de migration**:
+   - Documenter les exemples existants comme références
+   - Établir un journal pour suivre la progression
+   - Définir des critères de réussite pour chaque élément
+
+### 2️⃣ Implémentation
+1. **Procéder par composant logique**:
+   - Refactoriser un composant ou module à la fois
+   - Suivre strictement les patterns établis dans la story initiale
+   - Maintenir la même architecture de validation/erreur
+
+2. **Transformer progressivement**:
+   - Écrire de nouveaux tests pour le comportement attendu
+   - Implémenter la nouvelle version avec le pattern
+   - Vérifier la compatibilité avec les utilisations existantes
+   - Mettre à jour les importations dans les fichiers consommateurs
+
+3. **Valider chaque étape**:
+   - Exécuter la suite de tests complète
+   - Vérifier la cohérence du pattern appliqué
+   - Documenter les difficultés rencontrées pour référence future
+
+### 3️⃣ Finalisation
+1. **Vérification globale**:
+   - Revue complète du code refactorisé
+   - Contrôle de la couverture de test
+   - Exécution de tous les tests de l'application
+
+2. **Documentation**:
+   - Mettre à jour la documentation d'architecture
+   - Ajouter des commentaires explicatifs si nécessaire
+   - Compléter le journal du refactoring
+
+3. **Déploiement**:
+   - Soumettre pour revue de code
+   - Intégrer dans la branche principale
+   - Surveiller les impacts potentiels après déploiement
+
+## 💡 Exemples
+
+<example>
+// Value Object original implémenté lors de la story initiale
+// src/core/cv/domain/value-objects/email.value-object.ts
+
+export class Email {
+  private constructor(private readonly value: string) {}
+
+  public static create(email: string): ResultType<Email> {
+    if (!email || email.trim() === '') {
+      return createFailure([{
+        code: ERROR_CODES.RESUME.BASICS.MISSING_EMAIL,
+        message: "L'adresse email est requise",
+        field: "email",
+        severity: "error",
+        layer: ValidationLayerType.DOMAIN
+      }]);
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return createFailure([{
+        code: ERROR_CODES.RESUME.BASICS.INVALID_EMAIL,
+        message: "Format d'email invalide",
+        field: "email",
+        severity: "error",
+        layer: ValidationLayerType.DOMAIN,
+        suggestion: "Vérifiez que votre email contient un @ et un domaine valide"
+      }]);
+    }
+
+    return createSuccess(new Email(email));
+  }
+
+  public getValue(): string {
+    return this.value;
+  }
+}
+
+// Nouveau Value Object à implémenter en suivant le même pattern
+// src/core/cv/domain/value-objects/url.value-object.ts
+
+export class Url {
+  private constructor(private readonly value: string) {}
+
+  public static create(url: string): ResultType<Url> {
+    if (!url || url.trim() === '') {
+      return createFailure([{
+        code: ERROR_CODES.COMMON.REQUIRED_FIELD,
+        message: "L'URL est requise",
+        field: "url",
+        severity: "error",
+        layer: ValidationLayerType.DOMAIN
+      }]);
+    }
+
+    try {
+      // Vérifier si l'URL est valide
+      new URL(url);
+      
+      // Vérifier le protocole
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        return createFailure([{
+          code: ERROR_CODES.RESUME.PROJECT.INVALID_URL,
+          message: "Format d'URL invalide",
+          field: "url",
+          severity: "warning",
+          layer: ValidationLayerType.DOMAIN,
+          suggestion: "L'URL doit commencer par http:// ou https://"
+        }]);
+      }
+
+      return createSuccess(new Url(url));
+    } catch (error) {
+      return createFailure([{
+        code: ERROR_CODES.RESUME.PROJECT.INVALID_URL,
+        message: "Format d'URL invalide",
+        field: "url",
+        severity: "error",
+        layer: ValidationLayerType.DOMAIN,
+        suggestion: "Vérifiez que l'URL est correctement formatée"
+      }]);
+    }
+  }
+
+  public getValue(): string {
+    return this.value;
+  }
+}
+</example>
+
+<example type="invalid">
+// Propagation inconsistante du pattern - À ÉVITER
+
+// Mélange d'approches: certains modules utilisent Result pattern
+export class Email {
+  private constructor(private readonly value: string) {}
+
+  public static create(email: string): ResultType<Email> {
+    // Pattern bien implémenté avec Result
+    // ...code omis...
+  }
+}
+
+// Tandis que d'autres continuent d'utiliser les anciennes approches
+export class Url {
+  constructor(private readonly value: string) {}
+
+  public static create(url: string): Url | null {
+    if (!url || !url.startsWith('http')) {
+      console.error('URL invalide');
+      return null;
+    }
+    return new Url(url);
+  }
+  
+  // Utilisations incohérentes du getter
+  public getUrlValue() {
+    return this.value;
+  }
+}
+
+// La coexistence de différentes approches complique l'usage
+async function saveProject(data) {
+  // Utilisation inconsistante des validations
+  const emailResult = Email.create(data.email);
+  if (!emailResult.success) {
+    return handleValidationErrors(emailResult.error);
+  }
+
+  // Approche différente pour URL
+  const url = Url.create(data.url);
+  if (!url) {
+    return handleError('URL invalide');
+  }
+  
+  // Code compliqué par les différentes approches de validation
+}
+</example>
+
+## ⚠️ Points Critiques
+
+<critical>
+- TOUJOURS respecter strictement le pattern établi par la story initiale
+- JAMAIS mélanger l'ancien et le nouveau pattern dans un même module
+- UTILISER les mêmes noms de méthodes et conventions dans tous les composants refactorisés
+- MAINTENIR une couverture de test similaire ou supérieure à celle des composants initiaux
+- RÉFÉRENCER explicitement les implémentations existantes comme modèles
+- ÉVITER d'introduire des abstractions supplémentaires non présentes dans l'implémentation initiale
+</critical>
+
+## ✅ Bonnes Pratiques
+
+- **Systématique**: Traiter un type de composant à la fois (tous les Value Objects, puis tous les Services, etc.)
+- **Incrémental**: Procéder par petits changements testables plutôt que des refactorings massifs
+- **Traçabilité**: Maintenir un journal documentant l'avancement du refactoring
+- **Compatibilité**: Assurer que le code existant continue de fonctionner pendant la transition
+- **Test-First**: Écrire ou adapter les tests avant d'implémenter le refactoring
+- **Revue**: Faire réviser régulièrement le code refactorisé pour garantir la cohérence
+
+## 🔄 Progression du Refactoring
+
+Pour maintenir un suivi clair de l'avancement, créez un fichier README ou CHANGELOG dédié contenant:
+
+```markdown
+# Journal de Refactoring - Pattern Result/Option
+
+## Implémentations Complétées
+
+### Value Objects
+- [x] Email (story initiale)
+- [x] WorkDate (story initiale)
+- [x] Phone (story initiale)
+- [ ] DateRange
+- [ ] Url
+- [ ] ...
+
+### Services
+- [x] ValidationService (story initiale)
+- [ ] WorkValidationService
+- [ ] SkillValidationService
+- [ ] ...
+
+### Composants UI
+- [ ] BasicsForm
+- [ ] WorkForm
+- [ ] ...
+
+## Notes et Décisions
+- Format des messages d'erreur standardisé avec code, message, field, severity
+- Approche de compatibilité: méthodes de conversion pour code existant
+- Validation à appliquer dans la couche domaine avant tout
+```
+
+## 🔄 Intégration avec le Workflow Agile
+
+Cette règle s'intègre naturellement dans le workflow agile défini par `801-workflow-agile-standardized`, notamment:
+
+1. **Suite à l'approbation d'une story**: Lorsqu'une story implémentant un nouveau pattern est marquée comme complétée
+2. **Planification du refactoring**: Créer une story dédiée au refactoring ou des tâches techniques dans les sprints suivants
+3. **Priorisation**: À évaluer selon l'impact de la fragmentation architecturale sur la dette technique
+
+<requires>801-workflow-agile-standardized</requires>
+<requires>802-code-generation-standardized</requires>
+
+## 🔗 Références
+- [Clean Architecture - Uncle Bob](mdc:https:/blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [Working Effectively with Legacy Code - Michael Feathers](mdc:https:/www.oreilly.com/library/view/working-effectively-with/0131177052)
+- [Refactoring Patterns - Martin Fowler](mdc:https:/refactoring.com/catalog)
+- [The Strangler Fig Pattern - Martin Fowler](mdc:https:/martinfowler.com/bliki/StranglerFigApplication.html)
+
+<version>1.0.0</version> 
