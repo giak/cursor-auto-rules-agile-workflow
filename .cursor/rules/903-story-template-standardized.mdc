@@ -1,16 +1,17 @@
 ---
 description: "ALWAYS use when CREATING or UPDATING story files to ENSURE proper tracking and implementation. This rule enforces consistent story structure with tasks, context, and progress tracking."
 globs: "**/*.story.md"
+alwaysApply: false
 ---
 ---
 title: "Template de User Stories"
-version: "3.0.0"
+version: "3.1.0"
 description: "ALWAYS use when CREATING or UPDATING story files to ENSURE proper tracking and implementation. This rule enforces consistent story structure with tasks, context, and progress tracking."
 globs: "**/*.story.md"
-alwaysApply: false
+alwaysApply: true
 priority: 80
 compatibility: ">=0.45"
-lastUpdated: "2025-03-10"
+lastUpdated: "2025-03-12"
 tags: ["agile", "user-story", "tracking", "implementation"]
 ---
 
@@ -27,6 +28,7 @@ Cette règle définit les standards pour la création et la mise à jour des use
 - Faciliter la planification et le suivi des tâches
 - Maintenir une trace historique des décisions et communications
 - Permettre une estimation précise des efforts requis
+- Guider le découpage efficace des stories trop larges selon le principe INVEST
 
 ## ✅ Requirements
 
@@ -36,6 +38,7 @@ Cette règle définit les standards pour la création et la mise à jour des use
 - Suivre l'avancement des tâches avec précision
 - Maintenir l'historique d'implémentation
 - Formuler les critères d'acceptation dans le format "Étant donné/Quand/Alors"
+- S'assurer que chaque story respecte le principe INVEST et découper les stories trop larges
 
 ## 📁 Structure de Fichiers
 
@@ -110,7 +113,6 @@ Liste hiérarchique avec suivi de progression:
 ### 8️⃣ Principes de Développement
 Cette section rappelle les principes à suivre lors de l'implémentation du code:
 
-```
 #### Principes à Suivre
 - **Simplicité**: Solution minimale répondant aux critères d'acceptation (focus sur un plateau fonctionnel sans fonctionnalités avancées)
 - **Périmètre**: Se limiter strictement aux exigences documentées (ne pas implémenter les règles de jeu complètes)
@@ -120,7 +122,7 @@ Cette section rappelle les principes à suivre lors de l'implémentation du code
 - Génération de code pour des fonctionnalités avancées (comme l'IA des échecs)
 - Création de fichiers supplémentaires pour des variantes du jeu
 - Implémentation du déplacement des pièces non couvert par les critères d'acceptation
-```
+
 
 ### 9️⃣ Risques et Hypothèses
 Format obligatoire (tableau):
@@ -240,9 +242,66 @@ Cette "story" manque de presque tous les éléments requis:
 - **Communication**: Documentez les décisions importantes dans le journal
 - **Critères d'Acceptation**: Formulez-les dans un format "étant donné/quand/alors"
 
+## 🔪 Découpage des Stories avec INVEST
+
+Lorsqu'une story est trop large, vague ou complexe, il est essentiel de la découper en stories plus petites. Le principe INVEST fournit un cadre pour évaluer si une story répond aux critères de qualité et pour guider le découpage:
+
+### 📏 Principe INVEST
+
+- **I**ndépendante: La story peut être développée sans dépendre d'autres stories
+- **N**égociable: La story est flexible et peut être discutée/ajustée
+- **V**alorisable: La story apporte une valeur concrète à l'utilisateur
+- **E**stimable: L'équipe peut estimer l'effort nécessaire
+- **S**uffisamment petite: La story peut être réalisée dans un sprint
+- **T**estable: Des critères d'acceptation clairs permettent de vérifier son implémentation
+
+### 🚦 Indicateurs de Nécessité de Découpage
+
+Une story doit être découpée si:
+- L'estimation dépasse 8 points ou 5 jours de travail
+- Elle contient plus de 7 critères d'acceptation
+- Elle couvre plusieurs fonctionnalités ou rôles utilisateurs distincts
+- Elle implique plusieurs couches techniques (UI, API, base de données)
+- L'équipe ne parvient pas à l'estimer clairement
+- Elle contient des termes comme "et", "ou", "également", "puis" dans sa description
+
+### ✂️ Techniques de Découpage
+
+1. **Par Cas d'Utilisation**:
+   - Séparer les scénarios principaux et alternatifs
+   - Exemple: Diviser "Gérer le panier" en "Ajouter au panier", "Modifier quantités", "Supprimer du panier"
+
+2. **Par Étapes de Workflow**:
+   - Découper un processus en étapes distinctes
+   - Exemple: "Processus de paiement" devient "Saisie informations", "Validation", "Confirmation"
+
+3. **Par Règles Métier**:
+   - Isoler des règles métier complexes
+   - Exemple: "Calculer le prix" devient "Prix de base" puis "Appliquer réductions"
+
+4. **Par Variations**:
+   - Implémenter d'abord le cas simple, puis les variations
+   - Exemple: "Recherche" devient "Recherche simple" puis "Recherche avancée"
+
+5. **Par Interface/Opérations CRUD**:
+   - Séparer les opérations Create, Read, Update, Delete
+   - Exemple: "Gestion des utilisateurs" devient "Création", "Consultation", "Modification", "Suppression"
+
+6. **Par Qualité de Service**:
+   - Fonctionnalité de base d'abord, optimisations ensuite
+   - Exemple: "Interface responsive" devient "Interface de base" puis "Adaptation mobile"
+
+### ⚠️ Pièges à Éviter lors du Découpage
+
+- Ne pas créer de stories techniques sans valeur utilisateur directe
+- Éviter les stories trop petites qui génèrent une surcharge de gestion
+- Maintenir la cohérence entre les stories découpées
+- S'assurer que chaque story découpée reste conforme aux critères INVEST
+
 ## 🔗 Références
 - [Template de Story](mdc:xnotes/template-story-standardized.md)
 - [Guide de l'Estimation Agile](mdc:https:/www.mountaingoatsoftware.com/blog/what-are-story-points)
 - [Technique INVEST pour les User Stories](mdc:https:/www.agilealliance.org/glossary/invest)
+- [Patterns de Découpage des User Stories](mdc:https:/www.agilealliance.org/resources/sessions/patterns-for-splitting-user-stories)
 
-<version>3.0.0</version> 
+<version>3.1.0</version> 
