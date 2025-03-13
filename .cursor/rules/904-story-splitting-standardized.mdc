@@ -5,13 +5,13 @@ alwaysApply: false
 ---
 ---
 title: "User Story Splitting Workflow"
-version: "1.0.0"
+version: "1.1.0"
 description: "TOUJOURS APPLIQUER lors de l'IDENTIFICATION de stories trop volumineuses pour GARANTIR un découpage efficace"
 globs: "**/*.story.md"
 alwaysApply: false
 priority: 75
 compatibility: ">=0.45"
-lastUpdated: "2025-03-12"
+lastUpdated: "2025-03-13"
 tags: ["agile", "user-story", "splitting", "workflow", "refinement"]
 ---
 
@@ -29,6 +29,7 @@ Cette règle définit un workflow standardisé pour découper des user stories t
 - Réduire le temps de cycle en travaillant sur des incréments plus petits
 - Améliorer la prévisibilité des sprints et faciliter l'estimation
 - Maximiser la valeur métier livrée dans chaque incrément
+- Faciliter la priorisation des fonctionnalités à livrer en premier
 
 ## ✅ Requirements
 
@@ -52,6 +53,21 @@ Considérez le découpage lorsque la story présente un ou plusieurs de ces sign
 6. **Langage**: Contient des termes comme "et", "ou", "également", "puis" dans sa description
 7. **Tâches**: Nécessite plus de 10 tâches pour être complétée
 8. **Durée**: Ne peut pas être complétée dans un seul sprint
+9. **Conjonctions et pluriels**: Présence de termes comme "gérer", "administrer", ou verbes au pluriel
+10. **MVP gap**: Ne peut pas être incluse dans un MVP (Produit Minimum Viable) sans être découpée
+
+## 🧭 Principes Fondamentaux du Découpage
+
+Avant d'appliquer les patterns de découpage, assurez-vous de respecter ces principes fondamentaux:
+
+1. **Approche verticale, non horizontale**: Chaque story découpée doit apporter une valeur métier directe, pas simplement une couche technique.
+2. **Valeur d'abord**: Priorisez le découpage qui permet de livrer de la valeur le plus rapidement possible.
+3. **Simplicité d'abord**: Commencez par la version la plus simple qui fonctionne, puis enrichissez.
+4. **INVEST sur chaque sous-story**: Chaque story découpée doit respecter les critères INVEST.
+5. **Indépendance**: Minimisez les dépendances entre les stories résultantes.
+6. **Focus sur le flux utilisateur**: Gardez toujours à l'esprit le parcours utilisateur complet.
+7. **Approche itérative**: Le découpage parfait n'existe pas au premier essai - ajustez au besoin.
+8. **Révélation de complexité**: Utilisez le découpage comme moyen de révéler une complexité cachée.
 
 ## 🔄 Workflow de Découpage en 3 Étapes
 
@@ -60,8 +76,9 @@ Considérez le découpage lorsque la story présente un ou plusieurs de ces sign
 - Confirmer que la story a bien une structure "En tant que, je veux, afin de"
 - Clarifier l'objectif métier principal de la story pour préserver la valeur après découpage
 - Déterminer pourquoi la story est trop volumineuse (complexité, incertitude, ampleur)
+- Cartographier le flux utilisateur complet pour comprendre le contexte global
 
-### 2️⃣ Sélection du Pattern de Découpage
+### 2️⃣ Sélection et Application du Pattern de Découpage
 Choisir un ou plusieurs patterns appropriés parmi les techniques suivantes:
 
 #### 🕸️ Approche SPIDR (Mike Cohn)
@@ -70,53 +87,98 @@ Choisir un ou plusieurs patterns appropriés parmi les techniques suivantes:
    - Extraire une activité d'investigation technique ou métier
    - Limiter le spike à 1-3 jours de travail
    - Définir clairement le résultat attendu du spike (prototype, document, décision)
+   - Exemple: "Déterminer si nous utilisons une solution existante ou développons notre propre système de gestion des médias"
 
 2. **P - Path (Chemin)**
    - Diviser par chemins ou scénarios utilisateur alternatifs
    - Commencer par le chemin principal ("happy path")
    - Ajouter les cas d'erreur ou alternatifs dans des stories séparées
+   - Exemple: "Partager une vidéo par email" vs "Partager une vidéo sur les réseaux sociaux"
 
 3. **I - Interface (Interface)**
    - Séparer par types d'interface ou méthodes d'interaction
    - Implémenter d'abord une interface simple puis l'améliorer
-   - Exemples: CLI avant GUI, formulaire simple avant calendrier interactif
+   - Exemples: 
+     - CLI avant GUI
+     - Formulaire simple avant calendrier interactif
+     - Version mobile avant version desktop
+     - Interface textuelle avant interface graphique élaborée
 
 4. **D - Data (Données)**
    - Subdiviser par types ou ensembles de données
    - Commencer avec un sous-ensemble de données critiques
    - Ajouter progressivement la prise en charge d'autres types de données
+   - Exemple: "Supporter d'abord les vidéos au format MP4 uniquement, puis ajouter d'autres formats"
 
 5. **R - Rules (Règles métier)**
    - Séparer par règles métier ou validations
    - Implémenter d'abord les règles essentielles
    - Ajouter les règles complexes ou spéciales dans des stories ultérieures
+   - Exemple: "Version initiale sans validation de contenu protégé par copyright" puis "Ajouter la détection de contenu protégé"
 
-#### 🔧 Techniques Complémentaires (Richard Lawrence)
+#### 🔧 Techniques Complémentaires
 
 6. **Étapes de Workflow**
    - Diviser un processus en étapes distinctes
    - Créer une story "simplifiée" couvrant le début et la fin du workflow
    - Ajouter les étapes intermédiaires comme stories séparées
+   - Exemple: "Processus de paiement sans validation" puis "Ajouter la validation des informations de carte"
 
 7. **Opérations CRUD**
    - Diviser les stories "gérer" en opérations Create, Read, Update, Delete
    - Prioriser les opérations selon leur valeur métier
    - Exemple: Diviser "gérer les profils" en "créer un profil", "consulter un profil", etc.
+   - Conseil: Souvent, implémenter Read (R) en premier apporte déjà de la valeur
 
 8. **Variations Fonctionnelles**
    - Séparer les fonctionnalités de base des fonctionnalités avancées
    - Implémenter d'abord la version simple puis l'améliorer
-   - Exemple: Recherche simple avant recherche avancée
+   - Exemple: "Recherche simple par mot-clé" avant "Recherche avancée avec filtres"
+   - S'assurer que chaque variation apporte une valeur utilisateur spécifique
 
 9. **Performance Différée**
    - Séparer la fonctionnalité de ses exigences de performance
    - Implémenter d'abord une version fonctionnelle puis l'optimiser
    - Exemple: "Recherche (lente)" puis "Recherche (< 3 secondes)"
+   - Applicable aussi à d'autres qualités non-fonctionnelles: sécurité, disponibilité, etc.
 
 10. **Réduction d'Effort**
     - Identifier la partie nécessitant le plus d'effort et l'isoler
     - Implémenter d'abord les parties simples à haute valeur
     - Aborder progressivement les parties complexes
+    - Cartographier l'effort relatif pour identifier où faire des coupures
+
+#### 🔍 Techniques Spécialisées
+
+11. **Décomposition par Personas**
+    - Diviser une story selon les différents types d'utilisateurs
+    - Commencer par le persona principal puis étendre aux autres
+    - Exemple: "Réservation pour clients standard" puis "Réservation pour clients premium"
+    - Particulièrement utile quand les besoins varient significativement entre personas
+
+12. **Découpage par Attributs ou Options**
+    - Séparer les attributs optionnels ou configurables
+    - Commencer avec les attributs essentiels uniquement
+    - Exemple: "Création de compte avec informations de base" puis "Ajout des préférences utilisateur"
+    - Utile pour les entités avec de nombreux attributs ou options
+
+13. **Découpage par Niveaux de Qualité**
+    - Diviser par niveaux de raffinement ou de qualité croissants
+    - Implémenter d'abord une version minimaliste mais fonctionnelle
+    - Exemple: "Envoyer un email basique en texte" puis "Ajouter un template HTML"
+    - S'applique bien aux exigences esthétiques ou d'expérience utilisateur
+
+14. **Découpage par Étapes d'Adoption**
+    - Diviser en fonction des phases d'adoption par les utilisateurs
+    - Commencer par les fonctionnalités nécessaires au lancement
+    - Exemple: "Version bêta limitée" puis "Version complète"
+    - Aligné sur la stratégie de déploiement et d'adoption du produit
+
+15. **Découpage Technique Conscient**
+    - Découpage tenant compte des contraintes techniques tout en gardant une valeur métier
+    - Utile pour les infrastructures complexes ou systèmes distribués
+    - Exemple: "Implémentation sur un seul nœud" puis "Distribution sur plusieurs nœuds"
+    - À utiliser avec précaution pour éviter un découpage purement technique
 
 ### 3️⃣ Validation du Découpage
 Vérifier que les stories résultantes respectent les critères INVEST:
@@ -127,6 +189,25 @@ Vérifier que les stories résultantes respectent les critères INVEST:
 - **E**stimables: L'équipe peut estimer leur effort avec confiance
 - **S**uffisamment petites: Réalisables dans un sprint
 - **T**estables: Comportent des critères d'acceptation clairs
+
+#### Critères supplémentaires de validation:
+- Chaque story est-elle une tranche verticale (traverse toutes les couches de l'architecture)?
+- L'ordre de priorité des stories est-il clair?
+- Les dépendances entre stories sont-elles minimisées?
+- Y a-t-il une progression logique de valeur entre les stories?
+- Les critères d'acceptation sont-ils clairs pour chaque story?
+
+## 🛠️ Processus de Découpage Structuré
+
+Pour faciliter le découpage méthodique, suivez ces étapes structurées:
+
+1. **Identification du cœur de valeur**: Déterminez quelle est l'essence de la valeur métier de la story originale
+2. **Cartographie des complexités**: Identifiez toutes les sources de complexité (données, règles, interfaces, etc.)
+3. **Sélection de la première tranche**: Choisissez la plus petite tranche qui apporte déjà une valeur métier
+4. **Découpage itératif**: Appliquez les patterns pertinents et répétez jusqu'à atteindre la taille appropriée
+5. **Vérification de la couverture**: Assurez-vous que toutes les fonctionnalités de la story originale sont couvertes
+6. **Validation transversale**: Vérifiez que chaque story respecte les critères INVEST
+7. **Réorganisation par priorité**: Ordonnez les stories résultantes par ordre de priorité métier
 
 ## 💡 Exemples de Découpage
 
@@ -173,6 +254,25 @@ Story 4: En tant qu'utilisateur, je peux utiliser un calendrier interactif pour 
 **Explication:** Ce découpage combine les patterns "Rules" (règles métier) et "Interface" de SPIDR. La première story implémente la fonctionnalité de base avec l'interface la plus simple, puis les stories suivantes ajoutent des règles métier plus complexes et une interface plus sophistiquée.
 </example>
 
+<example>
+**Story originale trop volumineuse:**
+
+```markdown
+En tant que gestionnaire de contenu, je veux pouvoir publier un article sur le site corporate afin d'informer nos clients des dernières actualités.
+```
+
+**Découpage par étapes de workflow:**
+```markdown
+Story 1: En tant que gestionnaire de contenu, je peux publier un article directement sur le site corporate
+Story 2: En tant que gestionnaire de contenu, je peux soumettre un article pour révision éditoriale
+Story 3: En tant qu'éditeur, je peux réviser et approuver un article soumis
+Story 4: En tant que gestionnaire de contenu, je peux prévisualiser l'article sur un site de staging
+Story 5: En tant que gestionnaire de contenu, je peux planifier la publication d'un article pour une date future
+```
+
+**Explication:** Ce découpage utilise le pattern "Étapes de Workflow" pour simplifier un processus complexe. La première story permet un flux direct sans étapes intermédiaires, puis les stories suivantes ajoutent des étapes de workflow plus sophistiquées.
+</example>
+
 ## 🔪 Arbre de Décision pour le Choix du Pattern
 
 ```mermaid
@@ -185,18 +285,44 @@ graph TD
     B -->|CRUD complet| G[Utiliser Opérations CRUD]
     B -->|Incertitude technique| H[Utiliser Spike]
     B -->|Exigences de performance| I[Utiliser Performance Différée]
-    C --> J[Stories découpées]
-    D --> J
-    E --> J
-    F --> J
-    G --> J
-    H --> J
-    I --> J
-    J --> K{Respectent INVEST?}
-    K -->|Oui| L[Terminé]
-    K -->|Non| M[Redécouper]
-    M --> B
+    B -->|Plusieurs types d'utilisateurs| J[Utiliser Personas]
+    B -->|Nombreux attributs| K[Utiliser Attributs]
+    C --> L[Stories découpées]
+    D --> L
+    E --> L
+    F --> L
+    G --> L
+    H --> L
+    I --> L
+    J --> L
+    K --> L
+    L --> M{Respectent INVEST?}
+    M -->|Oui| N[Terminé]
+    M -->|Non| O[Redécouper]
+    O --> B
 ```
+
+## 🧩 Stratégies de Découpage par Type de Projet
+
+### 📱 Applications Front-End / UI
+- **Privilégiez:** Interface, Path, Variations Fonctionnelles, Niveaux de Qualité
+- **Approche recommandée:** Commencez par une interface minimale mais fonctionnelle, puis enrichissez-la progressivement
+- **Exemple:** D'abord un formulaire simple en HTML/CSS, puis ajoutez des validations JS, puis des améliorations UX
+
+### 🔄 APIs et Services Backend
+- **Privilégiez:** Data, Rules, CRUD, Performance Différée
+- **Approche recommandée:** Implémentez d'abord un sous-ensemble minimal d'endpoints avec des règles simplifiées
+- **Exemple:** API de paiement d'abord avec un seul fournisseur, puis ajoutez d'autres fournisseurs
+
+### 📊 Applications d'Analyse et BI
+- **Privilégiez:** Data, Variations Fonctionnelles, Personas
+- **Approche recommandée:** Commencez par les métriques essentielles et un sous-ensemble de données
+- **Exemple:** Dashboard avec les 3 KPIs principaux d'abord, puis enrichissement progressif
+
+### 🏛️ Systèmes Legacy / Modernisation
+- **Privilégiez:** Spike, Étapes d'Adoption, Découpage Technique Conscient
+- **Approche recommandée:** Procédez par migration incrémentale avec coexistence des systèmes
+- **Exemple:** D'abord la lecture seule dans le nouveau système, puis progressivement les opérations d'écriture
 
 ## ⚠️ Pièges à Éviter
 
@@ -206,6 +332,20 @@ graph TD
 4. **Dépendances fortes**: Minimiser les dépendances entre stories découpées
 5. **Granularité excessive**: Ne pas créer des stories trop petites (< 1 point)
 6. **Oublier le contexte**: Toujours maintenir le lien avec l'objectif métier global
+7. **Complexité artificielle**: Ne pas ajouter de complexité juste pour faciliter le découpage
+8. **Découpage par fonctionnalité technique**: Éviter "En tant que système, je veux..."
+9. **Découpage basé uniquement sur l'effort**: L'effort n'est pas le seul critère de découpage
+10. **Oubli de la vision globale**: S'assurer que l'ensemble des stories découpées couvre la fonctionnalité originale
+
+## 🔄 Gestion des Dépendances
+
+Même avec le meilleur découpage, certaines dépendances peuvent subsister entre les stories. Voici comment les gérer:
+
+1. **Identification explicite**: Documentez clairement les dépendances dans chaque story
+2. **Minimisation**: Cherchez à réduire au maximum les dépendances lors du découpage
+3. **Priorisation adaptée**: Ordonnez le backlog pour tenir compte des dépendances
+4. **Regroupement stratégique**: Envisagez de regrouper les stories fortement dépendantes dans le même sprint
+5. **Conception adaptative**: Utilisez des patterns de conception qui facilitent l'évolution indépendante
 
 ## ✅ Bonnes Pratiques
 
@@ -216,13 +356,49 @@ graph TD
 - **Adaptation**: Ajuster le niveau de découpage selon la maturité de l'équipe
 - **Itérer**: Ne pas chercher le découpage parfait du premier coup
 - **Feedback**: Utiliser les retours des sprints pour améliorer le découpage
+- **Visualisation**: Utiliser le story mapping pour comprendre le flux utilisateur complet
+- **Contextualisation**: Maintenir le lien avec le besoin utilisateur et l'objectif métier
+- **Trouver le bon niveau**: Éviter à la fois les stories trop grandes et trop petites
+
+## 📝 Template de Découpage
+
+Pour faciliter le processus de découpage, utilisez ce template:
+
+```markdown
+## Story Originale
+[Description de la story originale]
+
+## Raisons du Découpage
+- [Raison 1]
+- [Raison 2]
+
+## Pattern(s) de Découpage Choisi(s)
+- [Pattern 1] - Raison: [Explication]
+- [Pattern 2] - Raison: [Explication]
+
+## Stories Résultantes
+1. [Description de la Story 1] - Valeur: [Explication de la valeur métier]
+2. [Description de la Story 2] - Valeur: [Explication de la valeur métier]
+...
+
+## Dépendances Identifiées
+- Story 2 dépend de Story 1 pour [raison]
+- ...
+
+## Ordre de Priorité Suggéré
+1. Story X
+2. Story Y
+...
+```
 
 ## 🔗 Références
 - [Guide SPIDR de Mike Cohn](mdc:https:/www.mountaingoatsoftware.com/blog/five-simple-but-powerful-ways-to-split-user-stories)
 - [Patterns de Découpage de Richard Lawrence](mdc:https:/www.humanizingwork.com/the-humanizing-work-guide-to-splitting-user-stories)
 - [Template de User Story](mdc:903-story-template-standardized)
 - [INVEST in Good Stories](mdc:https:/www.agilealliance.org/glossary/invest)
+- [Story Mapping pour le Découpage](mdc:https:/www.jpattonassociates.com/user-story-mapping)
+- [Techniques Avancées de Découpage](mdc:https:/www.agileforall.com/splitting-user-stories-the-hamburger-method)
 
 <requires>903-story-template-standardized</requires>
 
-<version>1.0.0</version> 
+<version>1.1.0</version> 

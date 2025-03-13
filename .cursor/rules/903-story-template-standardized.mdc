@@ -1,11 +1,11 @@
 ---
 description: "ALWAYS use when CREATING or UPDATING story files to ENSURE proper tracking and implementation. This rule enforces consistent story structure with tasks, context, and progress tracking."
 globs: "**/*.story.md"
-alwaysApply: false
+alwaysApply: true
 ---
 ---
 title: "Template de User Stories"
-version: "3.1.0"
+version: "3.2.0"
 description: "ALWAYS use when CREATING or UPDATING story files to ENSURE proper tracking and implementation. This rule enforces consistent story structure with tasks, context, and progress tracking."
 globs: "**/*.story.md"
 alwaysApply: true
@@ -265,6 +265,21 @@ Une story doit être découpée si:
 - L'équipe ne parvient pas à l'estimer clairement
 - Elle contient des termes comme "et", "ou", "également", "puis" dans sa description
 
+> ⚠️ **Attention**: Si vous détectez un ou plusieurs de ces indicateurs dans votre story, appliquez la règle [**904-story-splitting-standardized**](mdc:904-story-splitting-standardized) pour découper efficacement votre story en plusieurs stories plus petites et gérables.
+
+### ✂️ Application du Workflow de Découpage
+
+Si votre story présente des signes qu'elle est trop volumineuse:
+
+1. **Évaluez la nécessité de découpage** en utilisant les indicateurs ci-dessus
+2. **Appliquez la règle [904-story-splitting-standardized](mdc:904-story-splitting-standardized)** qui fournit:
+   - Un workflow structuré en 3 étapes
+   - 10 patterns de découpage (SPIDR et techniques complémentaires)
+   - Des exemples concrets de découpage
+   - Un arbre de décision pour choisir le bon pattern
+
+3. **Validez que chaque story résultante** respecte les critères INVEST et apporte une valeur métier
+
 ### ✂️ Techniques de Découpage
 
 1. **Par Cas d'Utilisation**:
@@ -291,6 +306,8 @@ Une story doit être découpée si:
    - Fonctionnalité de base d'abord, optimisations ensuite
    - Exemple: "Interface responsive" devient "Interface de base" puis "Adaptation mobile"
 
+> 📌 **Note**: Pour un workflow détaillé et complet sur le découpage de stories, consultez la règle [**904-story-splitting-standardized**](mdc:904-story-splitting-standardized) qui offre des techniques avancées et un processus décisionnel structuré.
+
 ### ⚠️ Pièges à Éviter lors du Découpage
 
 - Ne pas créer de stories techniques sans valeur utilisateur directe
@@ -303,5 +320,8 @@ Une story doit être découpée si:
 - [Guide de l'Estimation Agile](mdc:https:/www.mountaingoatsoftware.com/blog/what-are-story-points)
 - [Technique INVEST pour les User Stories](mdc:https:/www.agilealliance.org/glossary/invest)
 - [Patterns de Découpage des User Stories](mdc:https:/www.agilealliance.org/resources/sessions/patterns-for-splitting-user-stories)
+- [Workflow Détaillé de Découpage des Stories](mdc:904-story-splitting-standardized)
 
-<version>3.1.0</version> 
+<requires>904-story-splitting-standardized</requires>
+
+<version>3.2.0</version>
