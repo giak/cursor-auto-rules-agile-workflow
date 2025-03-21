@@ -74,15 +74,15 @@ Where:
 
 Common glob patterns for different rule types:
 
-- Core standards: .cursor/rules/\*.mdc
-- Language rules: src/\*_/_.{js,ts}
-- Testing standards: \*_/_.test.{js,ts}
-- React components: src/components/\*_/_.tsx
-- Documentation: docs/\*_/_.md
-- Configuration files: \*.config.{js,json}
-- Build artifacts: dist/\*_/_
-- Multiple extensions: src/\*_/_.{js,jsx,ts,tsx}
-- Multiple files: dist/**/\*, docs/**/\*.md
+- Core standards: .cursor/rules/*.mdc
+- Language rules: src/*_/_.{js,ts}
+- Testing standards: *_/_.test.{js,ts}
+- React components: src/components/*_/_.tsx
+- Documentation: docs/*_/_.md
+- Configuration files: *.config.{js,json}
+- Build artifacts: dist/*_/_
+- Multiple extensions: src/*_/_.{js,jsx,ts,tsx}
+- Multiple files: dist/**/*, docs/**/*.md
 
 ## Required Fields
 
@@ -129,6 +129,7 @@ For a complete understanding of the rules system and naming convention:
 
 - @meta-rules-naming-convention.md: Complete naming convention structure and categories
 - @meta-rules-naming-reference.md: Detailed reference for rule types and practical examples
+
 
 ## Critical Points
 
