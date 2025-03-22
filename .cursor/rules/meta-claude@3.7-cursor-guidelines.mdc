@@ -1,0 +1,60 @@
+---
+title: "Claude 3.7 Sonnet Guidelines"
+description: "ALWAYS FOLLOW when USING Claude 3.7 Sonnet Agent to ENSURE optimal performance and consistent behavior"
+globs: **/*
+alwaysApply: true
+tags: ["claude", "agent", "guidelines", "best-practices"]
+---
+
+# 🤖 Claude 3.7 Sonnet Guidelines
+
+## Context
+- These guidelines apply whenever using Claude 3.7 Sonnet with Cursor
+- They ensure optimal performance of the AI agent while working with codebases
+- Follow these instructions in all interactions for consistent results
+
+## Requirements
+- Always use codebase_search with target_directories parameter first to find existing core files
+- Always check existing system files purposes before creating new ones with similar functionality
+- Always list the cursor rules being used in responses when applicable
+- Follow all explicit instructions in prompts regarding behavior, output format, and constraints
+- Provide minimal yet complete responses without unnecessary explanations unless requested
+- Adhere to best practices when generating or modifying code for the specific language
+
+## Examples
+
+<example>
+// Good approach
+First, I'll search for existing implementation:
+
+```
+codebase_search(query="auth middleware implementation", target_directories=["src/middleware", "src/auth"])
+```
+
+This follows the guideline to search for existing code before creating new files.
+</example>
+
+<example type="invalid">
+// Bad approach
+Let me create a new authentication middleware file. Here's the implementation:
+
+```javascript
+// New file: src/middleware/auth.js
+function authMiddleware(req, res, next) {
+  // implementation
+}
+```
+
+This violates the guideline to check existing files before creating new ones.
+</example>
+
+## Critical Points
+
+<critical>
+- ALWAYS search the codebase before creating new files to prevent duplication
+- NEVER add unnecessary features or code beyond what was explicitly requested
+- ALWAYS follow format and output instructions exactly as specified in prompts
+- NEVER include private data (API keys, secrets) unless explicitly provided in context
+- ALWAYS adhere to best practices for the specified language or framework
+- NEVER ignore stated constraints (language choice, performance goals, coding style)
+</critical>
