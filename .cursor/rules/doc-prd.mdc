@@ -1,0 +1,485 @@
+---
+description: ALWAYS USE when CREATING a project foundation document to ENSURE comprehensive technical and business documentation through an iterative process
+globs: **/project-foundation.md, **/technical-foundation.md, **/architecture-spec.md, **/prd.md, **/product-requirements-document.md
+tags: [documentation, architecture, planning, technical-spec, foundation, requirements-gathering, prd, product-requirements-document]
+alwaysApply: false
+---
+
+# 🏗️ Product Requirements Document (PRD) Template
+
+## Context
+- This rule provides structure for creating comprehensive product requirements documents
+- These documents serve as the definitive reference for both business and technical aspects of a project
+- PRDs should be created at project initiation and updated regularly throughout development
+- They guide all business and technical decisions and provide context for all stakeholders
+- An iterative requirement gathering process precedes document creation to ensure completeness and accuracy
+- PRDs bridge the gap between business needs and technical implementation
+
+## Requirements
+- The document MUST follow the standardized structure outlined below
+- The document MUST be preceded by a structured requirements gathering phase
+- All sections MUST be completed with appropriate detail according to project scope
+- Technical stack section MUST include versions for all technologies
+- Architecture section MUST include diagrams when necessary for clarity
+- Implementation plan MUST include concrete milestones and timelines
+- Risk section MUST include both identified risks and mitigation strategies
+- User personas and journeys MUST be clearly defined
+- Both functional and non-functional requirements MUST be documented
+- Requirements prioritization MUST be included using the MoSCoW method
+
+### Iterative Requirements Gathering Process
+
+Before creating the final document, conduct a structured Q&A process to gather comprehensive requirements:
+
+#### 1️⃣ Initial Requirements Gathering
+Conduct a structured interview using a combination of multiple-choice and open-ended questions across key areas:
+
+```markdown
+# Project Requirements Questionnaire
+
+## Project Context
+1. What type of project are you planning to create?
+   a) Web Application
+   b) Mobile Application
+   c) API/Backend Service
+   d) Desktop Application
+   e) Other (please specify)
+
+2. What is the primary business purpose of this project?
+   [Open text response]
+
+3. Who are the primary users/stakeholders of this project?
+   [Open text response]
+
+## Business Value
+4. What key problems does this project solve for users?
+   [Open text response]
+
+5. How will success be measured for this project?
+   [Open text response]
+
+6. What are the business KPIs for this project?
+   [Open text response]
+
+## User Research
+7. Have user personas been created for this project?
+   a) Yes, comprehensive personas exist
+   b) Yes, but they need refinement
+   c) No, personas need to be created
+
+8. What key user journeys need to be supported?
+   [Open text response]
+
+## Technical Scope
+9. What is the expected scale of this project?
+   a) Small (< 1,000 users)
+   b) Medium (1,000-10,000 users)
+   c) Large (10,000-100,000 users)
+   d) Enterprise (100,000+ users)
+
+10. Are there any specific technologies or frameworks you prefer to use?
+    [Open text response]
+
+11. What are the most critical technical constraints for this project?
+    (e.g., performance requirements, security standards, compliance needs)
+    [Open text response]
+
+## Architecture & Integration
+12. Will this project need to integrate with existing systems?
+    a) Yes, multiple complex integrations
+    b) Yes, a few simple integrations
+    c) No, it's a standalone system
+
+13. Do you have architectural preferences or requirements?
+    [Open text response]
+
+## Timeline & Implementation
+14. What is the expected timeline for this project?
+    a) Less than 3 months
+    b) 3-6 months
+    c) 6-12 months
+    d) 1+ years
+
+15. Are there any critical features that must be prioritized?
+    [Open text response]
+
+## Risk Assessment
+16. What do you see as the biggest technical risks for this project?
+    [Open text response]
+
+17. What do you see as the biggest business risks for this project?
+    [Open text response]
+
+18. Are there any specific regulatory or compliance requirements?
+    [Open text response]
+```
+
+#### 2️⃣ Requirements Analysis & Clarification
+After receiving initial answers:
+- Summarize the information gathered
+- Identify areas needing clarification
+- Note potential inconsistencies or conflicts
+- Prepare focused follow-up questions
+
+#### 3️⃣ Iterative Refinement
+Conduct 1-3 rounds of follow-up discussions to:
+- Address gaps in initial requirements
+- Resolve ambiguities
+- Validate technical assumptions
+- Refine scope and constraints
+- Align business needs with technical capabilities
+
+#### 4️⃣ Requirements Validation
+Before finalizing the document:
+- Present a summary of gathered requirements
+- Confirm project scope and priorities
+- Validate technical approach
+- Get stakeholder approval on the core elements
+
+### Document Structure
+
+```markdown
+---
+title: "Product Requirements Document - [Project Name]"
+description: "Product and technical requirements for [Brief Project Description]"
+version: "1.0.0"
+status: "Draft/In Review/Approved"
+date: "YYYY-MM-DD"
+author: "[Author Name]"
+tags: ["product-requirements", "architecture", "technical-spec", "[other-relevant-tags]"]
+---
+
+# Product Requirements Document (PRD) - [Project Name]
+
+## Document History
+
+| Date       | Version | Author | Description of Changes                |
+| ---------- | ------- | ------ | ------------------------------------ |
+| YYYY-MM-DD | 1.0.0   |        | Initial version                      |
+| YYYY-MM-DD | 1.1.0   |        | [Description of changes in this version] |
+
+## Introduction
+
+### Description of Project
+[Provide a clear, concise description of the project, including its purpose, main functionality, and how it addresses user needs. 1-2 paragraphs.]
+
+### Context and Business Motivation
+[Explain the business context, market opportunity, or organizational need that motivates this project. Include relevant background information and strategic alignment.]
+
+#### Positioning and Differentiation
+[Explain how this product is positioned relative to competitors or alternatives, and what key differentiators it offers.]
+
+### Target Audience and Stakeholders
+[Identify the primary users and other stakeholders for the project, including their roles and interests.]
+
+#### Detailed Personas
+[Include 2-4 detailed user personas with:
+- Demographic information
+- Goals and needs
+- Pain points
+- Usage patterns
+- Key values]
+
+### Problem Statement
+[Clearly articulate the specific problems this project aims to solve for users and the business.]
+
+## Objectives
+
+### Primary Objectives
+[List the main objectives of the project, focusing on measurable outcomes for users and the business.]
+
+### Success Criteria
+[Define specific, measurable criteria that will determine if the project is successful.]
+
+### Key Performance Indicators (KPIs)
+[List the key metrics that will be used to measure success, with target values where possible.]
+
+### Measurement Methods
+[Describe how KPIs will be measured, tracked, and reported.]
+
+## User Journeys
+
+### Primary User Journey: [Journey Name]
+[Describe a key user journey step-by-step, from the user's perspective. Include entry points, actions, and outcomes.]
+
+### Secondary User Journey: [Journey Name]
+[Describe additional important user journeys as needed.]
+
+### User Flow Diagrams
+[Include visual representations of the main user flows through the application.]
+
+## Requirements and Features
+
+### Requirement Classification (MoSCoW)
+
+#### Must Have (Essential)
+[List features that are absolutely necessary for launch]
+
+#### Should Have (Important)
+[List features that are important but not critical for initial launch]
+
+#### Could Have (Desired)
+[List features that would be beneficial but are lower priority]
+
+#### Won't Have (Excluded from this version)
+[List features explicitly excluded from the current scope]
+
+### Functional Requirements
+[Detailed list of functional requirements, organized by feature area or user journey]
+
+1. **[Feature Area 1]**
+   - [Requirement 1.1]
+   - [Requirement 1.2]
+   - ...
+
+2. **[Feature Area 2]**
+   - [Requirement 2.1]
+   - [Requirement 2.2]
+   - ...
+
+### Non-Functional Requirements
+
+1. **Performance**
+   - [List specific performance requirements]
+
+2. **Compatibility**
+   - [List compatibility requirements with platforms, browsers, etc.]
+
+3. **Security**
+   - [List security requirements]
+
+4. **Compliance**
+   - [List regulatory or standards compliance requirements]
+
+### UX/UI Requirements
+
+1. **Interface Guidelines**
+   - [List key UI principles and standards to be followed]
+
+2. **User Experience Principles**
+   - [List key UX principles to be followed]
+
+3. **Accessibility Requirements**
+   - [List accessibility standards and requirements]
+
+### Explicitly Excluded Features
+[Clear list of features or functionality that have been considered but are explicitly excluded from the current scope]
+
+## Technical Specifications
+
+### Technical Vision & Objectives
+- **Technical Vision**: [High-level technical vision statement]
+- **Technical Objectives**: [List of specific technical objectives]
+- **Guiding Principles**: [Key architectural and development principles]
+
+### Technology Stack
+- **Frontend**: [Frontend technologies with versions]
+- **Backend**: [Backend technologies with versions]
+- **Data**: [Data persistence approach, formats, migration/caching strategies]
+- **Infrastructure**: [Hosting, containerization, CI/CD pipeline]
+- **Monitoring & Observability**: [Logging, monitoring, analytics, testing]
+
+### Architecture
+- **Architectural Pattern**: [Main architectural pattern(s)]
+- **Functional Breakdown**: [Component/package descriptions]
+- **Code Organization**: [Project structure diagram/description]
+- **Main Data Flows**: [Step-by-step description of main flows]
+- **External Integration Points**: [List of external integrations]
+
+### Technical Constraints
+[List technical constraints that impact design and implementation decisions]
+
+### Development Principles
+- **Code Standards**: [Naming conventions, tools, practices]
+- **Special Considerations**: [I18n, accessibility, performance, etc.]
+- **Testing Strategy**: [Approach to testing different components]
+- **Collaboration Model**: [Workflow, code review, branches]
+- **Documentation**: [Documentation approach and standards]
+
+## Implementation Plan
+
+### Current Status
+[Overview of current implementation status, including completed work]
+
+### Phases & Milestones
+[Define clear development phases with deliverables and timelines]
+
+### Technical Phases
+- **Phase 1: [Name]** (Timeline: [start-end])
+  - [Key deliverables and tasks]
+  - [Acceptance criteria]
+
+- **Phase 2: [Name]** (Timeline: [start-end])
+  - [Key deliverables and tasks]
+  - [Acceptance criteria]
+
+### Dependencies
+[List internal and external dependencies that may impact implementation]
+
+### Resources Required
+[List team roles, skills, and other resources needed]
+
+## Risk Assessment
+
+### Business Risks
+[Identify business risks with impact and mitigation strategies]
+
+### Technical Risks
+[Identify technical risks with impact and mitigation strategies]
+
+### Mitigation Strategies
+[Describe overall approaches to risk mitigation]
+
+### Alternatives Considered
+[Document significant alternatives that were considered and why they were not selected]
+
+## Open Questions
+[List open questions that need resolution, with current status and impact]
+
+## Appendices
+
+### Related Documents
+[List related documentation with links]
+
+### Glossary
+[Define key terms used in the document]
+
+### Reference Materials
+[List reference materials, standards, or external resources consulted]
+```
+
+## Examples
+
+<example>
+---
+title: "Product Requirements Document - CV Generator"
+description: "Product and technical requirements for a modern CV builder with JSON Resume standard support"
+version: "1.7.0"
+status: "Draft"
+date: "2025-03-12"
+author: "Giak"
+tags: ["product-requirements", "architecture", "cv-generator", "json-resume"]
+---
+
+# Product Requirements Document (PRD) - CV Generator
+
+## Document History
+
+| Date       | Version | Author | Description of Changes                                                                                |
+| ---------- | ------- | ------ | ---------------------------------------------------------------------------------------------------- |
+| 2025-02-28 | 1.0.0   | Giak   | Initial version of document                                                                          |
+| 2025-03-01 | 1.1.0   | Giak   | Added ATS optimization as feature                                                                    |
+| 2025-03-01 | 1.2.0   | Giak   | Simplified project (localStorage only, JSON Resume editing)                                          |
+| 2025-03-12 | 1.7.0   | Giak   | Added internationalization (i18n) with Vue I18n and updated epics structure                          |
+
+## Introduction
+
+### Description of Project
+CV Generator is a modern web application that helps users create, edit, and export CVs using the JSON Resume standard format. The application offers an intuitive interface for data entry, real-time validation, multilingual support, and allows exporting CVs in multiple formats (JSON, HTML, PDF). It operates entirely client-side with localStorage persistence, requires no backend, and is structured as a PNPM monorepo with well-defined packages.
+
+### Context and Business Motivation
+The JSON Resume format offers a structured, standardized solution for storing CV data, but lacks user-friendly tools for non-technical users. CV Generator fills this gap by providing:
+
+- A simple user interface for editing JSON Resume format
+- Data validation according to the standard schema
+- Export in multiple usable formats (standard-compliant JSON, HTML, PDF)
+- Tips for optimizing CVs for ATS (Applicant Tracking Systems)
+- Complete offline operation via localStorage
+- A maintainable architecture based on Clean Architecture principles
+- Multilingual support to reach an international audience
+
+#### Positioning and Differentiation
+CV Generator positions itself as a lightweight, user-friendly alternative to online CV editors that require an account or constant internet connection. Unlike SaaS solutions like Canva, Resume.io, or LinkedIn, our application:
+
+- Requires no registration or subscription
+- Works 100% offline
+- Offers free export in standard formats
+- Ensures complete user control of data
+- Guarantees interoperability with the JSON Resume ecosystem
+- Provides an interface available in multiple languages
+
+### Target Audience and Stakeholders
+
+**Target Audience**:
+- Developers wanting to maintain their CV in standard JSON Resume format
+- Job seekers comfortable with digital tools
+- Professionals wanting a CV in structured, portable format
+- JSON Resume ecosystem users looking for a visual editor
+- International users requiring an interface in their language
+
+#### Detailed Personas
+
+1. **Alex, Front-end Developer (28 years old)**
+   - Wants to maintain CV in structured, versioned format
+   - Prefers working with open formats like JSON
+   - Needs to export as PDF for job applications
+   - Primary value: technical control and data portability
+
+2. **Sophie, Job Seeker (35 years old)**
+   - Regularly applies to jobs through online platforms
+   - Needs advice to get her CV through ATS filters
+   - Wants a simple but comprehensive interface
+   - Primary value: ATS optimization and ease of use
+
+3. **Marc, Multi-profile Freelancer (42 years old)**
+   - Maintains multiple CV versions for different types of assignments
+   - Needs to easily modify and adapt his CV
+   - Prefers working offline on his documents
+   - Primary value: flexibility and customization
+
+4. **Lucie, International Consultant (31 years old)**
+   - Works on international projects requiring CVs in different languages
+   - Appreciates interfaces available in her native language
+   - Needs to adapt her CV according to cultural standards
+   - Primary value: international adaptation and linguistic flexibility
+
+[Remaining sections would follow the template structure...]
+</example>
+
+<example type="invalid">
+# CV Generator Requirements
+
+This document describes our new CV Generator app. We need to create a web app that allows users to create CVs.
+
+## Features
+- Create a CV
+- Save CV data
+- Export to PDF
+
+## Tech Stack
+- Vue.js
+- TypeScript
+- Tailwind
+
+## Timeline
+We'll build the core features first, then add more advanced options.
+
+## Risks
+- Users might not understand the JSON Resume format
+- Performance might be an issue for large CVs
+
+[This example is invalid because: missing document history and version control, incomplete introduction and context, no detailed personas or user journeys, no prioritization of requirements, missing technical specifications, no implementation phases, poor risk assessment, missing business context and stakeholder information, no success criteria or KPIs, incomplete architecture information, no internationalization details despite being required]
+</example>
+
+## Critical Points
+
+<critical>
+- ALWAYS conduct the iterative requirements gathering process before finalizing the document
+- ALWAYS use both structured questions and open-ended discussions to gather requirements
+- ALWAYS include at least 2-3 iterative refinement cycles for complex projects
+- ALWAYS document significant requirement changes in the document history
+- ALWAYS create detailed user personas that represent the target users
+- ALWAYS prioritize requirements using the MoSCoW method (Must, Should, Could, Won't)
+- ALWAYS include both functional and non-functional requirements
+- ALWAYS document user journeys to illustrate how users will interact with the system
+- ALWAYS document business objectives and success criteria with measurable KPIs
+- ALWAYS define a clear implementation plan with phases and milestones
+- ALWAYS provide detailed technical stack information with version numbers
+- ALWAYS include architecture diagrams or clear structure descriptions
+- ALWAYS identify both business and technical risks with mitigation strategies
+- NEVER leave sections incomplete or with placeholder content in the final document
+- NEVER use vague or ambiguous language for requirements
+- NEVER skip the explicitly excluded features section
+- ALWAYS keep the document updated as the project evolves
+- ALWAYS include a glossary for technical terms and project-specific terminology
+</critical> 

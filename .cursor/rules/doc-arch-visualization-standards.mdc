@@ -1,0 +1,277 @@
+---
+title: "Architecture Visualization Standards"
+description: "ALWAYS USE when CREATING or UPDATING architecture documentation to ENSURE comprehensive visual representation and hierarchical structure"
+globs: **/arch*.md
+alwaysApply: false
+tags: ["architecture", "design", "technical", "documentation", "diagrams", "mermaid"]
+---
+
+# 📊 Architecture Visualization Standards
+
+## 📋 Context
+- Apply when creating new architecture documentation
+- Apply when updating existing architecture diagrams
+- Apply when describing system components and their relationships
+- Use alongside project-foundation.md and other architecture documents
+- Essential for communicating complex technical structures visually
+
+## ✅ Requirements
+
+### 1️⃣ Diagram Types & Hierarchy
+- Architecture documentation MUST include a minimum of three levels of diagrams:
+  - **Level 1**: Context/System diagram showing the system and external entities
+  - **Level 2**: Container/Component diagram showing major system components
+  - **Level 3**: Component/Class diagram showing detailed implementation structure
+- Each diagram level MUST have accompanying explanatory text
+- Diagrams MUST follow a consistent visual language across all levels
+- Complex systems MUST include additional views (data flow, sequence diagrams, state diagrams)
+
+### 2️⃣ Mermaid Diagram Standards
+- All architecture diagrams MUST be created using Mermaid syntax
+- Diagrams MUST use consistent styling and formatting
+- Each diagram MUST include a clear title and legend when necessary
+- Different component types MUST use consistent shapes and colors
+- Relationships between components MUST be clearly labeled
+- Direction of data flow MUST be indicated with arrows
+- Critical paths MUST be highlighted
+
+### 3️⃣ Detailed Component Documentation
+- Each architectural component MUST have:
+  - Name and purpose
+  - Responsibilities and capabilities
+  - Interfaces (inputs/outputs)
+  - Dependencies (internal and external)
+  - Constraints and limitations
+  - Technical decisions and justifications
+- Components MUST be organized in a clear hierarchy
+- All relationships between components MUST be documented
+
+### 4️⃣ Technical Structure Representation
+- System boundaries MUST be clearly defined
+- Integration points MUST be explicitly documented
+- Data stores and their relationships MUST be represented
+- Authentication and authorization boundaries MUST be shown
+- Network boundaries and security zones MUST be identified
+- Performance considerations MUST be noted on relevant components
+
+### 5️⃣ Architecture Evolution
+- Documentation MUST include version history
+- Major architectural changes MUST be tracked
+- Future state architecture MUST be documented (if applicable)
+- Migration paths between current and future states MUST be described
+- Technical debt MUST be identified and documented
+
+## 💡 Examples
+
+<example>
+### Good Example: Multi-level Architecture Documentation
+
+**Level 1: System Context Diagram**
+
+```mermaid
+flowchart TD
+    User([End User])
+    Admin([Administrator])
+    PaymentProvider([Payment Provider])
+    EmailService([Email Service])
+    
+    subgraph "CV Generator System"
+        CVSystem[CV Generator Application]
+    end
+    
+    User -->|Creates & manages CVs| CVSystem
+    Admin -->|Configures system| CVSystem
+    CVSystem -->|Processes payments| PaymentProvider
+    CVSystem -->|Sends notifications| EmailService
+    
+    classDef external fill:#8CDFFF,stroke:#009,stroke-width:2px
+    classDef system fill:#FFFAC8,stroke:#CC9900,stroke-width:2px
+    
+    class User,Admin,PaymentProvider,EmailService external
+    class CVSystem system
+```
+
+**Level 2: Container Diagram**
+
+```mermaid
+flowchart TD
+    User([End User])
+    
+    subgraph "CV Generator System"
+        WebApp[Web Application\nVue.js + Vite]
+        APIGateway[API Gateway\nExpress.js]
+        
+        subgraph "Services"
+            AuthService[Authentication Service\nJWT + OAuth]
+            CVService[CV Management Service\nTypeScript]
+            ExportService[Export Service\nPDF/DOCX Generator]
+            PaymentService[Payment Service\nStripe Integration]
+        end
+        
+        subgraph "Data Stores"
+            UserDB[(User Database\nMongoDB)]
+            CVDB[(CV Database\nMongoDB)]
+            TemplateDB[(Template Store\nRedis)]
+        end
+    end
+    
+    ExternalPayment([Payment Provider\nStripe])
+    EmailService([Email Service\nSendGrid])
+    
+    User -->|Uses| WebApp
+    WebApp -->|API Calls| APIGateway
+    APIGateway -->|Routes requests| AuthService
+    APIGateway -->|Routes requests| CVService
+    APIGateway -->|Routes requests| ExportService
+    APIGateway -->|Routes requests| PaymentService
+    
+    AuthService -->|Reads/Writes| UserDB
+    CVService -->|Reads/Writes| CVDB
+    CVService -->|Reads| TemplateDB
+    ExportService -->|Reads| CVDB
+    PaymentService -->|Integrates with| ExternalPayment
+    
+    PaymentService -->|Triggers| EmailService
+    CVService -->|Triggers| EmailService
+    
+    classDef external fill:#8CDFFF,stroke:#009,stroke-width:2px
+    classDef webapp fill:#C9E1F9,stroke:#4D7CC7,stroke-width:2px
+    classDef service fill:#FADBC8,stroke:#E66C37,stroke-width:2px
+    classDef database fill:#C6E5CC,stroke:#339933,stroke-width:2px
+    classDef gateway fill:#E1D1F6,stroke:#9673A6,stroke-width:2px
+    
+    class User,ExternalPayment,EmailService external
+    class WebApp webapp
+    class AuthService,CVService,ExportService,PaymentService service
+    class UserDB,CVDB,TemplateDB database
+    class APIGateway gateway
+```
+
+**Level 3: Component Diagram (CV Management Service)**
+
+```mermaid
+flowchart TD
+    APIGateway[API Gateway]
+    
+    subgraph "CV Management Service"
+        APIController[API Controller\nREST Endpoints]
+        
+        subgraph "Domain Layer"
+            CVManager[CV Manager\nBusiness Logic]
+            TemplateManager[Template Manager]
+            ValidationService[Schema Validation\nZod]
+        end
+        
+        subgraph "Data Layer"
+            CVRepository[CV Repository]
+            TemplateRepository[Template Repository]
+            CacheManager[Cache Manager]
+        end
+    end
+    
+    CVDB[(CV Database\nMongoDB)]
+    TemplateDB[(Template Store\nRedis)]
+    ExportService[Export Service]
+    
+    APIGateway -->|Requests| APIController
+    APIController -->|Delegates| CVManager
+    APIController -->|Validates| ValidationService
+    CVManager -->|Uses| TemplateManager
+    CVManager -->|Stores/Retrieves| CVRepository
+    TemplateManager -->|Stores/Retrieves| TemplateRepository
+    CVRepository -->|Accesses| CVDB
+    TemplateRepository -->|Accesses| TemplateDB
+    TemplateRepository -->|Caches| CacheManager
+    CacheManager -->|Uses| TemplateDB
+    CVManager -->|Requests Export| ExportService
+    
+    classDef controller fill:#FADBC8,stroke:#E66C37,stroke-width:2px
+    classDef domain fill:#C9E1F9,stroke:#4D7CC7,stroke-width:2px
+    classDef data fill:#C6E5CC,stroke:#339933,stroke-width:2px
+    classDef external fill:#E1D1F6,stroke:#9673A6,stroke-width:2px
+    classDef database fill:#C6E5CC,stroke:#339933,stroke-width:2px
+    
+    class APIController controller
+    class CVManager,TemplateManager,ValidationService domain
+    class CVRepository,TemplateRepository,CacheManager data
+    class APIGateway,ExportService external
+    class CVDB,TemplateDB database
+```
+
+**Component Details: CV Manager**
+
+- **Responsibility**: Core business logic for CV management
+- **Interfaces**:
+  - `createCV(data: CVData): Promise<CV>`
+  - `updateCV(id: string, data: CVData): Promise<CV>`
+  - `getCV(id: string): Promise<CV>`
+  - `listCVs(userId: string): Promise<CV[]>`
+  - `deleteCV(id: string): Promise<boolean>`
+- **Dependencies**:
+  - CV Repository
+  - Template Manager
+  - Schema Validation Service
+  - Export Service (external)
+- **Constraints**:
+  - Must validate against JSON Resume schema
+  - Must handle internationalization requirements
+  - Must implement rate limiting for API requests
+</example>
+
+<example type="invalid">
+### Poor Architecture Documentation
+
+Here's our system architecture:
+
+```
+Frontend -> Backend -> Database
+```
+
+The frontend talks to the backend through APIs. The backend stores data in the database.
+
+**Components**:
+- Frontend (Vue)
+- Backend (Node)
+- Database (MongoDB)
+
+This documentation is inadequate because:
+1. It uses simplistic text representation instead of proper diagrams
+2. It lacks detailed component descriptions
+3. It doesn't show different levels of architecture
+4. It omits interfaces, relationships, and data flows
+5. There is no explanation of architectural decisions
+6. It's missing component hierarchies and boundaries
+7. There are no clear system boundaries or integration points
+</example>
+
+## ✅ Best Practices
+
+- **Consistency**: Use the same visual language across all diagrams
+- **Hierarchy**: Move from high-level overview to detailed components
+- **Clarity**: Each component should have a single, well-defined purpose
+- **Completeness**: Include all significant components and relationships
+- **Perspective**: Create different views based on stakeholder needs
+- **Balance**: Include enough detail to be useful without overwhelming
+- **Evolution**: Update diagrams as the architecture evolves
+- **Integration**: Reference related documents (PRDs, technical specs)
+- **Accessibility**: Ensure diagrams are readable by using clear labels and colors
+
+## 🔗 References
+- [C4 Model for Visualizing Architecture](https://c4model.com/)
+- [Mermaid Diagram Syntax](https://mermaid.js.org/syntax/flowchart.html)
+- [Architecture Decision Records (ADRs)](https://adr.github.io/)
+
+## ❗ Critical Points
+
+<critical>
+- ALWAYS include multiple levels of architecture diagrams (context, container, component)
+- NEVER create diagrams without explanatory text for each component
+- ALWAYS use Mermaid syntax for all architecture diagrams
+- ENSURE all integration points and system boundaries are clearly shown
+- ALWAYS document component responsibilities, interfaces, and dependencies
+- NEVER omit relationships between components
+- ENSURE consistent styling and notation across all diagrams
+- ALWAYS highlight security and performance considerations in relevant components
+- NEVER create diagrams that contradict written documentation
+- ENSURE diagrams evolve alongside code changes and are kept current
+</critical> 

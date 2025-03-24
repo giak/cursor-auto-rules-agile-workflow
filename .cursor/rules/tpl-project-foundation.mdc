@@ -1,0 +1,105 @@
+---
+title: "Project Foundation Document Template"
+description: "ALWAYS USE when CREATING a project foundation document to ENSURE comprehensive technical and business documentation through an iterative process"
+globs: "docs/foundation*.md"
+alwaysApply: false
+tags: ["project-setup", "documentation", "architecture", "technical-stack"]
+---
+
+# 🏗️ Project Foundation Document Template
+
+## Phase 1: Interactive Questioning Phase
+
+Before generating the foundation document, the AI must engage in a questioning phase with the requester to:
+- Clarify project needs
+- Obtain details on technical and functional choices
+- Iterate on preliminary hypotheses to refine content
+- Generate a multiple-choice questionnaire (MCQ) to guide and personalize the PRD
+
+### MCQ Example
+
+1. **What is the main scope of the project?**
+   - [ ] Web Application
+   - [ ] Backend Service
+   - [ ] Mobile Application
+   - [ ] Other (specify)
+
+2. **What level of detail do you want for the "Technology Stack" section?**
+   - [ ] Basic
+   - [ ] Intermediate
+   - [ ] Very detailed
+
+3. **What type of architecture do you prefer to adopt?**
+   - [ ] Microservices
+   - [ ] Monolithic
+   - [ ] Serverless
+   - [ ] Other (specify)
+
+4. **What performance criteria and technical constraints are priorities?**
+   - [ ] Low latency
+   - [ ] High availability
+   - [ ] Enhanced security
+   - [ ] Others (specify)
+
+> The AI will use the answers from this MCQ to adjust the following sections of the document and ensure that the final PRD precisely meets the expectations and context of the project.
+
+---
+
+# 🏗️ Project Foundation - [Project Name]
+
+## 1️⃣ General Information
+- **Project Name**: [Project Name]
+- **Technical Description**: [Detailed technical description of the project]
+- **Category**: [Ex: Web (Frontend), Mobile, Backend Service, etc.]
+- **Expected Scale**: [Estimation of scale and number of users]
+- **Key Constraints**: [List of technical and business constraints]
+
+## 2️⃣ Technical Vision & Objectives
+- **Technical Vision**: [Statement of technical vision]
+- **Technical Objectives**: [List of specific technical objectives]
+- **Guiding Principles**: [Architectural and development principles to be respected]
+
+## 3️⃣ Technology Stack
+- **Frontend**: [Technologies and versions]
+- **Backend**: [Technologies and versions or N/A]
+- **Data**: [Persistence approach, formats, migration/caching strategies]
+- **Infrastructure**: [Hosting environment, containerization, CI/CD]
+- **Monitoring & Observability**: [Logging, monitoring, testing tools, etc.]
+
+## 4️⃣ Fundamental Architecture
+- **Architectural Pattern**: [Selected architectural pattern(s)]
+- **Functional Breakdown**: [Description of components/packages]
+- **Code Organization**: [Schema or description of project organization]
+- **Main Data Flows**: [Description of key data flows]
+- **External Integration Points**: [List of external integrations]
+
+## 5️⃣ Development Principles
+- **Code Standards**: [Naming conventions, tools, best practices]
+- **Special Considerations**: [Accessibility, performance, etc.]
+- **Testing Strategy**: [Testing approach for different components]
+- **Collaboration Model**: [Workflow, code review, branch strategy]
+- **Documentation**: [Methodology and standards for documentation]
+
+## 6️⃣ Implementation Plan
+- **Technical Phases**: [Numbered phases with tasks and timelines]
+- **Technical Priorities**: [List of technical priorities]
+- **Proof of Concepts**: [POCs to be completed before main implementation]
+
+## 7️⃣ Risks and Mitigations
+- **Technical Risks**: [Identification of technical risks and mitigation solutions]
+- **Global Mitigation Strategies**: [Global risk reduction strategies]
+- **Alternatives Considered**: [Options evaluated and decisions made]
+
+## Critical Points
+
+- ALWAYS include all required sections in the document.
+- ALWAYS provide detailed technical stack information with version numbers.
+- ALWAYS include architecture diagrams or clear structure descriptions.
+- ALWAYS document the implementation plan with concrete timelines.
+- ALWAYS identify risks and provide mitigation strategies.
+- NEVER leave sections incomplete or with placeholder content in the final document.
+- NEVER use vague or ambiguous language for technical specifications.
+- NEVER skip the constraints and limitations section.
+- ALWAYS keep the document updated as the project evolves.
+- ALWAYS include relevant tags to aid in document searchability.
+- ALWAYS start with the interactive question phase (MCQ) to capture and refine project requirements.
